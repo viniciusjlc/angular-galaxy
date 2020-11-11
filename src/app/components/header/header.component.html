@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light background-header">
+  <a routerLink="" href="#"
+     class="navbar-brand logo-principal logo-principal:hover">
+    GALAXY
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="universo" href="#">Universo</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="campanha" href="#">Campanhas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Personagens</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Sobre</a>
+      </li>
+    </ul>
+
+    <span class="navbar-text">
+      Olá, Teste
+    </span>
+    <a class="nav-link cadastrar-login" (click)="[showSideBarUser = true, showLogin = true, showCadastro = false]">
+      Entre ou Cadastre-se
+    </a>
+  </div>
+</nav>
+
+<p-sidebar id="sideBar" position="right" [baseZIndex]="10000"
+           [(visible)]="showSideBarUser" [style]='{backgroundColor: "#d0b04f"}'>
+  <div [hidden]="!showLogin" id="login">
+    <h2 style="font-weight:normal">
+      Login
+    </h2>
+    <form>
+      <div style="margin-bottom: 1.2em"
+           class="alert alert-danger" role="alert">
+        Teste
+      </div>
+      <div style="margin-bottom: 1.2em"></div>
+      <span class="p-float-label" style="margin-bottom: 2em">
+        <input id="loginInputEmail" type="email" class="form-control" aria-describedby="emailHelp"
+               [required]="true" name="email" pInputText>
+      <label style="font-size: 1em;"
+             for="loginInputEmail">Email</label>
+      </span>
+
+      <span class="p-float-label">
+        <input id="loginInputPassword" type="password" class="form-control" pInputText
+               [required]="true" name="senha">
+      <label style="font-size: 1em;"
+             for="loginInputPassword">Senha</label>
+    </span>
+      <button style="margin-top: 1em" type="submit" class="btn btn-dark btn-block">Logar
+      </button>
+    </form>
+  </div>
+  <a [hidden]="!showLogin"
+     style="color: darkred!important;" class="form-text text-muted"
+     (click)="showLogin = false; showCadastro = true">
+    Não tem conta? Clique aqui para cadastrar-se.
+  </a>
+
+  <div [hidden]="!showCadastro" id="cadastro">
+    <h2 style="font-weight:normal">
+      Cadastro
+    </h2>
+    <form>
+      <div class="alert alert-danger" role="alert">
+        Teste
+      </div>
+      <span class="p-float-label" style="margin-bottom: 1.6em">
+        <input type="text" class="form-control" id="cadastroNome" pInputText
+               [required]="true" name="nome">
+      <label style="font-size: 1em;"
+             for="cadastroNome">Nome</label>
+      </span>
+
+      <span class="p-float-label" style="margin-bottom: 1.6em">
+        <input type="email" class="form-control" id="cadastroEmail" pInputText aria-describedby="emailHelp"
+               [required]="true" name="nome">
+      <label style="font-size: 1em;"
+             for="cadastroEmail">Email</label>
+      </span>
+
+      <span class="p-float-label" style="margin-bottom: 1.6em">
+       <input type="password" class="form-control" id="cadastroSenha" pInputText
+              [required]="true" name="nome">
+      <label style="font-size: 1em;"
+             for="cadastroSenha">Senha</label>
+      </span>
+
+      <span class="p-float-label" style="margin-bottom: 1.6em">
+       <input type="password" class="form-control" id="cadastroSenhaConfirmar" pInputText
+              [required]="true" name="nome">
+      <label style="font-size: 1em;"
+             for="cadastroSenhaConfirmar">Confirmar Senha</label>
+      </span>
+      <button type="submit"
+              class="btn btn-success btn-block btn-lg">Cadastrar-se
+      </button>
+      <button type="button" class="btn btn-danger btn-block btn-sm"
+              (click)="[showLogin = true, showCadastro = false]">Cancelar
+      </button>
+    </form>
+  </div>
+</p-sidebar>

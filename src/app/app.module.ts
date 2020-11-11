@@ -1,0 +1,87 @@
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {AppComponent} from './app.component';
+import {TableModule} from 'primeng/table';
+import {UsuarioService} from './services/usuario/usuario.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
+import {RippleModule} from 'primeng/ripple';
+import {ToolbarModule} from 'primeng/toolbar';
+import {InputTextModule} from 'primeng/inputtext';
+import {DialogModule} from 'primeng/dialog';
+import {AccordionModule} from 'primeng/accordion';
+import {MenuModule} from 'primeng/menu';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {InputMaskModule} from 'primeng/inputmask';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {routing} from './app.routing';
+import {HomeComponent} from './components/home/home.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {MessagesModule} from 'primeng/messages';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
+import {HeaderComponent} from './components/header/header.component';
+import {PanelModule} from 'primeng/panel';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {FooterComponent} from './components/footer/footer.component';
+import {SidebarModule} from 'primeng/sidebar';
+import { UniversoComponent } from './components/universo/universo.component';
+import {MegaMenuModule} from 'primeng/megamenu';
+import { MensagemComponent } from './components/mensagem/mensagem.component';
+import { ItemUniversoComponent } from './components/item-universo/item-universo.component';
+import {CardModule} from 'primeng/card';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    UniversoComponent,
+    MensagemComponent,
+    ItemUniversoComponent
+  ],
+  imports: [
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    TableModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RippleModule,
+    ToolbarModule,
+    InputTextModule,
+    DialogModule,
+    AccordionModule,
+    BrowserAnimationsModule,
+    InputMaskModule,
+    DropdownModule,
+    InputTextareaModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    NgxMaskModule.forRoot(maskConfig),
+    routing,
+    PanelModule,
+    MenuModule,
+    ScrollPanelModule,
+    SidebarModule,
+    MegaMenuModule,
+    CardModule
+  ],
+  exports: [BsDropdownModule, TooltipModule, ModalModule],
+  providers: [UsuarioService],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}

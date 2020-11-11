@@ -1,0 +1,19 @@
+<div align="center" style="width: 100%">
+  <div class="p-grid p-jc-center" style="width: 90%">
+    <div class="p-col-2">
+      <p-megaMenu [model]="itensMenu" orientation="vertical"
+                  [style]="{backgroundColor: '#dab645', color: 'black',
+               fontWeight: '700', border: '0px'}">
+      </p-megaMenu>
+    </div>
+    <div class="p-col-10">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <app-item-universo [hidden]="itemUniverso == null"
+                             [itemUniverso]="itemUniverso">
+          </app-item-universo>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.p-menu .p-submenu-header {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  color: #495057;
+  background: #dba90d;
+  font-weight: 900;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}

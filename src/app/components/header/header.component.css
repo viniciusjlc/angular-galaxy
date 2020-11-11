@@ -1,0 +1,15 @@
+.logo-principal{
+  color: #241d03;
+  font-weight: bolder;
+}
+.logo-principal:hover{
+  color: #ffc613;
+  font-weight: bolder;
+}
+.background-header{
+  background-color: #dba90d !important;
+}
+
+.cadastrar-login:hover{
+  cursor: pointer;
+}
