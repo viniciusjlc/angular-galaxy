@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Token} from '../../models/Token';
 import {JwtService} from '../jwt/jwt.service';
-import {Usuario} from '../../models/usuario';
-import {TipoLogradouro} from '../../models/tipoLogradouro';
+import {Usuario} from '../../models/Usuario';
 
 @Injectable({
   providedIn: 'root'

@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   showLogin: boolean;
   showCadastro: boolean;
   showDadosUsuario: boolean;
+  paginaAtual: string;
 
   constructor() { }
 

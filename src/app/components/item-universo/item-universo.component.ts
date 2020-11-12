@@ -9,9 +9,17 @@ import {ItemUniverso} from '../../models/ItemUniverso';
 export class ItemUniversoComponent implements OnInit {
   @Input() itemUniverso: ItemUniverso;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {
+    this.limparItemUniverso();
+  }
+
+  public limparItemUniverso(): void {
+    this.itemUniverso = {
+      titulo: '',
+      texto: ''
+    };
+  }
 }

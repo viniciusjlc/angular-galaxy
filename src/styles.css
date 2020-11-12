@@ -1,4 +1,4 @@
-.caixa-texto-home{
+.caixa-texto-home {
   border-width: 4px;
   border-color: #dba90d;
   border-style: solid;
@@ -6,11 +6,71 @@
   background-color: #000000cc;
 }
 
-.texto-home{
+.texto-home {
   color: #dba90d;
   /*color: #dba90d;*/
   padding: 10px;
   font-size: 1.4em;
   font-weight: 700;
   font-family: system-ui;
+}
+
+.p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover {
+  background: #dba911 !important;
+  border-color: #cfa110 !important;
+  color: #161616 !important;
+  text-align: initial !important;
+}
+
+.p-panelmenu .p-panelmenu-panel:not(:first-child) .p-panelmenu-header:not(.p-highlight):not(.p-disabled):hover > a,
+.p-panelmenu .p-panelmenu-panel:not(:first-child) .p-panelmenu-header:not(.p-disabled).p-highlight:hover > a {
+  background: #dba911;
+  border-color: #cfa110;
+  color: #161616;
+  text-align: initial;
+}
+
+/*.p-panelmenu .p-panelmenu-header > a {
+  background: #666f7e;
+}*/
+
+.p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a {
+  background: #af870c;
+  color: #161616;
+  font-weight: bold;
+  border-color: #161616;
+  text-align: initial;
+}
+
+.p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a {
+  border-color: #cfa110;
+  background: #efb90f;
+  color: #161616;
+  text-align: initial;
+}
+
+/*.p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header > a {
+  background-color: #dab645;
+  border-color: #8d762d;
+  color: #161616;
+  font-weight: bold;
+}*/
+
+.p-panelmenu .p-panelmenu-content .p-submenu-list:not(.p-panelmenu-root-submenu) {
+  background-color: #ddbb51;
+  text-align: initial;
+}
+
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+  background-color: #ddbb51;
+  border-color: #8d762d;
+  color: #161616;
+  border-width: 5px;
+  text-align: initial;
+}
+
+.menu-universo-scroll .p-scrollpanel-bar-y {
+  top: 0;
+  width: 9px;
+  left: 45%;
 }

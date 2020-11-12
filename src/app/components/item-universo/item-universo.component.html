@@ -1,4 +1,35 @@
-<p-card header="{{itemUniverso.titulo}}" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
-  <p>{{itemUniverso.texto}}</p>
-</p-card>
+<p-panel [style]="{'width': '100%'}" [hidden]="itemUniverso.titulo == ''"
+         [showHeader]="false">
+  <div class="p-grid p-jc-center">
+    <div class="p-col-1">
+    </div>
+    <div class="p-col-10">
+      <h2>
+        {{itemUniverso.titulo}}
+      </h2>
+    </div>
+    <div class="p-col-1">
+      <p-button icon="pi pi-times" [hidden]="itemUniverso == null" (onClick)="limparItemUniverso()"
+                styleClass="p-button-secondary" [style]="{'font-weight': '800', 'background-color': '#00ffff00',
+                 'color': '#32363b', 'border-color': '#00ffff00'}">
+      </p-button>
+    </div>
+    <div class="p-col-12" style="text-align: justify;">
+      {{itemUniverso.texto}}
+    </div>
+  </div>
+</p-panel>
 
+<p-panel [style]="{'width': '60%'}" [hidden]="itemUniverso.titulo != ''"
+         [showHeader]="false">
+  <div class="p-grid p-jc-center">
+    <div class="p-col-12">
+      <h2>
+        Selecione uma opção
+      </h2>
+    </div>
+    <div class="p-col-12" style="text-align: justify;">
+      Selecione uma opção no menu à esquerda para descobrir conceitos do Universo do RPG Galaxy.
+    </div>
+  </div>
+</p-panel>

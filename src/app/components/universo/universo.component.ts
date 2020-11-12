@@ -15,7 +15,7 @@ export class UniversoComponent implements OnInit {
   itensUniverso: ItemUniverso[];
   listaItensInternos: MenuItem[][];
   listaItensInternos2: MenuItem[];
-  item: MenuItem[];
+  itens: MenuItem[];
 
   constructor(private universoService: UniversoService) {
   }
@@ -26,19 +26,49 @@ export class UniversoComponent implements OnInit {
   }
 
   comporItensMenu(): void {
+    this.itens = [];
+    for (const itemUniverso of this.itensUniverso) {
+      console.log(itemUniverso);
+      this.itens.push({
+        label: itemUniverso.titulo,
+        items: itemUniverso.listaItensUniverso != null ? this.obterItensInternos(itemUniverso.listaItensUniverso) : null
+      });
+    }
+  }
+
+  private obterItensInternos(listaItensUniversoInternos: ItemUniverso[]): MenuItem[] {
+    let itensInternos: MenuItem[];
+    itensInternos = [];
+    for (const itemUniverso of listaItensUniversoInternos) {
+      console.log(itemUniverso);
+      itensInternos.push({
+        label: itemUniverso.titulo,
+        items: itemUniverso.listaItensUniverso != null ? this.obterItensInternos(itemUniverso.listaItensUniverso) : null,
+        command: () => {
+          if (itemUniverso.texto != null) {
+            this.itemUniverso = itemUniverso;
+          }
+        }
+      });
+    }
+    return itensInternos;
+  }
+
+  /*comporItensMenu(): void {
     this.itensMenu = [];
     for (const itemUniverso of this.itensUniverso) {
-      console.log(itemUniverso.titulo);
+      console.log(itemUniverso);
       this.itensMenu.push({
         label: itemUniverso.titulo,
         items: itemUniverso.listaItensUniverso != null ? this.getItems(itemUniverso.listaItensUniverso) : null
       });
     }
-  }
+  }*/
 
-  private getItems(lista: ItemUniverso[]): MenuItem[][] {
+  /*private getItems(lista: ItemUniverso[]): MenuItem[][] {
     this.listaItensInternos = [];
     for (const itemUniverso of lista) {
+      console.log(itemUniverso);
       this.listaItensInternos.push([{
         label: itemUniverso.titulo,
         items: itemUniverso.listaItensUniverso != null ? this.getItemsInternos(itemUniverso.listaItensUniverso) : null
@@ -50,6 +80,7 @@ export class UniversoComponent implements OnInit {
   private getItemsInternos(lista: ItemUniverso[]): MenuItem[] {
     this.listaItensInternos2 = [];
     for (const itemUniverso of lista) {
+      console.log(itemUniverso);
       this.listaItensInternos2.push({
         label: itemUniverso.titulo,
         items: itemUniverso.listaItensUniverso != null ? this.getItemsInternos(itemUniverso.listaItensUniverso) : null,
@@ -59,5 +90,5 @@ export class UniversoComponent implements OnInit {
       });
     }
     return this.listaItensInternos2;
-  }
+  }*/
 }

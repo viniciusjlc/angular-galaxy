@@ -1,7 +1,7 @@
-export class UnidadeFederativa {
+export default class Classe {
   constructor(
     public nome: string,
-    public sigla?: string,
+    public descricao: string,
     public id?: number) {
   }
 }

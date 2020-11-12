@@ -34,6 +34,9 @@ import {MegaMenuModule} from 'primeng/megamenu';
 import { MensagemComponent } from './components/mensagem/mensagem.component';
 import { ItemUniversoComponent } from './components/item-universo/item-universo.component';
 import {CardModule} from 'primeng/card';
+import {PanelMenuModule} from "primeng/panelmenu";
+import {SlideMenuModule} from "primeng/slidemenu";
+import {TabMenuModule} from "primeng/tabmenu";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -77,7 +80,10 @@ const maskConfig: Partial<IConfig> = {
     ScrollPanelModule,
     SidebarModule,
     MegaMenuModule,
-    CardModule
+    CardModule,
+    PanelMenuModule,
+    SlideMenuModule,
+    TabMenuModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService],
