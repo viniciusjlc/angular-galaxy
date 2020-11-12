@@ -1,9 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Usuario} from '../../models/Usuario';
-import {JwtService} from '../jwt/jwt.service';
-import {UnidadeFederativa} from '../../models/unidadeFederativa';
-import {HttpClient} from '@angular/common/http';
-import {UsuarioService} from '../usuario/usuario.service';
 
 @Injectable({
   providedIn: 'root'
