@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Usuario} from '../../models/Usuario';
-import {SessionService} from "../../services/session/session.service";
-import {UsuarioService} from "../../services/usuario/usuario.service";
+import {SessionService} from '../../services/session/session.service';
+import {UsuarioService} from '../../services/usuario/usuario.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  providers: [MessageService]
 })
 export class HeaderComponent implements OnInit {
   isLogado: boolean = false;
@@ -20,15 +22,17 @@ export class HeaderComponent implements OnInit {
   showCadastro: boolean;
   showDadosUsuario: boolean;
 
-  confirmacaoSenha: any;
+  confirmacaoSenha: string;
 
   mensagemErroLogin: string;
   mensagemErroCadastro: string;
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
+    this.logar();
   }
 
   async logar(): Promise<void> {
@@ -36,10 +40,7 @@ export class HeaderComponent implements OnInit {
     if (this.usuario.email === '' || this.usuario.senha === '') {
       this.mensagemErroLogin = 'Email e Senha obrigatórios!';
     } else {
-      this.isLogado = await this.usuarioService.autenticar({
-        email: this.usuario.email,
-        senha: this.usuario.senha
-      });
+      this.isLogado = await this.usuarioService.autenticar(this.usuario);
       if (this.isLogado) {
         this.showSideBarUser = false;
         this.usuario = await this.usuarioService.consultarPorEmail({
@@ -47,13 +48,35 @@ export class HeaderComponent implements OnInit {
           senha: this.usuario.senha
         });
         SessionService.instace.gravarUsuario(this.usuario);
+        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Login realizado com suceso'});
       } else {
         this.mensagemErroLogin = 'Email ou Senha incorretos!';
       }
     }
   }
 
-  cadastrarUsuario(): void {
-    console.log(this.usuarioCadastro);
+  async cadastrarUsuario(): Promise<void> {
+    console.log('teste');
+    if (
+      this.usuarioCadastro.email === ''
+      || this.usuarioCadastro.senha === ''
+      || this.usuarioCadastro.nome === ''
+      || this.confirmacaoSenha === '') {
+      this.mensagemErroCadastro = 'Todos os campos são obrigatórios!';
+    } else if (this.usuarioCadastro.senha !== this.confirmacaoSenha) {
+      this.mensagemErroCadastro = 'Senha e confimação devem ser iguais!';
+    } else {
+      const retorno: boolean = await this.usuarioService.cadastrar(this.usuarioCadastro);
+      if (retorno) {
+        this.showLogin = false;
+        this.showCadastro = false;
+        this.showSideBarUser = false;
+        this.isLogado = true;
+        this.usuario = this.usuarioCadastro;
+        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Cadastro realizado com suceso'});
+      } else {
+        this.mensagemErroCadastro = 'Erro ao realizar o cadastro! Entre em contato com o administrador do sistema';
+      }
+    }
   }
 }

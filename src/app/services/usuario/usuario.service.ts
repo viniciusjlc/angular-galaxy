@@ -15,9 +15,12 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
   }
 
-  public async autenticar(usuario): Promise<boolean> {
+  public async autenticar(usuario: Usuario): Promise<boolean> {
     let erro: string = null;
-    const retorno = await this.http.post<Token>(JwtService.instace.urlAPI + this.urlAutenticar, usuario);
+    const retorno = await this.http.post<Token>(JwtService.instace.urlAPI + this.urlAutenticar, {
+      email: usuario.email,
+      senha: usuario.senha
+    });
     await retorno.toPromise().then(value => JwtService.instace.gerarHeader(value.token))
       .catch(reason => erro = reason.error.erro.toString());
     if (erro != null) {
@@ -29,7 +32,7 @@ export class UsuarioService {
   public async cadastrar(usuario): Promise<boolean> {
     const retorno = await this.http.post<Usuario>(JwtService.instace.urlAPI + this.urlCadastrarUsuario, usuario);
     let retornoAutenticao: boolean;
-    retornoAutenticao = await retorno.toPromise().then(value => this.autenticar({email: usuario.email, senha: usuario.senha}));
+    retornoAutenticao = await retorno.toPromise().then(value => this.autenticar(usuario));
     return retornoAutenticao;
   }
 

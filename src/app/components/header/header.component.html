@@ -1,3 +1,4 @@
+<p-toast position="top-center" key="tc"></p-toast>
 <nav class="navbar navbar-expand-lg navbar-light bg-light background-header">
   <a routerLink="" href="#"
      class="navbar-brand logo-principal logo-principal:hover">
@@ -33,8 +34,8 @@
       </li>
     </ul>
 
-    <span class="navbar-text" [hidden]="!isLogado"
-          (click)="[showSideBarUser = true, showDadosUsuario = true]">
+    <span class="navbar-text cadastrar-login" [hidden]="!isLogado" style="margin-right: 1em;"
+          (click)="[showSideBarUser = true, showDadosUsuario = true, showLogin = false, showCadastro = false]">
       Olá, {{usuario.nome}}
     </span>
     <a class="nav-link cadastrar-login" [hidden]="isLogado"

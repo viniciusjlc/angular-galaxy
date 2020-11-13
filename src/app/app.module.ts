@@ -34,13 +34,14 @@ import {MegaMenuModule} from 'primeng/megamenu';
 import { MensagemComponent } from './components/mensagem/mensagem.component';
 import { ItemUniversoComponent } from './components/item-universo/item-universo.component';
 import {CardModule} from 'primeng/card';
-import {PanelMenuModule} from "primeng/panelmenu";
-import {SlideMenuModule} from "primeng/slidemenu";
-import {TabMenuModule} from "primeng/tabmenu";
+import {PanelMenuModule} from 'primeng/panelmenu';
+import {SlideMenuModule} from 'primeng/slidemenu';
+import {TabMenuModule} from 'primeng/tabmenu';
 import { PersonagemComponent } from './components/personagem/personagem.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { MestreComponent } from './components/mestre/mestre.component';
 import { CampanhaComponent } from './components/campanha/campanha.component';
+import {ToastModule} from 'primeng/toast';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -91,7 +92,8 @@ const maskConfig: Partial<IConfig> = {
     CardModule,
     PanelMenuModule,
     SlideMenuModule,
-    TabMenuModule
+    TabMenuModule,
+    ToastModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService],
