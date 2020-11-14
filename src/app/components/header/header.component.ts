@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   showSideBarUser: boolean;
   showLogin: boolean;
   showCadastro: boolean;
-  showDadosUsuario: boolean;
+  showContaUsuario: boolean;
 
   confirmacaoSenha: string;
 
@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logar();
   }
 
   async logar(): Promise<void> {

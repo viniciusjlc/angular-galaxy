@@ -35,7 +35,7 @@
     </ul>
 
     <span class="navbar-text cadastrar-login" [hidden]="!isLogado" style="margin-right: 1em;"
-          (click)="[showSideBarUser = true, showDadosUsuario = true, showLogin = false, showCadastro = false]">
+          (click)="[showSideBarUser = true, showContaUsuario = true, showLogin = false, showCadastro = false]">
       Olá, {{usuario.nome}}
     </span>
     <a class="nav-link cadastrar-login" [hidden]="isLogado"
@@ -129,4 +129,8 @@
       </button>
     </form>
   </div>
+
+  <app-dados-usaurio style="height: 100%"
+                     [usuario]="usuario" [hidden]="!showContaUsuario">
+  </app-dados-usaurio>
 </p-sidebar>
