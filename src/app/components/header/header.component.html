@@ -130,7 +130,38 @@
     </form>
   </div>
 
-  <app-dados-usaurio style="height: 100%"
-                     [usuario]="usuario" [hidden]="!showContaUsuario">
-  </app-dados-usaurio>
+  <div [hidden]="!showContaUsuario">
+    <h2 style="font-weight:normal">
+      Sua Conta:
+    </h2>
+    <div class="p-grid p-jc-lg-start">
+      <div class="p-col-12">
+        <button type="button" class="btn btn-primary"
+                style="width: 100%;" (click)="showDadosCadastrais = true">
+          Deseja visualizar/editar seus dados cadastrais?
+        </button>
+      </div>
+      <div class="p-col-12">
+        <button type="button" class="btn btn-warning"
+                style="width: 100%;" (click)="showAlterarSenha = true">
+          Deseja alterar sua senha?
+        </button>
+      </div>
+      <div class="p-col-12">
+        <button type="button" class="btn btn-danger"
+                style="width: 100%;" (click)="showExcluirConta = true">
+          Deseja excluir sua conta?
+        </button>
+      </div>
+    </div>
+  </div>
 </p-sidebar>
+
+
+<p-dialog header="Dados Cadastrais" [(visible)]="showDadosCadastrais" [modal]="true" [style]="{width: '50vw'}"
+          [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+</p-dialog>
+
+<p-dialog header="Alterar Senha" [(visible)]="showAlterarSenha" [modal]="true" [style]="{width: '50vw'}"
+          [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+</p-dialog>

@@ -1,1 +1,66 @@
-<p>campanha works!</p>
+<div class="p-grid p-jc-center">
+  <div class="p-col-10">
+    <h3 style="color: #dddddd">Suas campanhas:</h3>
+    <p-messages [value]="msgs"></p-messages>
+    <p-table #dt [value]="listaCampanhas" [rows]="10" [paginator]="true" scrollHeight="200px"
+             [globalFilterFields]="['titulo','descricao']" [scrollable]="false"
+             [rowHover]="true" dataKey="id" currentPageReportTemplate=" {first} - {last} de {totalRecords} registros"
+             [showCurrentPageReport]="true">
+      <ng-template pTemplate="caption">
+        <div class="p-grid p-jc-center">
+          <div class="p-col-6">
+            <button pButton pRipple label="Nova Campanha" icon="pi pi-plus" class="p-button-success p-mr-md-3"
+                    (click)="abrirDialogCadastrar()"></button>
+          </div>
+          <div class="p-col-6">
+              <span class="p-input-icon-left" style="width: 100%">
+                        <i class="pi pi-search"></i>
+                        <input style="width: 100%" placeholder="Busca..."
+                               pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+              </span>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" style="width: 100%">
+        <tr>
+          <!--<th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>-->
+          <th pSortableColumn="titulo">Titulo
+            <p-sortIcon field="titulo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="descricao">Descrição
+            <p-sortIcon field="descricao"></p-sortIcon>
+          </th>
+          <th>
+            Ações
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-campanha>
+        <tr>
+          <td>{{campanha.titulo}}</td>
+          <td>{{campanha.descricao}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class=" p-button-success p-mr-2"
+                    style="height: 2em !important;"
+                    (click)="abrirDialogEditar(campanha)"></button>
+            <button pButton pRipple icon="pi pi-trash" class=" p-button-warning"
+                    style="height: 2em !important;"
+                    (click)="excluir(campanha)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          Existe um total de {{listaCampanhas ? listaCampanhas.length : 0 }} campanha(s).
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog header="{{tituloDialgoCadastrarEditar}} Campanha" [(visible)]="showDialogCadastrarEditar"
+          [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+</p-dialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

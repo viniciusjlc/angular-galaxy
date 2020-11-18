@@ -74,3 +74,18 @@
   width: 9px;
   left: 45%;
 }
+
+.p-datatable .p-:hover {
+  background: #000000cc;
+  color: #FFFFFF;
+}
+
+.p-datatable .p-sortable-column:not(.p-highlight):hover {
+  background: #000000cc;
+  color: #FFFFFF;
+}
+
+.p-datatable.p-datatable-hoverable-rows .p-datatable-tbody:hover {
+  background: #000000cc;
+  color: #FFFFFF;
+}

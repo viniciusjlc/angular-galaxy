@@ -21,6 +21,9 @@ export class HeaderComponent implements OnInit {
   showLogin: boolean;
   showCadastro: boolean;
   showContaUsuario: boolean;
+  showDadosCadastrais: boolean;
+  showAlterarSenha: boolean;
+  showExcluirConta: boolean;
 
   confirmacaoSenha: string;
 
@@ -32,10 +35,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logar();
   }
 
   async logar(): Promise<void> {
-    console.log(this.usuario);
     if (this.usuario.email === '' || this.usuario.senha === '') {
       this.mensagemErroLogin = 'Email e Senha obrigatórios!';
     } else {
@@ -47,7 +50,9 @@ export class HeaderComponent implements OnInit {
           senha: this.usuario.senha
         });
         SessionService.instace.gravarUsuario(this.usuario);
-        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Login realizado com suceso'});
+        console.log('USER SESSION:');
+        console.log(SessionService.instace.userSession);
+        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Login realizado com sucesso'});
       } else {
         this.mensagemErroLogin = 'Email ou Senha incorretos!';
       }
@@ -72,7 +77,7 @@ export class HeaderComponent implements OnInit {
         this.showSideBarUser = false;
         this.isLogado = true;
         this.usuario = this.usuarioCadastro;
-        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Cadastro realizado com suceso'});
+        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Cadastro realizado com sucesso'});
       } else {
         this.mensagemErroCadastro = 'Erro ao realizar o cadastro! Entre em contato com o administrador do sistema';
       }

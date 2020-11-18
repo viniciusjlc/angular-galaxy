@@ -43,6 +43,7 @@ import { MestreComponent } from './components/mestre/mestre.component';
 import { CampanhaComponent } from './components/campanha/campanha.component';
 import {ToastModule} from 'primeng/toast';
 import { DadosUsaurioComponent } from './components/dados-usaurio/dados-usaurio.component';
+import {ConfirmationService} from "primeng/api";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -98,7 +99,7 @@ const maskConfig: Partial<IConfig> = {
     ToastModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
-  providers: [UsuarioService],
+  providers: [UsuarioService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
