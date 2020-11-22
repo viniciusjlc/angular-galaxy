@@ -9,6 +9,7 @@ import Campanha from '../../models/Campanha';
 export class CampanhaService {
   private readonly urlCampanha = '/campanha';
   private readonly urlListarPorUsuarioMestre = this.urlCampanha + '/listar/';
+  private readonly urlSalvar = this.urlCampanha + '/salvar';
 
   constructor(private http: HttpClient) {
   }
@@ -16,5 +17,11 @@ export class CampanhaService {
   public async listarCampanhaPorMestre(idUsuario: number): Promise<Campanha[]> {
     const headers = JwtService.instace.header;
     return this.http.get<Campanha[]>(JwtService.instace.urlAPI + this.urlListarPorUsuarioMestre + idUsuario, {headers}).toPromise();
+  }
+
+  public async cadastrar(campanha): Promise<Campanha> {
+    const headers = JwtService.instace.header;
+    return await this.http.post<Campanha>(JwtService.instace.urlAPI + this.urlSalvar,
+      campanha, {headers}).toPromise();
   }
 }

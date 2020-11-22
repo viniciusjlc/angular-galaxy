@@ -3,6 +3,7 @@ import Campanha from '../../models/Campanha';
 import {CampanhaService} from '../../services/campanha/campanha.service';
 import {SessionService} from '../../services/session/session.service';
 import {ConfirmationService, Message} from 'primeng/api';
+import Mestre from '../../models/Mestre';
 
 @Component({
   selector: 'app-campanha',
@@ -11,17 +12,18 @@ import {ConfirmationService, Message} from 'primeng/api';
 })
 export class CampanhaComponent implements OnInit {
   listaCampanhas: Campanha[];
-  campanha: Campanha;
+  campanha: Campanha = new Campanha('', '', new Mestre(null, ''), null, '');
   showDialogCadastrarEditar: boolean;
   tituloDialgoCadastrarEditar: string = '';
   msgs: Message[] = [];
+  mensagemErroCadastroEdicao: string = null;
 
   constructor(private campanhaServive: CampanhaService,
               private confirmationService: ConfirmationService) {
+    this.iniciarListaCampanhaPorJogadorAtual();
   }
 
   ngOnInit(): void {
-    this.iniciarListaCampanhaPorJogadorAtual();
   }
 
   async iniciarListaCampanhaPorJogadorAtual(): Promise<void> {
@@ -39,18 +41,25 @@ export class CampanhaComponent implements OnInit {
     this.showDialogCadastrarEditar = true;
   }
 
-  excluir(campanha: any): void {
+  excluir(campanha: Campanha): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: 'Deseja excluir a campanha ' + campanha.titulo + '?',
+      header: 'Confirmar Exclusão',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'You have accepted'}];
-      },
-      reject: () => {
-        this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
+        this.msgs = [{severity: 'info', summary: 'Excluida', detail: 'Campanha excluida com sucesso!'}];
       }
     });
   }
 
+  salvarCampanha(): void {
+    console.log(this.campanha);
+    if (this.campanha.titulo === '' || this.campanha.descricao === '') {
+      this.mensagemErroCadastroEdicao = 'É obrigatório informar todos os campos!';
+    } else {
+      this.campanhaServive.cadastrar(this.campanha);
+      this.msgs = [{severity: 'success', summary: 'Suceso', detail: 'Campanha cadastrada com sucesso!'}];
+      this.showDialogCadastrarEditar = false;
+    }
+  }
 }

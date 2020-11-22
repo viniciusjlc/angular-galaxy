@@ -62,5 +62,27 @@
 
 <p-dialog header="{{tituloDialgoCadastrarEditar}} Campanha" [(visible)]="showDialogCadastrarEditar"
           [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <div style="margin-bottom: 1.5em"
+       class="alert alert-danger" role="alert" [hidden]="mensagemErroCadastroEdicao ==null">
+    {{mensagemErroCadastroEdicao}}
+  </div>
+  <div class="p-grid p-jc-center">
+    <div class="p-col-12">
+      <h6>Título:</h6>
+      <input [style]="{width: '100%'}"
+             type="text" pInputText [(ngModel)]="campanha.titulo">
+    </div>
+    <div class="p-col-12">
+      <h6>Descrição:</h6>
+      <textarea [style]="{width: '100%'}"
+                pInputText [(ngModel)]="campanha.descricao"></textarea>
+    </div>
+    <div class="p-col-12">
+      <button type="submit" (click)="salvarCampanha()"
+              class="btn btn-success btn-block btn-lg">Salvar
+      </button>
+    </div>
+  </div>
 </p-dialog>
+
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

@@ -43,7 +43,8 @@ import { MestreComponent } from './components/mestre/mestre.component';
 import { CampanhaComponent } from './components/campanha/campanha.component';
 import {ToastModule} from 'primeng/toast';
 import { DadosUsaurioComponent } from './components/dados-usaurio/dados-usaurio.component';
-import {ConfirmationService} from "primeng/api";
+import {ConfirmationService} from 'primeng/api';
+import {RouterOutletComponent} from './components/router-outlet/router-outlet.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -62,7 +63,9 @@ const maskConfig: Partial<IConfig> = {
     SobreComponent,
     MestreComponent,
     CampanhaComponent,
-    DadosUsaurioComponent
+    DadosUsaurioComponent,
+    RouterOutletComponent,
+    RouterOutletComponent
   ],
   imports: [
     BrowserModule,
