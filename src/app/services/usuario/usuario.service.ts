@@ -8,11 +8,17 @@ import {Usuario} from '../../models/Usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  constructor(private http: HttpClient) {
+  }
   private readonly urlAutenticar = '/autenticar';
   private readonly urlConsultarPorEmail = '/usuario/consultarPorEmail';
   private readonly urlCadastrarUsuario = '/usuario/salvar';
 
-  constructor(private http: HttpClient) {
+  public async retonarUsuarioSessao(): Promise<Usuario> {
+    return this.consultarPorEmail({
+      email: localStorage.getItem('emailUserSession'), senha: null
+    });
   }
 
   public async autenticar(usuario: Usuario): Promise<boolean> {

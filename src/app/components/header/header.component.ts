@@ -3,6 +3,7 @@ import {Usuario} from '../../models/Usuario';
 import {SessionService} from '../../services/session/session.service';
 import {UsuarioService} from '../../services/usuario/usuario.service';
 import {MessageService} from 'primeng/api';
+import {JwtService} from "../../services/jwt/jwt.service";
 
 @Component({
   selector: 'app-header',
@@ -34,8 +35,7 @@ export class HeaderComponent implements OnInit {
               private messageService: MessageService) {
   }
 
-  ngOnInit(): void {
-    this.logar();
+  async ngOnInit(): Promise<void> {
   }
 
   async logar(): Promise<void> {
@@ -50,8 +50,6 @@ export class HeaderComponent implements OnInit {
           senha: this.usuario.senha
         });
         SessionService.instace.gravarUsuario(this.usuario);
-        console.log('USER SESSION:');
-        console.log(SessionService.instace.userSession);
         this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Login realizado com sucesso'});
       } else {
         this.mensagemErroLogin = 'Email ou Senha incorretos!';

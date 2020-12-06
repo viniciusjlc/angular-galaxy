@@ -2,7 +2,7 @@
   <div class="p-col-10">
     <h3 style="color: #dddddd">Suas campanhas:</h3>
     <p-messages [value]="msgs"></p-messages>
-    <p-table #dt [value]="listaCampanhas" [rows]="10" [paginator]="true" scrollHeight="200px"
+    <p-table #dt [value]="listaCampanhas" [rows]="3" [paginator]="true" scrollHeight="200px"
              [globalFilterFields]="['titulo','descricao']" [scrollable]="false"
              [rowHover]="true" dataKey="id" currentPageReportTemplate=" {first} - {last} de {totalRecords} registros"
              [showCurrentPageReport]="true">
