@@ -3,14 +3,14 @@ import {ModuleWithProviders} from '@angular/core';
 import {HomeComponent} from './components/home/home.component';
 import {UniversoComponent} from './components/universo/universo.component';
 import {CampanhaComponent} from './components/campanha/campanha.component';
-import {PersonagemComponent} from './components/personagem/personagem.component';
 import {SobreComponent} from './components/sobre/sobre.component';
+import {ListaPersonagensComponent} from './components/lista-personagens/lista-personagens.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
   {path: 'universo', component: UniversoComponent},
   {path: 'campanha', component: CampanhaComponent},
-  {path: 'personagem', component: PersonagemComponent},
+  {path: 'personagens', component: ListaPersonagensComponent},
   {path: 'universo', component: UniversoComponent},
   {path: 'sobre', component: SobreComponent}
 ];
