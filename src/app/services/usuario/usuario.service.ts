@@ -11,6 +11,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {
   }
+
   private readonly urlAutenticar = '/autenticar';
   private readonly urlConsultarPorEmail = '/usuario/consultarPorEmail';
   private readonly urlCadastrarUsuario = '/usuario/salvar';

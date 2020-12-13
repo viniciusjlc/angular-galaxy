@@ -51,7 +51,7 @@
     <h2 style="font-weight:normal">
       Login
     </h2>
-    <form>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div style="margin-bottom: 1.5em"
            class="alert alert-danger" role="alert" [hidden]="mensagemErroLogin==null">
         {{mensagemErroLogin}}
@@ -59,13 +59,13 @@
 
       <span class="p-float-label" style="margin-bottom: 2em; margin-top: 2em">
         <input id="loginInputEmail" type="email" class="form-control" aria-describedby="emailHelp"
-               [required]="true" [(ngModel)]="usuario.email" name="email" pInputText>
+               [required]="true" [(ngModel)]="usuario.email" name="email" pInputText ngModel>
       <label style="font-size: 1em;"
              for="loginInputEmail">Email</label>
       </span>
 
       <span class="p-float-label">
-        <input id="loginInputPassword" type="password" class="form-control" pInputText
+        <input id="loginInputPassword" type="password" class="form-control" pInputText ngModel
                [required]="true" [(ngModel)]="usuario.senha" name="senha">
       <label style="font-size: 1em;"
              for="loginInputPassword">Senha</label>
@@ -124,7 +124,7 @@
       <button type="submit" (click)="cadastrarUsuario()"
               class="btn btn-success btn-block btn-lg">Cadastrar-se
       </button>
-      <button type="button" class="btn btn-danger btn-block btn-sm"
+      <button type="submit" class="btn btn-danger btn-block btn-sm"
               (click)="[showLogin = true, showCadastro = false]">Cancelar
       </button>
     </form>

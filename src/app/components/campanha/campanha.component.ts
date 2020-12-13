@@ -62,4 +62,8 @@ export class CampanhaComponent implements OnInit {
       this.showDialogCadastrarEditar = false;
     }
   }
+
+  mestrar(campanha: Campanha): void {
+
+  }
 }

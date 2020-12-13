@@ -23,9 +23,6 @@
       </ng-template>
       <ng-template pTemplate="header" style="width: 100%">
         <tr>
-          <!--<th style="width: 3rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>-->
           <th pSortableColumn="titulo">Titulo
             <p-sortIcon field="titulo"></p-sortIcon>
           </th>
@@ -48,6 +45,9 @@
             <button pButton pRipple icon="pi pi-trash" class=" p-button-warning"
                     style="height: 2em !important;"
                     (click)="excluir(campanha)"></button>
+            <button pButton pRipple icon="pi pi-users" label="Mestrar" class="p-button-danger"
+                    style="height: 2em !important; margin-left: 8px"
+                    (click)="mestrar(campanha)"></button>
           </td>
         </tr>
       </ng-template>

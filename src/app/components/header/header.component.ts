@@ -3,7 +3,7 @@ import {Usuario} from '../../models/Usuario';
 import {SessionService} from '../../services/session/session.service';
 import {UsuarioService} from '../../services/usuario/usuario.service';
 import {MessageService} from 'primeng/api';
-import {JwtService} from "../../services/jwt/jwt.service";
+import {JwtService} from '../../services/jwt/jwt.service';
 
 @Component({
   selector: 'app-header',
@@ -50,7 +50,12 @@ export class HeaderComponent implements OnInit {
           senha: this.usuario.senha
         });
         SessionService.instace.gravarUsuario(this.usuario);
-        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Login realizado com sucesso'});
+        this.messageService.add({
+          key: 'tc',
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Login realizado com sucesso'
+        });
       } else {
         this.mensagemErroLogin = 'Email ou Senha incorretos!';
       }
@@ -75,10 +80,19 @@ export class HeaderComponent implements OnInit {
         this.showSideBarUser = false;
         this.isLogado = true;
         this.usuario = this.usuarioCadastro;
-        this.messageService.add({key: 'tc', severity: 'success', summary: 'Sucesso', detail: 'Cadastro realizado com sucesso'});
+        this.messageService.add({
+          key: 'tc',
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Cadastro realizado com sucesso'
+        });
       } else {
         this.mensagemErroCadastro = 'Erro ao realizar o cadastro! Entre em contato com o administrador do sistema';
       }
     }
+  }
+
+  onSubmit(form): void {
+    console.log(form);
   }
 }
