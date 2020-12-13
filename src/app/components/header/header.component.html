@@ -1,6 +1,6 @@
 <p-toast position="top-center" key="tc"></p-toast>
 <nav class="navbar navbar-expand-lg navbar-light bg-light background-header">
-  <a routerLink="" href="#"
+  <a routerLink="" href="#" (click)="paginaAtual = 'home'"
      class="navbar-brand logo-principal logo-principal:hover">
     GALAXY
   </a>
@@ -34,6 +34,10 @@
       </li>
     </ul>
 
+    <a class="nav-link" [hidden]="!isLogado"
+       (click)="sair()" routerLink="">
+      Sair
+    </a>
     <span class="navbar-text cadastrar-login" [hidden]="!isLogado" style="margin-right: 1em;"
           (click)="[showSideBarUser = true, showContaUsuario = true, showLogin = false, showCadastro = false]">
       Olá, {{usuario.nome}}

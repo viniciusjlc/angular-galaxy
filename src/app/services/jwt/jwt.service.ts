@@ -7,12 +7,12 @@ import {HttpHeaders} from '@angular/common/http';
 export class JwtService {
 
   constructor() {
-    this.header = new HttpHeaders();
+    this._header = new HttpHeaders();
   }
 
   // tslint:disable-next-line:variable-name
   private static _instace: JwtService;
-  public header: HttpHeaders;
+  private _header: HttpHeaders;
   public urlAPI: string = '/api';
 
 
@@ -23,9 +23,14 @@ export class JwtService {
     return this._instace;
   }
 
+
+  get header(): HttpHeaders {
+    this._header = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    return this._header;
+  }
+
   public gerarHeader(token): void {
     localStorage.setItem('token', token);
-    this.header = new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
 
 }

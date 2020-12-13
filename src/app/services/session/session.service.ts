@@ -33,14 +33,16 @@ export class SessionService {
 
   static destruirSessao(): void {
     this._instace = new SessionService();
-    localStorage.removeItem('emailUserSession');
+    this.instace._userSession = null;
+    this.instace._isLogado = false;
+    localStorage.removeItem('userSession');
     localStorage.removeItem('token');
   }
 
   public gravarUsuario(usuario): void {
     this._userSession = usuario;
     this._isLogado = true;
-    localStorage.setItem('userSession', usuario.email);
+    localStorage.setItem('userSession', JSON.stringify(usuario));
   }
 
 }

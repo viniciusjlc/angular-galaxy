@@ -35,7 +35,13 @@ export class HeaderComponent implements OnInit {
               private messageService: MessageService) {
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('userSession'));
+    if (user !== null) {
+      console.log(user);
+      SessionService.instace.gravarUsuario(user);
+      this.isLogado = true;
+    }
   }
 
   async logar(): Promise<void> {
@@ -90,6 +96,12 @@ export class HeaderComponent implements OnInit {
         this.mensagemErroCadastro = 'Erro ao realizar o cadastro! Entre em contato com o administrador do sistema';
       }
     }
+  }
+
+  sair(): void {
+    this.isLogado = false;
+    this.paginaAtual = 'home';
+    SessionService.destruirSessao();
   }
 
   onSubmit(form): void {
