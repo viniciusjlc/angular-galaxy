@@ -1,0 +1,45 @@
+<div class="p-grid p-jc-center">
+  <div style="width: 94%">
+    <div class="p-col-12">
+      <p-steps [style]="{'backgroundColor': '#1e1e1e'}" [activeIndex]="abaAtual"
+               [model]="items" [readonly]="true"></p-steps>
+    </div>
+    <p-card [hidden]="!(abaAtual == 0)"
+            header="Escolha a campanha que seu personagem vai participar:">
+      <div class="p-grid p-jc-center">
+        <div *ngFor="let campanha of campanhas; index as i;" class="p-col-5 item-campanha">
+          <p style="font-weight: bolder">
+            {{campanha.titulo}}
+          </p>
+          <p>
+            {{campanha.descricao}}
+          </p>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card [hidden]="!(abaAtual == 1)">
+      RACACLASSE
+    </p-card>
+
+    <p-card [hidden]="!(abaAtual == 2)">
+      CARACTERISTICAS
+    </p-card>
+
+    <p-card [hidden]="!(abaAtual == 3)">
+      HISTORIA
+    </p-card>
+
+
+    <div style="width: 100%">
+      <p-button [hidden]="(abaAtual == 0)"
+                label="Anterior" icon="pi pi-check" style="float: left"
+                (click)="prevPage()" iconPos="left"></p-button>
+
+      <p-button [hidden]="(abaAtual == 3)"
+                label="Próximo" icon="pi pi-check" style="float: right"
+                (click)="nextPage()" iconPos="right"></p-button>
+    </div>
+
+  </div>
+</div>
