@@ -8,8 +8,9 @@
             header="Escolha a campanha que seu personagem vai participar:">
       <div class="p-grid p-jc-center">
         <div *ngFor="let campanha of campanhas; index as i;"
-             class="p-col-5 item-campanha">
-          <div class="item-interno" (click)="clicar(campanha)">
+             class="p-col-5" (click)="clicar(campanha)"
+             [ngClass]="retornarClasse(campanha.id)">
+          <div class="item-interno">
             <p style="font-weight: bolder">
               {{campanha.titulo}}
             </p>
@@ -38,7 +39,7 @@
               (click)="prevPage()" iconPos="left"></p-button>
 
     <p-button [hidden]="(abaAtual == 3)" [style]="{'widht': '100%', 'float': 'right'}"
-              label="Próximo" icon="pi pi-chevron-right"
-              (click)="nextPage()" iconPos="right"></p-button>
+              label="Próximo" icon="pi pi-chevron-right" iconPos="right"
+              [disabled]="desabilitarPorAba()" (onClick)="nextPage()"></p-button>
   </div>
 </div>

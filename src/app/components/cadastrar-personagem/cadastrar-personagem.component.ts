@@ -26,8 +26,8 @@ export class CadastrarPersonagemComponent implements OnInit {
     new TipoCor(null, null, null),
     new TipoCor(null, null, null),
     new TipoCor(null, null, null),
-    new SessionService().userSession.id,
-    new Campanha(null, null, new Mestre(null, null)));
+    SessionService.instace.userSession.id,
+    new Campanha(null, null, new Mestre(null, null), null));
 
   constructor(private campanhaServive: CampanhaService,
               private confirmationService: ConfirmationService) {
@@ -63,11 +63,20 @@ export class CadastrarPersonagemComponent implements OnInit {
     this.abaAtual--;
   }
 
-  retornarCor(idCampanha): string {
-    return this.personagem.campanha.id === idCampanha ? '#f5cf00' : '#a47e19';
+  retornarClasse(idCampanha): string {
+    return this.personagem.campanha.id !== idCampanha ? 'item-campanha' : 'item-campanha-ativo';
   }
 
   clicar(campanhaSelecionada): void {
     console.log(campanhaSelecionada);
+    this.personagem.campanha = campanhaSelecionada;
+  }
+
+  desabilitarPorAba(): boolean {
+    console.log(this.personagem.campanha);
+    if (this.abaAtual === 0) {
+      return this.personagem.campanha.id === null;
+    }
+    return true;
   }
 }
