@@ -1,6 +1,19 @@
 .item-campanha {
   text-align: center;
+  margin: 2px;
+  padding: 0;
+}
+
+.item-campanha :hover {
+  background-color: #5a5a5a;
+  border-color: #d6b700 !important;
+  cursor: pointer;
+}
+
+.item-interno {
+  width: 100%;
+  height: 100%;
   border-style: solid;
-  border-color: #927015;
-  margin: 2px
+  border-color: #856615;
+  padding: 5px;
 }

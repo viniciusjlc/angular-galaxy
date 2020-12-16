@@ -2,18 +2,21 @@
   <div style="width: 94%">
     <div class="p-col-12">
       <p-steps [style]="{'backgroundColor': '#1e1e1e'}" [activeIndex]="abaAtual"
-               [model]="items" [readonly]="true"></p-steps>
+               [model]="itens" [readonly]="true"></p-steps>
     </div>
     <p-card [hidden]="!(abaAtual == 0)"
             header="Escolha a campanha que seu personagem vai participar:">
       <div class="p-grid p-jc-center">
-        <div *ngFor="let campanha of campanhas; index as i;" class="p-col-5 item-campanha">
-          <p style="font-weight: bolder">
-            {{campanha.titulo}}
-          </p>
-          <p>
-            {{campanha.descricao}}
-          </p>
+        <div *ngFor="let campanha of campanhas; index as i;"
+             class="p-col-5 item-campanha">
+          <div class="item-interno" (click)="clicar(campanha)">
+            <p style="font-weight: bolder">
+              {{campanha.titulo}}
+            </p>
+            <p>
+              {{campanha.descricao}}
+            </p>
+          </div>
         </div>
       </div>
     </p-card>
@@ -30,16 +33,12 @@
       HISTORIA
     </p-card>
 
+    <p-button [hidden]="(abaAtual == 0)" [style]="{'widht': '100%', 'float': 'left'}"
+              label="Anterior" icon="pi pi-chevron-left"
+              (click)="prevPage()" iconPos="left"></p-button>
 
-    <div style="width: 100%">
-      <p-button [hidden]="(abaAtual == 0)"
-                label="Anterior" icon="pi pi-check" style="float: left"
-                (click)="prevPage()" iconPos="left"></p-button>
-
-      <p-button [hidden]="(abaAtual == 3)"
-                label="Próximo" icon="pi pi-check" style="float: right"
-                (click)="nextPage()" iconPos="right"></p-button>
-    </div>
-
+    <p-button [hidden]="(abaAtual == 3)" [style]="{'widht': '100%', 'float': 'right'}"
+              label="Próximo" icon="pi pi-chevron-right"
+              (click)="nextPage()" iconPos="right"></p-button>
   </div>
 </div>
