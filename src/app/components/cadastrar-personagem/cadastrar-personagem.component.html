@@ -4,11 +4,12 @@
       <p-steps [style]="{'backgroundColor': '#1e1e1e'}" [activeIndex]="abaAtual"
                [model]="itens" [readonly]="true"></p-steps>
     </div>
+
     <p-card [hidden]="!(abaAtual == 0)"
             header="Escolha a campanha que seu personagem vai participar:">
       <div class="p-grid p-jc-center">
         <div *ngFor="let campanha of campanhas; index as i;"
-             class="p-col-5" (click)="clicar(campanha)"
+             class="p-col-5" (click)="this.personagem.campanha = campanha"
              [ngClass]="retornarClasse(campanha.id)">
           <div class="item-interno">
             <p style="font-weight: bolder">
@@ -22,12 +23,42 @@
       </div>
     </p-card>
 
-    <p-card [hidden]="!(abaAtual == 1)">
-      RACACLASSE
+    <p-card
+      [hidden]="!(abaAtual == 1)">
+      <div class="p-grid p-jc-center">
+        <div class="p-col-6">
+          <p-button label="Raça" [style]="{'width':'100%'}"
+                    icon="pi pi-bars" (onClick)="showSelecionarRaca = true">
+          </p-button>
+        </div>
+        <div class="p-col-6">
+          {{personagem.raca.id === null ? '' : 'Sua raça: ' + personagem.raca.nome}}
+        </div>
+
+        <div class="p-col-6">
+          <p-button label="Classe" [style]="{'width':'100%'}"
+                    [disabled]="personagem.raca.id === null"
+                    icon="pi pi-check" (onClick)="showSelecionarClasse = true">
+          </p-button>
+        </div>
+        <div class="p-col-6">
+          {{personagem.classe.id === null ? '' : 'Sua classe: ' + personagem.classe.nome}}
+        </div>
+      </div>
     </p-card>
 
     <p-card [hidden]="!(abaAtual == 2)">
-      CARACTERISTICAS
+      <ng-template pTemplate="content">
+        <div class="p-grid">
+          <div class="p-col-6">
+            <label for="nome">Nome:</label>
+            <br/>
+            <input id="nome" type="text"
+                   pInputText [(ngModel)]="personagem.nome"
+                   style="width: 100%">
+          </div>
+        </div>
+      </ng-template>
     </p-card>
 
     <p-card [hidden]="!(abaAtual == 3)">
@@ -43,3 +74,78 @@
               [disabled]="desabilitarPorAba()" (onClick)="nextPage()"></p-button>
   </div>
 </div>
+
+<p-dialog header="Selecione sua raça" [(visible)]="showSelecionarRaca" [style]="{'width':'92%'}">
+  <p-carousel [value]="racas" [numVisible]="1"
+              [numScroll]="1" [circular]="false">
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template let-raca pTemplate="item">
+      <div class="p-grid">
+        <div class="p-col-9">
+          <h4>
+            {{raca?.nome}}
+          </h4>
+          <p>
+            Planeta de origem: {{raca?.nomePlaneta}}
+          </p>
+          <p style="text-align: justify">
+            {{raca?.descricao}}
+          </p>
+          <p>
+            Atributos Base:
+          </p>
+          <div class="p-grid">
+            <div *ngFor="let atributo of raca.listaAtributos; index as j;"
+                 class="p-col-4">
+              {{atributo.nome}}:
+              <span class="p-badge">{{atributo.valor}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-col-3">
+          <img src="assets/img/draconians.png" style="zoom: 0.7; width: 100%; height: 90%"
+               alt="Draconians">
+        </div>
+        <hr class="solid" style="border-top: 3px solid #bbb;">
+        <div class="p-col-4"></div>
+        <div class="p-col-4">
+          <p-button label="Selecionar" (onClick)="selecionarRaca(raca)"
+                    [style]="{'width': '100%'}"></p-button>
+        </div>
+        <div class="p-col-4"></div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</p-dialog>
+
+
+<p-dialog header="Selecione sua classe" [style]="{'width':'92%'}"
+          [(visible)]="showSelecionarClasse">
+  <p-carousel [value]="personagem.raca.listaClasse" [numVisible]="1"
+              [numScroll]="1" [circular]="false">
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template let-classe pTemplate="item">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h4>
+            {{classe?.nome}}
+          </h4>
+          <p style="text-align: justify">
+            {{classe?.descricao}}
+          </p>
+        </div>
+        <div class="p-col-4"></div>
+        <div class="p-col-4">
+          <p-button label="Selecionar" (onClick)="selecionarClasse(classe)"
+                    [style]="{'width': '100%'}"></p-button>
+        </div>
+        <div class="p-col-4"></div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</p-dialog>
+
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

@@ -7,8 +7,9 @@ import Personagem from '../../models/Personagem';
 import Raca from '../../models/Raca';
 import Classe from '../../models/Classe';
 import TipoCor from '../../models/TipoCor';
-import {Usuario} from '../../models/Usuario';
 import Mestre from '../../models/Mestre';
+import {ClasseService} from '../../services/classe/classe.service';
+import {RacaService} from '../../services/raca/raca.service';
 
 @Component({
   selector: 'app-cadastrar-personagem',
@@ -19,6 +20,8 @@ export class CadastrarPersonagemComponent implements OnInit {
   itens: MenuItem[];
   abaAtual: number = 0;
   campanhas: Campanha[];
+  classes: Classe[];
+  racas: Raca[];
   personagem: Personagem = new Personagem(null,
     new Raca(null, null, null, null, null, null, null, null, null),
     new Classe(null, null, null),
@@ -28,17 +31,25 @@ export class CadastrarPersonagemComponent implements OnInit {
     new TipoCor(null, null, null),
     SessionService.instace.userSession.id,
     new Campanha(null, null, new Mestre(null, null), null));
+  showSelecionarClasse: boolean = false;
+  showSelecionarRaca: boolean = false;
+  responsiveOptions;
+  submitted: boolean = false;
 
-  constructor(private campanhaServive: CampanhaService,
+  constructor(private campanhaService: CampanhaService,
+              private classeService: ClasseService,
+              private racaService: RacaService,
               private confirmationService: ConfirmationService) {
   }
 
-  async iniciarListaCampanhaPorJogadorAtual(): Promise<void> {
-    this.campanhas = await this.campanhaServive.listarCampanhaPorMestre(SessionService.instace.userSession.id);
+  async iniciarListaParaCadastro(): Promise<void> {
+    this.campanhas = await this.campanhaService.listarCampanhaPorMestre(SessionService.instace.userSession.id);
+    this.racas = await this.racaService.listarRacas();
+    this.classes = await this.classeService.listarClasses();
   }
 
   ngOnInit(): void {
-    this.iniciarListaCampanhaPorJogadorAtual();
+    this.iniciarListaParaCadastro();
     this.itens = [{
       label: 'Campanha'
     },
@@ -52,10 +63,28 @@ export class CadastrarPersonagemComponent implements OnInit {
         label: 'História'
       }
     ];
-    console.log(this.abaAtual);
+
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 3
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 2
+      },
+      {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
   }
 
   nextPage(): void {
+    console.log(this.personagem);
     this.abaAtual++;
   }
 
@@ -67,16 +96,42 @@ export class CadastrarPersonagemComponent implements OnInit {
     return this.personagem.campanha.id !== idCampanha ? 'item-campanha' : 'item-campanha-ativo';
   }
 
-  clicar(campanhaSelecionada): void {
-    console.log(campanhaSelecionada);
-    this.personagem.campanha = campanhaSelecionada;
+  selecionarRaca(raca): void {
+    this.confirmationService.confirm({
+      message: 'Deseja selecionar a raça "' + raca.nome + '"?',
+      header: 'Confirmar Raça',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.personagem.raca = raca;
+        this.showSelecionarRaca = false;
+      }
+    });
+  }
+
+  selecionarClasse(classe): void {
+    this.confirmationService.confirm({
+      message: 'Deseja selecionar a classe "' + classe.nome + '"?',
+      header: 'Confirmar Classe',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.personagem.classe = classe;
+        this.showSelecionarClasse = false;
+      }
+    });
   }
 
   desabilitarPorAba(): boolean {
-    console.log(this.personagem.campanha);
-    if (this.abaAtual === 0) {
-      return this.personagem.campanha.id === null;
+    switch (this.abaAtual) {
+      case 0:
+        return this.personagem.campanha.id === null;
+      case 1:
+        return this.personagem.raca.id === null || this.personagem.classe.id == null;
+      case 2:
+        return true;
+      case 3:
+        return true;
     }
     return true;
   }
+
 }
