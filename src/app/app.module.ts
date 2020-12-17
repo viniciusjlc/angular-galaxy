@@ -49,6 +49,7 @@ import { ListaPersonagensComponent } from './components/lista-personagens/lista-
 import {CadastrarPersonagemComponent} from './components/cadastrar-personagem/cadastrar-personagem.component';
 import {StepsModule} from "primeng/steps";
 import {CarouselModule} from "primeng/carousel";
+import {RadioButtonModule} from "primeng/radiobutton";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -107,7 +108,8 @@ const maskConfig: Partial<IConfig> = {
         TabMenuModule,
         ToastModule,
         StepsModule,
-        CarouselModule
+        CarouselModule,
+        RadioButtonModule
     ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService, ConfirmationService],

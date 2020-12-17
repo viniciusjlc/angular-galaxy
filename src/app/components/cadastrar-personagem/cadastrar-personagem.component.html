@@ -57,6 +57,18 @@
                    pInputText [(ngModel)]="personagem.nome"
                    style="width: 100%">
           </div>
+          <div class="p-col-6">
+            <label>Gênero:</label>
+            <br/>
+            <div class="p-d-flex">
+              <p-radioButton value="M" [(ngModel)]="personagem.sexo"
+                             label="Masculino"></p-radioButton>
+              <p-radioButton value="F" [(ngModel)]="personagem.sexo" style="margin-left: 12px"
+                             label="Feminino"></p-radioButton>
+              <p-radioButton value="I" [(ngModel)]="personagem.sexo" style="margin-left: 12px"
+                             label="Indefinido"></p-radioButton>
+            </div>
+          </div>
         </div>
       </ng-template>
     </p-card>
