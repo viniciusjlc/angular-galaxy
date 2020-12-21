@@ -50,6 +50,7 @@ import {CadastrarPersonagemComponent} from './components/cadastrar-personagem/ca
 import {StepsModule} from "primeng/steps";
 import {CarouselModule} from "primeng/carousel";
 import {RadioButtonModule} from "primeng/radiobutton";
+import {InputNumberModule} from "primeng/inputnumber";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -109,7 +110,8 @@ const maskConfig: Partial<IConfig> = {
         ToastModule,
         StepsModule,
         CarouselModule,
-        RadioButtonModule
+        RadioButtonModule,
+        InputNumberModule
     ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService, ConfirmationService],

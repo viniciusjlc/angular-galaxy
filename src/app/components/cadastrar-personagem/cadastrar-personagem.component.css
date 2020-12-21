@@ -23,3 +23,11 @@
   font-weight: bolder;
   border-color: #e5b228;
 }
+
+:host ::ng-deep .p-dropdown {
+  width: 14rem;
+}
+
+.country-item-value {
+  width: 17px;
+}

@@ -50,14 +50,14 @@
     <p-card [hidden]="!(abaAtual == 2)">
       <ng-template pTemplate="content">
         <div class="p-grid">
-          <div class="p-col-6">
+          <div class="p-col-8">
             <label for="nome">Nome:</label>
             <br/>
             <input id="nome" type="text"
                    pInputText [(ngModel)]="personagem.nome"
                    style="width: 100%">
           </div>
-          <div class="p-col-6">
+          <div class="p-col-4">
             <label>Gênero:</label>
             <br/>
             <div class="p-d-flex">
@@ -68,6 +68,27 @@
               <p-radioButton value="I" [(ngModel)]="personagem.sexo" style="margin-left: 12px"
                              label="Indefinido"></p-radioButton>
             </div>
+          </div>
+          <div class="p-col-4">
+            <label>Idade:</label>
+            <br/>
+            <p-inputNumber [(ngModel)]="personagem.idade" [style]="{'width': '100%'}"
+                           [minFractionDigits]="2"></p-inputNumber>
+          </div>
+          <div class="p-col-4">
+            <label>Altura (m):</label>
+            <br/>
+            <p-inputNumber [(ngModel)]="personagem.altura" mode="decimal" [style]="{'width': '100%'}"
+                           [minFractionDigits]="2"></p-inputNumber>
+          </div>
+          <div class="p-col-4">
+            <label>Peso (kg):</label>
+            <br/>
+            <p-inputNumber [(ngModel)]="personagem.peso" mode="decimal" [style]="{'width': '100%'}"
+                           [minFractionDigits]="2"></p-inputNumber>
+          </div>
+          <div class="p-col-4">
+            
           </div>
         </div>
       </ng-template>
