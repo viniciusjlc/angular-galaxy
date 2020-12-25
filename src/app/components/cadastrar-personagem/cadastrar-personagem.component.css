@@ -31,3 +31,25 @@
 .country-item-value {
   width: 17px;
 }
+
+.item-cor {
+  border-style: solid;
+  border-width: 3px;
+  border-color: grey;
+  margin: 6px;
+}
+
+.item-cor:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.item-cor-ativo {
+  border-style: solid;
+  border-width: 3px;
+  border-color: #ffd54f;
+  font-weight: bolder;
+  margin: 6px;
+}
+

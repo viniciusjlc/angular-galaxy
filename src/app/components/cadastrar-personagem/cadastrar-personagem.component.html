@@ -88,7 +88,28 @@
                            [minFractionDigits]="2"></p-inputNumber>
           </div>
           <div class="p-col-4">
-            
+            <label>Pele:</label>
+            <br/>
+            <button pButton pRipple type="button" (click)="showSelecionarPele = true"
+                    [label]="personagem.pele.id != null ? personagem.pele.descricao : 'Clique aqui pare selecionar'"
+                    [style]="{'width': '100%', 'background-color': personagem.pele.id != null ? personagem.pele.codigoCor : '#ffd54f'}">
+            </button>
+          </div>
+          <div class="p-col-4">
+            <label>Cabelo:</label>
+            <br/>
+            <button pButton pRipple type="button" (click)="showSelecionarCabelo = true"
+                    [label]="personagem.cabelo.id != null ? personagem.cabelo.descricao : 'Clique aqui pare selecionar'"
+                    [style]="{'width': '100%', 'background-color': personagem.cabelo.id != null ? personagem.cabelo.codigoCor : '#ffd54f'}">
+            </button>
+          </div>
+          <div class="p-col-4">
+            <label>Olho:</label>
+            <br/>
+            <button pButton pRipple type="button" (click)="showSelecionarOlho = true"
+                    [label]="personagem.olho.id != null ? personagem.olho.descricao : 'Clique aqui pare selecionar'"
+                    [style]="{'width': '100%', 'background-color': personagem.olho.id != null ? personagem.olho.codigoCor : '#ffd54f'}">
+            </button>
           </div>
         </div>
       </ng-template>
@@ -108,7 +129,8 @@
   </div>
 </div>
 
-<p-dialog header="Selecione sua raça" [(visible)]="showSelecionarRaca" [style]="{'width':'92%'}">
+<p-dialog header="Selecione sua raça" [(visible)]="showSelecionarRaca"
+          [modal]="true" [style]="{'width':'92%'}">
   <p-carousel [value]="racas" [numVisible]="1"
               [numScroll]="1" [circular]="false">
     <ng-template pTemplate="header">
@@ -153,7 +175,7 @@
 </p-dialog>
 
 
-<p-dialog header="Selecione sua classe" [style]="{'width':'92%'}"
+<p-dialog header="Selecione sua classe" [style]="{'width':'92%'}" [modal]="true"
           [(visible)]="showSelecionarClasse">
   <p-carousel [value]="personagem.raca.listaClasse" [numVisible]="1"
               [numScroll]="1" [circular]="false">
@@ -178,6 +200,54 @@
       </div>
     </ng-template>
   </p-carousel>
+</p-dialog>
+
+
+<p-dialog header="Selecione a cor da pele" [style]="{'width':'60%'}" [modal]="true"
+          [(visible)]="showSelecionarPele">
+  <div *ngFor="let pele of personagem.raca.listaPele; index as i;">
+    <div [class]="personagem.pele.id == pele.id ? 'item-cor-ativo' : 'item-cor'"
+         (click)="personagem.pele = pele">
+      <p style="margin-left: 4px">
+        {{pele.descricao}}:
+      </p>
+      <div [style]="{'background-color': pele.codigoCor, 'color': pele.codigoCor}">
+        TESTE COR
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+
+<p-dialog header="Selecione a cor do cabelo" [style]="{'width':'60%'}" [modal]="true"
+          [(visible)]="showSelecionarCabelo">
+  <div *ngFor="let cabelo of personagem.raca.listaCabelo; index as i;">
+    <div [class]="personagem.cabelo.id == cabelo.id ? 'item-cor-ativo' : 'item-cor'"
+         (click)="personagem.cabelo = cabelo">
+      <p style="margin-left: 4px">
+        {{cabelo.descricao}}:
+      </p>
+      <div [style]="{'background-color': cabelo.codigoCor, 'color': cabelo.codigoCor}">
+        TESTE COR
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+
+<p-dialog header="Selecione a cor do olho" [style]="{'width':'60%'}" [modal]="true"
+          [(visible)]="showSelecionarOlho">
+  <div *ngFor="let olho of personagem.raca.listaOlho; index as i;">
+    <div [class]="personagem.olho.id == olho.id ? 'item-cor-ativo' : 'item-cor'"
+         (click)="personagem.olho = olho">
+      <p style="margin-left: 4px">
+        {{olho.descricao}}:
+      </p>
+      <div [style]="{'background-color': olho.codigoCor, 'color': olho.codigoCor}">
+        TESTE COR
+      </div>
+    </div>
+  </div>
 </p-dialog>
 
 

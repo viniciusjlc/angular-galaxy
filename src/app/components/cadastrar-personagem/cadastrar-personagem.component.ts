@@ -33,6 +33,9 @@ export class CadastrarPersonagemComponent implements OnInit {
     new Campanha(null, null, new Mestre(null, null), null));
   showSelecionarClasse: boolean = false;
   showSelecionarRaca: boolean = false;
+  showSelecionarPele: boolean = false;
+  showSelecionarCabelo: boolean = false;
+  showSelecionarOlho: boolean = false;
   responsiveOptions;
   submitted: boolean = false;
 
