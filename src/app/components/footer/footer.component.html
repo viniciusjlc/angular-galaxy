@@ -1,6 +1,22 @@
 <div class="footer">
   © 2020 Copyright: Vinicius Lopes,
-    <a class="link" target="_blank"
-      href="https://github.com/viniciusjlc">
-      github.com/viniciusjlc</a>, Versão 0.1 - 09/11/2020
+  <a class="link" target="_blank"
+     href="https://github.com/viniciusjlc">
+    github.com/viniciusjlc</a>, <a class="link"
+                                   (click)="abrirDlgVersoes()">{{versaoAtual.titulo}}</a>
+  - {{versaoAtual.dataCadastro | date: 'dd/MM/yyyy'}}
 </div>
+
+<p-dialog [(visible)]="showDialogVersao" [modal]="true"
+          header="Versões" [style]="{'width': '80%'}">
+  <tr class="item-tabela">
+    <th class="item-tabela">Titulo</th>
+    <th class="item-tabela">Descrição</th>
+    <th class="item-tabela">Data</th>
+  </tr>
+  <tr *ngFor="let versao of listaVersoes; index as i;" class="item-tabela">
+    <td class="item-tabela">{{versao.titulo}}</td>
+    <td class="item-tabela">{{versao.descricao}}</td>
+    <td class="item-tabela">{{versao.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+  </tr>
+</p-dialog>
