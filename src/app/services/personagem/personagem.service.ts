@@ -9,6 +9,7 @@ import Personagem from '../../models/Personagem';
 export class PersonagemService {
   private readonly urlPersonagem = '/personagem';
   private readonly urlListarPorUsuario = this.urlPersonagem + '/listar/';
+  private readonly urlSalvarUsuario = this.urlPersonagem + '/salvar';
 
   constructor(private http: HttpClient) {
   }
@@ -18,4 +19,8 @@ export class PersonagemService {
     return this.http.get<Personagem[]>(JwtService.instace.urlAPI + this.urlListarPorUsuario + idUsuario, {headers}).toPromise();
   }
 
+  public async cadastrar(personagem: Personagem): Promise<Personagem> {
+    const headers = JwtService.instace.header;
+    return this.http.post<Personagem>(JwtService.instace.urlAPI + this.urlSalvarUsuario, personagem, {headers}).toPromise();
+  }
 }

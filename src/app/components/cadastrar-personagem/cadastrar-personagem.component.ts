@@ -10,6 +10,7 @@ import TipoCor from '../../models/TipoCor';
 import Mestre from '../../models/Mestre';
 import {ClasseService} from '../../services/classe/classe.service';
 import {RacaService} from '../../services/raca/raca.service';
+import {PersonagemService} from "../../services/personagem/personagem.service";
 
 @Component({
   selector: 'app-cadastrar-personagem',
@@ -38,11 +39,14 @@ export class CadastrarPersonagemComponent implements OnInit {
   showSelecionarOlho: boolean = false;
   responsiveOptions;
   submitted: boolean = false;
+  showCadastroSucesso: boolean = false;
+  showCadastroErro: boolean = false;
 
   constructor(private campanhaService: CampanhaService,
               private classeService: ClasseService,
               private racaService: RacaService,
-              private confirmationService: ConfirmationService) {
+              private confirmationService: ConfirmationService,
+              private personagemService: PersonagemService) {
   }
 
   async iniciarListaParaCadastro(): Promise<void> {
@@ -130,11 +134,22 @@ export class CadastrarPersonagemComponent implements OnInit {
       case 1:
         return this.personagem.raca.id === null || this.personagem.classe.id == null;
       case 2:
-        return true;
+        return this.personagem.nome === null || this.personagem.sexo === null ||
+          this.personagem.idade === null || this.personagem.altura === null || this.personagem.peso === null ||
+          this.personagem.pele.id === null || this.personagem.cabelo.id === null || this.personagem.olho.id === null;
       case 3:
         return true;
     }
     return true;
+  }
+
+  async cadastrar(): Promise<void> {
+    this.personagem = await this.personagemService.cadastrar(this.personagem);
+    if (this.personagem.id !== null) {
+      this.showCadastroSucesso = true;
+    }else{
+      this.showCadastroSucesso = false;
+    }
   }
 
 }

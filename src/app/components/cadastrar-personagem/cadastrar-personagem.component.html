@@ -63,9 +63,9 @@
             <div class="p-d-flex">
               <p-radioButton value="M" [(ngModel)]="personagem.sexo"
                              label="Masculino"></p-radioButton>
-              <p-radioButton value="F" [(ngModel)]="personagem.sexo" style="margin-left: 12px"
+              <p-radioButton value="F" [(ngModel)]="personagem.sexo" [style]="{'margin-left': '12px'}"
                              label="Feminino"></p-radioButton>
-              <p-radioButton value="I" [(ngModel)]="personagem.sexo" style="margin-left: 12px"
+              <p-radioButton value="I" [(ngModel)]="personagem.sexo" [style]="{'margin-left': '12px'}"
                              label="Indefinido"></p-radioButton>
             </div>
           </div>
@@ -116,7 +116,7 @@
     </p-card>
 
     <p-card [hidden]="!(abaAtual == 3)">
-      HISTORIA
+      <p-button [style]="{'widht': '100%'}" label="Cadastrar" (click)="cadastrar()"></p-button>
     </p-card>
 
     <p-button [hidden]="(abaAtual == 0)" [style]="{'widht': '100%', 'float': 'left'}"
@@ -216,6 +216,8 @@
       </div>
     </div>
   </div>
+  <p-button [style]="{'widht': '100%'}"
+            label="Confirmar" (click)="showSelecionarPele = false"></p-button>
 </p-dialog>
 
 
@@ -232,6 +234,8 @@
       </div>
     </div>
   </div>
+  <p-button [style]="{'widht': '100%'}"
+            label="Confirmar" (click)="showSelecionarCabelo = false"></p-button>
 </p-dialog>
 
 
@@ -248,7 +252,40 @@
       </div>
     </div>
   </div>
+  <p-button [style]="{'widht': '100%'}"
+            label="Confirmar" (click)="showSelecionarOlho = false"></p-button>
 </p-dialog>
 
+<p-dialog header="Selecione a cor do olho" [style]="{'width':'60%'}" [modal]="true"
+          [(visible)]="showSelecionarOlho">
+  <div *ngFor="let olho of personagem.raca.listaOlho; index as i;">
+    <div [class]="personagem.olho.id == olho.id ? 'item-cor-ativo' : 'item-cor'"
+         (click)="personagem.olho = olho">
+      <p style="margin-left: 4px">
+        {{olho.descricao}}:
+      </p>
+      <div [style]="{'background-color': olho.codigoCor, 'color': olho.codigoCor}">
+        TESTE COR
+      </div>
+    </div>
+  </div>
+  <p-button [style]="{'widht': '100%'}"
+            label="Confirmar" (click)="showSelecionarOlho = false"></p-button>
+</p-dialog>
+
+<p-dialog header="Sucesso!" [style]="{'width':'60%'}" [modal]="true"
+          [(visible)]="showCadastroSucesso">
+  <p>
+    O cadastro do seu personagem foi realizado com sucesso, agora ele já se encontra disponivel para jogar.
+  </p>
+  <br/>
+  <p>
+    Deseja jogar com esse personagem ou prefere retornar a tela de escolha de personagem?
+  </p>
+  <p-button [style]="{'widht': '50%'}"
+            label="Jogar com personagem" routerLink="../../personagem"></p-button>
+  <p-button [style]="{'widht': '50%'}"
+            label="Retornar para listagem" routerLink="../../personagens"></p-button>
+</p-dialog>
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
