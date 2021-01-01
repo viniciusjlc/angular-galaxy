@@ -3,18 +3,18 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #dba90d40;
-  color: #af870c;
+  background-color: #FFD54F40;
+  color: #b39637;
   text-align: center;
   height: 27px;
 }
 
 .link {
-  color: #af870c;
+  color: #b79837;
 }
 
 .link:hover {
-  color: #ffc613;
+  color: #fad04c;
   cursor: pointer;
 }
 
@@ -24,7 +24,7 @@ table {
 }
 
 td, th {
-  border: 2px solid #c8a73d;
+  border: 2px solid #b79837;
   text-align: left;
   padding: 8px;
 }

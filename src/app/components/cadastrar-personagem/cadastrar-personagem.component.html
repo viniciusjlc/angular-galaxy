@@ -91,7 +91,7 @@
             <label>Pele:</label>
             <br/>
             <button pButton pRipple type="button" (click)="showSelecionarPele = true"
-                    [label]="personagem.pele.id != null ? personagem.pele.descricao : 'Clique aqui pare selecionar'"
+                    [label]="personagem.pele.id != null ? personagem.pele.descricao : 'Clique aqui para selecionar'"
                     [style]="{'width': '100%', 'background-color': personagem.pele.id != null ? personagem.pele.codigoCor : '#ffd54f'}">
             </button>
           </div>
@@ -99,7 +99,7 @@
             <label>Cabelo:</label>
             <br/>
             <button pButton pRipple type="button" (click)="showSelecionarCabelo = true"
-                    [label]="personagem.cabelo.id != null ? personagem.cabelo.descricao : 'Clique aqui pare selecionar'"
+                    [label]="personagem.cabelo.id != null ? personagem.cabelo.descricao : 'Clique aqui para selecionar'"
                     [style]="{'width': '100%', 'background-color': personagem.cabelo.id != null ? personagem.cabelo.codigoCor : '#ffd54f'}">
             </button>
           </div>
@@ -107,7 +107,7 @@
             <label>Olho:</label>
             <br/>
             <button pButton pRipple type="button" (click)="showSelecionarOlho = true"
-                    [label]="personagem.olho.id != null ? personagem.olho.descricao : 'Clique aqui pare selecionar'"
+                    [label]="personagem.olho.id != null ? personagem.olho.descricao : 'Clique aqui para selecionar'"
                     [style]="{'width': '100%', 'background-color': personagem.olho.id != null ? personagem.olho.codigoCor : '#ffd54f'}">
             </button>
           </div>
@@ -190,6 +190,18 @@
           <p style="text-align: justify">
             {{classe?.descricao}}
           </p>
+        </div>
+        <div class="p-col-12">
+          <p>
+            Especialidades Base:
+          </p>
+          <div class="p-grid p-jc-center">
+            <div *ngFor="let classe of classe.listaEspecialidades; index as j;" [tooltip]="classe.descricao"
+                 class="p-col-4" align="center">
+              {{classe.nome}}:
+              <span class="p-badge">{{classe.valor}}</span>
+            </div>
+          </div>
         </div>
         <div class="p-col-4"></div>
         <div class="p-col-4">

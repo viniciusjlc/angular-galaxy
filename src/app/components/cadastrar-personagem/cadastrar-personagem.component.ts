@@ -10,7 +10,7 @@ import TipoCor from '../../models/TipoCor';
 import Mestre from '../../models/Mestre';
 import {ClasseService} from '../../services/classe/classe.service';
 import {RacaService} from '../../services/raca/raca.service';
-import {PersonagemService} from "../../services/personagem/personagem.service";
+import {PersonagemService} from '../../services/personagem/personagem.service';
 
 @Component({
   selector: 'app-cadastrar-personagem',
@@ -25,7 +25,7 @@ export class CadastrarPersonagemComponent implements OnInit {
   racas: Raca[];
   personagem: Personagem = new Personagem(null,
     new Raca(null, null, null, null, null, null, null, null, null),
-    new Classe(null, null, null),
+    new Classe(null, null, null, null),
     null, null, null, null,
     new TipoCor(null, null, null),
     new TipoCor(null, null, null),
@@ -145,11 +145,7 @@ export class CadastrarPersonagemComponent implements OnInit {
 
   async cadastrar(): Promise<void> {
     this.personagem = await this.personagemService.cadastrar(this.personagem);
-    if (this.personagem.id !== null) {
-      this.showCadastroSucesso = true;
-    }else{
-      this.showCadastroSucesso = false;
-    }
+    this.showCadastroSucesso = this.personagem.id !== null;
   }
 
 }
