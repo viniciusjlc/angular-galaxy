@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import Personagem from '../../models/Personagem';
+import {ActivatedRoute} from '@angular/router';
+import {PersonagemService} from '../../services/personagem/personagem.service';
 
 @Component({
   selector: 'app-personagem',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personagem.component.css']
 })
 export class PersonagemComponent implements OnInit {
+  personagem: Personagem;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private personagemService: PersonagemService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const personagemId = this.route.snapshot.paramMap.get('personagemId');
+    this.personagem = await this.personagemService.consultarPersonagemPorId(+personagemId);
+    console.log(this.personagem);
   }
 
 }

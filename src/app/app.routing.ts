@@ -14,7 +14,7 @@ const APP_ROUTES: Routes = [
   {path: 'universo', component: UniversoComponent},
   {path: 'campanha', component: CampanhaComponent},
   {path: 'personagens', component: ListaPersonagensComponent},
-  {path: 'personagem', component: PersonagemComponent},
+  {path: 'personagem/:personagemId', component: PersonagemComponent},
   {path: 'personagens/cadastrar', component: CadastrarPersonagemComponent},
   {path: 'universo', component: UniversoComponent},
   {path: 'sobre', component: SobreComponent}
