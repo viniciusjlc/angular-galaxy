@@ -11,7 +11,7 @@ import {ItemUniverso} from '../../models/ItemUniverso';
 export class UniversoComponent implements OnInit {
   itensMenu: MegaMenuItem[];
   itemMenu: MegaMenuItem;
-  itemUniverso: ItemUniverso;
+  itemUniverso: ItemUniverso = new ItemUniverso('', '', '');
   itensUniverso: ItemUniverso[];
   listaItensInternos: MenuItem[][];
   listaItensInternos2: MenuItem[];
@@ -52,6 +52,11 @@ export class UniversoComponent implements OnInit {
       });
     }
     return itensInternos;
+  }
+
+
+  limparUniverso(): void {
+    this.itemUniverso = new ItemUniverso('', '', '');
   }
 
   /*comporItensMenu(): void {

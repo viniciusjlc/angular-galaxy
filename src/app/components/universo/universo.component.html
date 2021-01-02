@@ -8,9 +8,14 @@
         </p-panelMenu>
       </p-scrollPanel>
     </div>
-    <div class="p-col-8">
+    <div class="p-col-7">
       <app-item-universo [itemUniverso]="itemUniverso">
       </app-item-universo>
+    </div>
+    <div class="p-col-1">
+      <button pButton pRipple type="button"  icon="pi pi-times" [hidden]="itemUniverso.titulo === ''"
+              [label]="'Limpar'" (click)="limparUniverso()">
+      </button>
     </div>
   </div>
 </div>
