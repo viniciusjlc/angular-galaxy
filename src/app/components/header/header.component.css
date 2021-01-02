@@ -7,9 +7,23 @@
   font-weight: bolder;
 }
 .background-header{
-  background-color: #FFD54F !important;
+  background-color: #ffd54f !important;
 }
 
 .cadastrar-login:hover{
   cursor: pointer;
+}
+
+.link-cadastrar{
+  color: #b10202 !important;
+  text-align: center;
+  font-weight: 700;
+}
+
+.link-cadastrar:hover{  color: red !important;
+  cursor: pointer;
+}
+
+.input-cadastro{
+  margin-bottom: 5px;
 }

@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   showAlterarSenha: boolean;
   showExcluirConta: boolean;
 
-  confirmacaoSenha: string;
+  confirmacaoSenha: string = '';
 
   mensagemErroLogin: string;
   mensagemErroCadastro: string;
@@ -101,6 +101,7 @@ export class HeaderComponent implements OnInit {
   sair(): void {
     this.isLogado = false;
     this.paginaAtual = 'home';
+    this.showContaUsuario = false;
     SessionService.destruirSessao();
   }
 

@@ -39,7 +39,8 @@
       Sair
     </a>
     <span class="navbar-text cadastrar-login" [hidden]="!isLogado" style="margin-right: 1em;"
-          (click)="[showSideBarUser = true, showContaUsuario = true, showLogin = false, showCadastro = false]">
+          (click)="[showSideBarUser = true, showContaUsuario = true,
+                    showLogin = false, showCadastro = false]">
       Olá, {{usuario.nome}}
     </span>
     <a class="nav-link cadastrar-login" [hidden]="isLogado"
@@ -50,82 +51,59 @@
 </nav>
 
 <p-sidebar id="sideBar" position="right" [baseZIndex]="10000"
-           [(visible)]="showSideBarUser" [style]='{backgroundColor: "#d0b04f"}'>
+           [(visible)]="showSideBarUser" [style]='{backgroundColor: "#fad76a"}'>
   <div [hidden]="!showLogin" id="login">
-    <h2 style="font-weight:normal">
+    <h2 style="font-weight:bold; color: #2d2d2d">
       Login
     </h2>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <div style="margin-bottom: 1.5em"
-           class="alert alert-danger" role="alert" [hidden]="mensagemErroLogin==null">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="border-top: 3px #2d2d2d solid">
+      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
+           role="alert" [hidden]="mensagemErroLogin==null">
         {{mensagemErroLogin}}
       </div>
-
-      <span class="p-float-label" style="margin-bottom: 2em; margin-top: 2em">
-        <input id="loginInputEmail" type="email" class="form-control" aria-describedby="emailHelp"
-               [required]="true" [(ngModel)]="usuario.email" name="email" pInputText ngModel>
-      <label style="font-size: 1em;"
-             for="loginInputEmail">Email</label>
-      </span>
-
-      <span class="p-float-label">
-        <input id="loginInputPassword" type="password" class="form-control" pInputText ngModel
-               [required]="true" [(ngModel)]="usuario.senha" name="senha">
-      <label style="font-size: 1em;"
-             for="loginInputPassword">Senha</label>
-    </span>
-
+      <label style="color: #2d2d2d" for="loginInputEmail">Email:</label>
+      <input id="loginInputEmail" type="email" class="form-control input-cadastro"
+             [required]="true" [(ngModel)]="usuario.email" name="email" pInputText ngModel>
+      <label style="color: #2d2d2d" for="loginInputPassword">Senha:</label>
+      <input id="loginInputPassword" type="password" class="form-control input-cadastro" pInputText ngModel
+             [required]="true" [(ngModel)]="usuario.senha" name="senha">
       <button style="margin-top: 1em"
               (click)="logar()" type="submit" class="btn btn-dark btn-block">Logar
       </button>
     </form>
   </div>
-  <a [hidden]="!showLogin"
-     style="color: darkred!important;" class="form-text text-muted"
+  <a [hidden]="!showLogin" class="form-text text-muted link-cadastrar"
      (click)="showLogin = false; showCadastro = true">
     Não tem conta? Clique aqui para cadastrar-se.
   </a>
 
   <div [hidden]="!showCadastro" id="cadastro">
-    <h2 style="font-weight:normal">
+    <h2 style="font-weight:bold; color: #2d2d2d">
       Cadastro
     </h2>
 
-    <form>
-      <div style="margin-bottom: 1.5em"
-           class="alert alert-danger" role="alert" [hidden]="mensagemErroCadastro ==null">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="border-top: 3px #2d2d2d solid">
+      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
+           role="alert" [hidden]="mensagemErroCadastro==null">
         {{mensagemErroCadastro}}
       </div>
+      <label style="color: #2d2d2d" for="cadastroInputNome">Nome:</label>
+      <input id="cadastroInputNome" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
+             [required]="true" [(ngModel)]="usuarioCadastro.nome" name="nome" pInputText>
 
-      <span class="p-float-label" style="margin-bottom: 2em; margin-top: 2em">
-        <input id="cadastroInputNome" type="email" class="form-control" aria-describedby="emailHelp"
-               [required]="true" [(ngModel)]="usuarioCadastro.nome" name="nome" pInputText>
-        <label style="font-size: 1em;"
-               for="cadastroInputNome">Nome</label>
-      </span>
+      <label style="color: #2d2d2d" for="cadastroInputEmail">Email:</label>
+      <input id="cadastroInputEmail" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
+             [required]="true" [(ngModel)]="usuarioCadastro.email" name="email" pInputText>
 
-      <span class="p-float-label" style="margin-bottom: 2em;">
-        <input id="cadastroInputEmail" type="email" class="form-control" aria-describedby="emailHelp"
-               [required]="true" [(ngModel)]="usuarioCadastro.email" name="email" pInputText>
-        <label style="font-size: 1em;"
-               for="cadastroInputEmail">Email</label>
-      </span>
+      <label style="color: #2d2d2d" for="cadastroInputPassword">Senha:</label>
+      <input id="cadastroInputPassword" type="password" class="form-control input-cadastro" pInputText
+             [required]="true" [(ngModel)]="usuarioCadastro.senha" name="senha">
 
-      <span class="p-float-label" style="margin-bottom: 2em;">
-        <input id="cadastroInputPassword" type="password" class="form-control" pInputText
-               [required]="true" [(ngModel)]="usuarioCadastro.senha" name="senha">
-        <label style="font-size: 1em;"
-               for="cadastroInputPassword">Senha</label>
-      </span>
+      <label style="color: #2d2d2d" for="cadastroInputPasswordConfirmacao">Confirmar Senha:</label>
+      <input id="cadastroInputPasswordConfirmacao" type="password" class="form-control input-cadastro" pInputText
+             [required]="true" [(ngModel)]="confirmacaoSenha" name="confirmacaoSenha">
 
-      <span class="p-float-label" style="margin-bottom: 1em;">
-        <input id="cadastroInputPasswordConfirmacao" type="password" class="form-control" pInputText
-               [required]="true" [(ngModel)]="confirmacaoSenha" name="confirmacaoSenha">
-        <label style="font-size: 1em;"
-               for="cadastroInputPasswordConfirmacao">Confirmar Senha</label>
-    </span>
-
-      <button type="submit" (click)="cadastrarUsuario()"
+      <button type="submit" (click)="cadastrarUsuario()" style="margin-top: 3px"
               class="btn btn-success btn-block btn-lg">Cadastrar-se
       </button>
       <button type="submit" class="btn btn-danger btn-block btn-sm"
@@ -135,10 +113,10 @@
   </div>
 
   <div [hidden]="!showContaUsuario">
-    <h2 style="font-weight:normal">
-      Sua Conta:
+    <h2 style="font-weight:bold; color: #2d2d2d">
+      Sua conta
     </h2>
-    <div class="p-grid p-jc-lg-start">
+    <div class="p-grid p-jc-lg-start" style="border-top: 3px #2d2d2d solid">
       <div class="p-col-12">
         <button type="button" class="btn btn-primary"
                 style="width: 100%;" (click)="showDadosCadastrais = true">
