@@ -16,8 +16,7 @@
 }
 
 
-
-.p-panelmenu .p-panelmenu-header{
+.p-panelmenu .p-panelmenu-header {
   background: #1e1e1e !important;
 }
 
@@ -100,3 +99,17 @@ a:hover:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }*/
+
+.p-menu .p-submenu-header {
+  background: #ffd54f !important;
+  border: 3px solid #88722a !important;
+  color: black !important;
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
+  padding: 2px 2px 2px 2px !important;
+}
+
+.p-menu .p-menuitem-link:hover {
+  background-color: #dba911 !important;
+}
