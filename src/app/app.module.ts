@@ -47,10 +47,13 @@ import {ConfirmationService} from 'primeng/api';
 import {RouterOutletComponent} from './components/router-outlet/router-outlet.component';
 import { ListaPersonagensComponent } from './components/lista-personagens/lista-personagens.component';
 import {CadastrarPersonagemComponent} from './components/cadastrar-personagem/cadastrar-personagem.component';
-import {StepsModule} from "primeng/steps";
-import {CarouselModule} from "primeng/carousel";
-import {RadioButtonModule} from "primeng/radiobutton";
-import {InputNumberModule} from "primeng/inputnumber";
+import {StepsModule} from 'primeng/steps';
+import {CarouselModule} from 'primeng/carousel';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {DividerModule} from 'primeng/divider';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {BarraStatusComponent} from './components/barra-status/barra-status.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -73,46 +76,50 @@ const maskConfig: Partial<IConfig> = {
     RouterOutletComponent,
     RouterOutletComponent,
     ListaPersonagensComponent,
-    CadastrarPersonagemComponent
+    CadastrarPersonagemComponent,
+    BarraStatusComponent,
+    BarraStatusComponent
   ],
-    imports: [
-        BrowserModule,
-        BsDropdownModule.forRoot(),
-        TooltipModule.forRoot(),
-        ModalModule.forRoot(),
-        TableModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ButtonModule,
-        RippleModule,
-        ToolbarModule,
-        InputTextModule,
-        DialogModule,
-        AccordionModule,
-        BrowserAnimationsModule,
-        InputMaskModule,
-        DropdownModule,
-        InputTextareaModule,
-        ConfirmDialogModule,
-        MessagesModule,
-        NgxMaskModule.forRoot(maskConfig),
-        routing,
-        PanelModule,
-        MenuModule,
-        ScrollPanelModule,
-        SidebarModule,
-        MegaMenuModule,
-        CardModule,
-        PanelMenuModule,
-        SlideMenuModule,
-        TabMenuModule,
-        ToastModule,
-        StepsModule,
-        CarouselModule,
-        RadioButtonModule,
-        InputNumberModule
-    ],
+  imports: [
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    TableModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RippleModule,
+    ToolbarModule,
+    InputTextModule,
+    DialogModule,
+    AccordionModule,
+    BrowserAnimationsModule,
+    InputMaskModule,
+    DropdownModule,
+    InputTextareaModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    NgxMaskModule.forRoot(maskConfig),
+    routing,
+    PanelModule,
+    MenuModule,
+    ScrollPanelModule,
+    SidebarModule,
+    MegaMenuModule,
+    CardModule,
+    PanelMenuModule,
+    SlideMenuModule,
+    TabMenuModule,
+    ToastModule,
+    StepsModule,
+    CarouselModule,
+    RadioButtonModule,
+    InputNumberModule,
+    DividerModule,
+    ProgressBarModule
+  ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService, ConfirmationService],
   bootstrap: [AppComponent]

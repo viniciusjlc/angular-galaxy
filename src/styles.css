@@ -111,5 +111,11 @@ a:hover:before {
 }
 
 .p-menu .p-menuitem-link:hover {
-  background-color: #dba911 !important;
+  background-color: #ceac3e !important;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+  background: rgb(185 154 56) !important;
+  font-weight: bold !important;;
+  color: rgba(255, 255, 255, 0.87) !important;
 }

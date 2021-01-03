@@ -2,6 +2,7 @@ import Raca from './Raca';
 import TipoCor from './TipoCor';
 import Campanha from './Campanha';
 import Classe from './Classe';
+import Atributo from './Atributo';
 
 export default class Personagem {
   constructor(public nome: string,
@@ -16,6 +17,7 @@ export default class Personagem {
               public olho: TipoCor,
               public usuario: number,
               public campanha: Campanha,
+              public listaAtributos?: Atributo[],
               public id?: number) {
   }
 }

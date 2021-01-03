@@ -1,10 +1,32 @@
 <div class="p-d-flex p-flex-column p-flex-md-row">
   <div class="p-mb-1 p-mr-4 teste">
     <p-menu [style]="{'margin-left': '5px'}" class="teste"
-      [model]="itensMenuPersonagem"></p-menu>
+            [model]="itensMenuPersonagem"></p-menu>
   </div>
-  <div class="p-mb-5 p-mr-8">
-    TESTE
+  <div class="p-mb-5 p-mr-8" [style]="{'width': '100%'}">
+    <p-card header="Dados Base" [style]="{'width': '95%'}">
+      <ng-template pTemplate="header">
+      </ng-template>
+
+      <div class="p-grid">
+        <div class="p-col-4">
+          <app-barra-status [label]="'Vida'" [valor]="33"
+                            [cor1]="'darkred'" [cor2]="'red'"></app-barra-status>
+        </div>
+        <div class="p-col-4">
+          <app-barra-status [label]="'Condição Física'" [valor]="33"
+                            [cor1]="'darkgreen'" [cor2]="'green'"></app-barra-status>
+        </div>
+        <div class="p-col-4">
+          <app-barra-status [label]="'Condição Mental'" [valor]="33"
+                            [cor1]="'darkblue'" [cor2]="'blue'"></app-barra-status>
+        </div>
+        <div class="p-col-12">
+          <app-barra-status [label]="'Progressão LV Atual'" [valor]="33"
+                            [cor1]="'goldenrod'" [cor2]="'gold'"></app-barra-status>
+        </div>
+      </div>
+    </p-card>
   </div>
 </div>
 
