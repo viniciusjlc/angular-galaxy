@@ -20,6 +20,7 @@ export class PersonagemComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const personagemId = this.route.snapshot.paramMap.get('personagemId');
     this.personagem = await this.personagemService.consultarPersonagemPorId(+personagemId);
+    console.log(this.personagem);
     this.itensMenuPersonagem = [{
       label: this.personagem.nome,
       style: {'background-color': 'red'},

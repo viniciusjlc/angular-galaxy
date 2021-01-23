@@ -10,6 +10,7 @@ export class PersonagemService {
   private readonly urlPersonagem = '/personagem';
   private readonly urlListarPorUsuario = this.urlPersonagem + '/listar/';
   private readonly urlSalvarUsuario = this.urlPersonagem + '/salvar';
+  private readonly urlExcluirUsuario = this.urlPersonagem + '/';
   private readonly urlConsultarPorId = this.urlPersonagem + '/';
 
   constructor(private http: HttpClient) {
@@ -28,5 +29,10 @@ export class PersonagemService {
   public async consultarPersonagemPorId(idPersonagem: number): Promise<Personagem> {
     const headers = JwtService.instace.header;
     return this.http.get<Personagem>(JwtService.instace.urlAPI + this.urlConsultarPorId + idPersonagem, {headers}).toPromise();
+  }
+
+  public async excluirPersonagemPorId(idPersonagem: number): Promise<void> {
+    const headers = JwtService.instace.header;
+    return this.http.delete<void>(JwtService.instace.urlAPI + this.urlExcluirUsuario + idPersonagem, {headers}).toPromise();
   }
 }

@@ -43,8 +43,8 @@
                     style="height: 2em !important;"
                     (click)="excluir(personagem)"></button>
             <button pButton pRipple icon="pi pi-users" label="Jogar" class="p-button-success"
-                    style="height: 2em !important; margin-left: 8px" [routerLink]="['/personagem', personagem.id]"
-                    (click)="jogar(personagem)"></button>
+                    style="height: 2em !important; margin-left: 8px"
+                    [routerLink]="['/personagem', personagem.id]"></button>
           </td>
         </tr>
       </ng-template>
@@ -56,4 +56,4 @@
     </p-table>
   </div>
 </div>
-
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

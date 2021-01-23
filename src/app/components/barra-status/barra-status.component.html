@@ -1,11 +1,13 @@
 <h5>{{label}}:</h5>
 <div class="p-progressbar p-component p-progressbar-determinate">
   <div class="p-progressbar-value p-progressbar-value-animate ng-star-inserted"
-       [style]="{display: 'block', width: valor+'%',
+       [style]="{display: 'block', width: valorPorcentagem+'%',
        backgroundImage: 'linear-gradient(to right, '+cor1+', '+cor2+')'}">
   </div>
   <div class="p-progressbar-label ng-star-inserted" style="display: block">
-    {{valor}}%
+    {{valorPorcentagem | number:categoriaMascara}}%
   </div>
 </div>
-<p-progressBar [style]="{'display': 'none'}" [hidden]="true"></p-progressBar>
+<p-progressBar [tooltip]="'Atual'+valorAtual+'||'+valorMaximo+'Max: '"
+               tooltipClass="" [style]="{'display': 'none'}"
+               [hidden]="true"></p-progressBar>
