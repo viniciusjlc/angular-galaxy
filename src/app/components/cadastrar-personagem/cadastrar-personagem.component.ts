@@ -32,7 +32,7 @@ export class CadastrarPersonagemComponent implements OnInit {
     new TipoCor(null, null, null),
     SessionService.instace.userSession.id,
     new Campanha(null, null, new Mestre(null, null), null),
-    null);
+    null, null);
   showSelecionarClasse: boolean = false;
   showSelecionarRaca: boolean = false;
   showSelecionarPele: boolean = false;
@@ -146,6 +146,7 @@ export class CadastrarPersonagemComponent implements OnInit {
 
   async cadastrar(): Promise<void> {
     this.personagem.listaAtributos = this.personagem.raca.listaAtributos;
+    this.personagem.listaEspecialidades = this.personagem.classe.listaEspecialidades;
     this.personagem = await this.personagemService.cadastrar(this.personagem);
     this.showCadastroSucesso = this.personagem.id !== null;
   }

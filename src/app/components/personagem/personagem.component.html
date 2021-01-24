@@ -29,6 +29,16 @@
       <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
         Especialidades
       </p>
+
+      <div class="p-grid">
+        <div class="p-col-3" *ngFor="let especialidade of personagem.listaEspecialidades; index as i;" align="center">
+          <p-chip icon="pi pi-caret-up" [label]="especialidade.nome+': '+especialidade.valor"
+                  [style]="{'font-size': '18px', 'background-color':'#2b2828', 'width': '96%', 'text-align': 'center', 'justify-content': 'center'}">
+          </p-chip>
+        </div>
+      </div>
+
+      <app-personagem-status [personagem]="personagem"></app-personagem-status>
     </p-card>
 
 
