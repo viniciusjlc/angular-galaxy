@@ -42,7 +42,7 @@ import { SobreComponent } from './components/sobre/sobre.component';
 import { MestreComponent } from './components/mestre/mestre.component';
 import { CampanhaComponent } from './components/campanha/campanha.component';
 import {ToastModule} from 'primeng/toast';
-import { DadosUsaurioComponent } from './components/dados-usaurio/dados-usaurio.component';
+import { DadosUsuarioComponent } from './components/dados-usuario/dados-usuario.component';
 import {ConfirmationService} from 'primeng/api';
 import {RouterOutletComponent} from './components/router-outlet/router-outlet.component';
 import { ListaPersonagensComponent } from './components/lista-personagens/lista-personagens.component';
@@ -54,6 +54,11 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {DividerModule} from 'primeng/divider';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {BarraStatusComponent} from './components/barra-status/barra-status.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PersonagemDadosBaseComponent } from './components/personagem/personagem-dados-base/personagem-dados-base.component';
+import { PersonagemStatusComponent } from './components/personagem/personagem-status/personagem-status.component';
+import { PersonagemAtributosComponent } from './components/personagem/personagem-atributos/personagem-atributos.component';
+import {ChipModule} from "primeng/chip";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -72,13 +77,16 @@ const maskConfig: Partial<IConfig> = {
     SobreComponent,
     MestreComponent,
     CampanhaComponent,
-    DadosUsaurioComponent,
+    DadosUsuarioComponent,
     RouterOutletComponent,
     RouterOutletComponent,
     ListaPersonagensComponent,
     CadastrarPersonagemComponent,
     BarraStatusComponent,
-    BarraStatusComponent
+    BarraStatusComponent,
+    PersonagemDadosBaseComponent,
+    PersonagemStatusComponent,
+    PersonagemAtributosComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +126,9 @@ const maskConfig: Partial<IConfig> = {
     RadioButtonModule,
     InputNumberModule,
     DividerModule,
-    ProgressBarModule
+    ProgressBarModule,
+    NgbModule,
+    ChipModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService, ConfirmationService],

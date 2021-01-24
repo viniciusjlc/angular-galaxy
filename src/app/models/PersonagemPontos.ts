@@ -4,7 +4,7 @@ import Campanha from './Campanha';
 import Classe from './Classe';
 import Atributo from './Atributo';
 
-export default class Personagem {
+export default class PersonagemPontos {
   constructor(public idPersonagem: number,
               public personagem: number,
               public vidaMaxima: number,

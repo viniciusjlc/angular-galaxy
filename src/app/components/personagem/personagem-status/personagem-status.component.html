@@ -1,0 +1,17 @@
+<div class="p-grid">
+  <div class="p-col-6">
+    <app-barra-status [label]="'Vida'" [cor1]="'darkred'" [cor2]="'red'"
+                      [valorMaximo]="personagem.pontos.vidaMaxima"
+                      [valorAtual]="personagem.pontos.vidaAtual"></app-barra-status>
+  </div>
+  <div class="p-col-6">
+    <app-barra-status [label]="'Condição Física'" [cor1]="'darkgreen'" [cor2]="'green'"
+                      [valorMaximo]="personagem.pontos.condicaoFisicaMaxima"
+                      [valorAtual]="personagem.pontos.condicaoFisicaAtual"></app-barra-status>
+  </div>
+  <div class="p-col-12">
+    <app-barra-status [label]="'Progressão LV Atual'" [cor1]="'goldenrod'" [cor2]="'gold'"
+                      [valorMaximo]="100"
+                      [valorAtual]="personagem.pontos.experiencia"></app-barra-status>
+  </div>
+</div>

@@ -4,28 +4,34 @@
             [model]="itensMenuPersonagem"></p-menu>
   </div>
   <div class="p-mb-5 p-mr-8" [style]="{'width': '100%'}">
-    <p-card header="Dados Base" [style]="{'width': '95%'}">
-      <ng-template pTemplate="header">
-      </ng-template>
+    <app-personagem-dados-base [hidden]="itemAtual != 'BASE'"
+                               [personagem]="personagem">
+    </app-personagem-dados-base>
 
+
+    <p-card header="Atributos" [hidden]="itemAtual != 'ATRIBUTOS'"
+            [style]="{'width': '95%'}">
+      <ng-template pTemplate="header"></ng-template>
       <div class="p-grid">
-        <div class="p-col-6">
-          <app-barra-status [label]="'Vida'" [cor1]="'darkred'" [cor2]="'red'"
-                            [valorMaximo]="personagem.pontos.vidaMaxima"
-                            [valorAtual]="personagem.pontos.vidaAtual"></app-barra-status>
-        </div>
-        <div class="p-col-6">
-          <app-barra-status [label]="'Condição Física'" [cor1]="'darkgreen'" [cor2]="'green'"
-                            [valorMaximo]="personagem.pontos.condicaoFisicaMaxima"
-                            [valorAtual]="personagem.pontos.condicaoFisicaAtual"></app-barra-status>
-        </div>
-        <div class="p-col-12">
-          <app-barra-status [label]="'Progressão LV Atual'" [cor1]="'goldenrod'" [cor2]="'gold'"
-                            [valorMaximo]="100"
-                            [valorAtual]="personagem.pontos.experiencia"></app-barra-status>
+        <div class="p-col-4 p-grid" *ngFor="let atributo of personagem.listaAtributos; index as i;">
+          <div class="p-col-8 info-area label-info" style="font-size: 22px">
+            <p-chip icon="pi pi-caret-up" [label]="atributo.nome"
+                    [style]="{'font-size': '22px', 'background-color':'#1e1e1e'}">
+            </p-chip>
+          </div>
+          <div class="p-col-4 info-area label-info"
+               style="font-size: 22px" align="center">
+            {{atributo.valor}}
+          </div>
         </div>
       </div>
+      <br/>
+      <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
+        Especialidades
+      </p>
     </p-card>
+
+
   </div>
 </div>
 

@@ -1,0 +1,61 @@
+<p-card header="Dados Base" [style]="{'width': '95%'}">
+  <ng-template pTemplate="header">
+  </ng-template>
+  <table style="width: 100%">
+    <tr class="p-grid">
+      <td class="p-col-1 info-area">
+        Raça
+      </td>
+      <td class="p-col-5 info-area label-info">
+        {{personagem.raca.nome}}
+      </td>
+      <td class="p-col-1 info-area">
+        Classe
+      </td>
+      <td class="p-col-5 info-area label-info">
+        {{personagem.classe.nome}}
+      </td>
+      <td class="p-col-1 info-area">
+        Gênero
+      </td>
+      <td class="p-col-2 info-area label-info">
+        {{retornarGenero()}}
+      </td>
+      <td class="p-col-1 info-area">
+        Idade
+      </td>
+      <td class="p-col-2 info-area label-info">
+        {{personagem.idade}} anos
+      </td>
+      <td class="p-col-1 info-area">
+        Peso
+      </td>
+      <td class="p-col-2 info-area label-info">
+        {{personagem.peso}} kg.
+      </td>
+      <td class="p-col-1 info-area">
+        Altura
+      </td>
+      <td class="p-col-2 info-area label-info">
+        {{personagem.altura}} m.
+      </td>
+      <td class="p-col-1 info-area">
+        Pele
+      </td>
+      <td class="p-col-1 info-area" [style]="{'background-color': personagem.pele.codigoCor}">
+      </td>
+      <td class="p-col-1 info-area">
+        Cabelo
+      </td>
+      <td class="p-col-1 info-area" [style]="{'background-color': personagem.cabelo.codigoCor}">
+      </td>
+      <td class="p-col-1 info-area">
+        Olho
+      </td>
+      <td class="p-col-1 info-area" [style]="{'background-color': personagem.olho.codigoCor}">
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <app-personagem-status [personagem]="personagem"></app-personagem-status>
+</p-card>

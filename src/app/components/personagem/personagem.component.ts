@@ -12,12 +12,14 @@ import {MenuItem} from 'primeng/api';
 export class PersonagemComponent implements OnInit {
   personagem: Personagem;
   itensMenuPersonagem: MenuItem[];
+  itemAtual: string;
 
   constructor(private route: ActivatedRoute,
               private personagemService: PersonagemService) {
   }
 
   async ngOnInit(): Promise<void> {
+    this.itemAtual = 'BASE';
     const personagemId = this.route.snapshot.paramMap.get('personagemId');
     this.personagem = await this.personagemService.consultarPersonagemPorId(+personagemId);
     console.log(this.personagem);
@@ -27,16 +29,17 @@ export class PersonagemComponent implements OnInit {
       items: [{
         label: 'Dados Base',
         command: () => {
+          this.itemAtual = 'BASE';
         }
       },
         {
           label: 'Atributos & Especialidades',
           command: () => {
+            this.itemAtual = 'ATRIBUTOS';
           }
         }
       ]
     }
     ];
   }
-
 }

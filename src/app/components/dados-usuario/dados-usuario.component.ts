@@ -4,10 +4,10 @@ import {SessionService} from '../../services/session/session.service';
 
 @Component({
   selector: 'app-dados-usaurio',
-  templateUrl: './dados-usaurio.component.html',
-  styleUrls: ['./dados-usaurio.component.css']
+  templateUrl: './dados-usuario.component.html',
+  styleUrls: ['./dados-usuario.component.css']
 })
-export class DadosUsaurioComponent implements OnInit {
+export class DadosUsuarioComponent implements OnInit {
   @Input() usuario: Usuario;
   showDadosCadastrais: boolean;
   showAlterarSenha: boolean;

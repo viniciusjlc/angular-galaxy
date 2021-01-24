@@ -19,7 +19,7 @@ export class BarraStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.valorPorcentagem = this.valorAtual / this.valorMaximo * 100;
-    this.categoriaMascara = this.valorPorcentagem < 100 ? '2' : '3';
+    this.categoriaMascara = this.valorPorcentagem < 10 ? '1' : this.valorPorcentagem < 100 ? '2' : '3';
     this.categoriaMascara += '.0-2';
   }
 
