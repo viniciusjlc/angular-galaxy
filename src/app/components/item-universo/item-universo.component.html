@@ -1,6 +1,6 @@
 <p-panel [style]="{'width': '100%'}" [hidden]="itemUniverso.titulo == ''"
          [showHeader]="false">
-  <div class="p-grid p-jc-center">
+  <div class="p-grid p-jc-center" [hidden]="itemUniverso.tipo !== 1">
     <div class="p-col-1">
     </div>
     <div class="p-col-10">
@@ -15,6 +15,27 @@
       </p-button>
     </div>
     <div class="p-col-12" style="text-align: justify;">
+      {{itemUniverso.texto}}
+      <img src="data:image/png;base64,{{itemUniverso.imagem}}"/>
+    </div>
+  </div>
+
+  <div class="p-grid p-jc-center" [hidden]="itemUniverso.tipo !== 2">
+    <div class="p-col-11">
+    </div>
+    <div class="p-col-1">
+      <p-button icon="pi pi-times" [hidden]="itemUniverso == null" (onClick)="limparItemUniverso()"
+                styleClass="p-button-secondary" [style]="{'font-weight': '800', 'background-color': '#00ffff00',
+                 'color': '#32363b', 'border-color': '#00ffff00'}">
+      </p-button>
+    </div>
+    <div class="p-col-12">
+      <img src="data:image/png;base64,{{itemUniverso.imagem}}" style="width: 300px;"/>
+    </div>
+    <div class="p-col-12" style="text-align: justify;">
+      <h5>
+        {{itemUniverso.titulo}}:
+      </h5>
       {{itemUniverso.texto}}
     </div>
   </div>

@@ -58,7 +58,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonagemDadosBaseComponent } from './components/personagem/personagem-dados-base/personagem-dados-base.component';
 import { PersonagemStatusComponent } from './components/personagem/personagem-status/personagem-status.component';
 import { PersonagemAtributosComponent } from './components/personagem/personagem-atributos/personagem-atributos.component';
-import {ChipModule} from "primeng/chip";
+import {ChipModule} from 'primeng/chip';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
