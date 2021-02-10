@@ -17,7 +17,7 @@ export class UniversoComponent implements OnInit {
   itemUniverso: ItemUniverso = new ItemUniverso('', '', null);
   itensUniverso: ItemUniverso[];
   listaItensInternos: MenuItem[][];
-  listaItensInternos2: MenuItem[];
+  listaZonaGalacticas: ZonaGalactica[];
   itens: MenuItem[];
 
   constructor(private universoService: UniversoService, private zonaGalacticaService: ZonaGalacticaService) {
@@ -25,32 +25,41 @@ export class UniversoComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.itensUniverso = await this.universoService.listarItensUniverso();
+    this.listaZonaGalacticas = await this.zonaGalacticaService.listar();
     this.comporItensMenu();
   }
 
   async comporItensMenu(): Promise<void> {
     this.itens = [];
     for (const itemUniverso of this.itensUniverso) {
-      if (itemUniverso.tipo === 1) {
-        this.itens.push({
-          label: itemUniverso.titulo,
-          items: itemUniverso.listaItensUniverso != null ? this.obterItensInternos(itemUniverso.listaItensUniverso) : null
-        });
-      } else if (itemUniverso.tipo === 2) {
-        const listaZonaGalacticas = await this.zonaGalacticaService.listar();
-        this.itens.push({
-          label: itemUniverso.titulo,
-          items: listaZonaGalacticas != null ? this.obterItensZonaGalactica(listaZonaGalacticas) : null
-        });
-      }
+      this.itens.push({
+        label: itemUniverso.titulo,
+        items:
+          this.obterItensPorTipo(itemUniverso)
+      });
     }
   }
 
+  private obterItensPorTipo(item: ItemUniverso): MenuItem[] {
+    let itens: MenuItem[];
+    console.log(item);
+    if (item.tipo === 1 && item.listaItensUniverso != null) {
+      itens = this.obterItensInternos(item.listaItensUniverso);
+    } else if (item.tipo === 2) {
+      console.log('TESTE');
+      itens = this.obterItensZonaGalactica();
+    } else {
+      return null;
+    }
+    return itens;
+  }
 
-  private obterItensZonaGalactica(listaZonaGalacticas: ZonaGalactica[]): MenuItem[] {
+
+  private obterItensZonaGalactica(): MenuItem[] {
     let itensInternos: MenuItem[];
     itensInternos = [];
-    for (const itemZonaGalactica of listaZonaGalacticas) {
+    console.log(this.listaZonaGalacticas);
+    for (const itemZonaGalactica of this.listaZonaGalacticas) {
       itensInternos.push({
         label: itemZonaGalactica.nome,
         items: itemZonaGalactica.listaPlanetas != null ? this.obterItensPlanetas(itemZonaGalactica.listaPlanetas) : null
