@@ -1,25 +1,7 @@
 <app-side-bar></app-side-bar>
 
 <div class="w3-main" style="margin-left:200px">
-  <div class="w3-teal"
-       style="width: 100% !important; height: 42px !important; background-image: linear-gradient(to right, #ffd54f, #c1a13c)  !important;">
-    <div class="p-d-flex p-jc-between">
-      <button class="w3-teal w3-xlarge w3-hide-large"
-              style="background-color: #f8cf4d !important; font-weight: bold; border: none; color: black!important; height: 100%"
-              onclick="w3_open()">&#9776;
-      </button>
-      <div class="w3-hide-large" style="color: #241d03; font-weight: bolder; font-size: 28px; margin: 0px 0px 0px 6px;">
-        GALAXY
-      </div>
-
-      <div class="icone-usuario">
-        <p-avatar icon="pi pi-user" styleClass="icone-usuario"
-                  [style]="{'background-color':'#7A6624', 'color': '#ffffff', 'margin':'6px 6px 2px 2px'}"></p-avatar>
-      </div>
-
-    </div>
-  </div>
-
+  <app-header></app-header>
   <div style="z-index: 500">
     <app-router-outlet></app-router-outlet>
   </div>

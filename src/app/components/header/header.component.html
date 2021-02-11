@@ -1,149 +1,22 @@
-<p-toast position="top-center" key="tc"></p-toast>
-<nav class="navbar navbar-expand-lg navbar-light bg-light background-header">
-  <a routerLink="" href="#" (click)="paginaAtual = 'home'"
-     class="navbar-brand logo-principal logo-principal:hover">
-    GALAXY
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-
-      <li class="nav-item" [class.active]="paginaAtual == 'universo'">
-        <a class="nav-link" (click)="paginaAtual = 'universo'"
-           routerLink="universo" href="#">Universo</a>
-      </li>
-
-      <li [hidden]="!isLogado"
-          class="nav-item" [class.active]="paginaAtual == 'campanha'">
-        <a class="nav-link" (click)="paginaAtual = 'campanha'"
-           routerLink="campanha" href="#">Campanhas</a>
-      </li>
-
-      <li [hidden]="!isLogado"
-          class="nav-item" [class.active]="paginaAtual == 'personagens'">
-        <a class="nav-link" (click)="paginaAtual = 'personagens'"
-           routerLink="personagens" href="#">Personagens</a>
-      </li>
-
-      <li class="nav-item" [class.active]="paginaAtual == 'sobre'">
-        <a class="nav-link" (click)="paginaAtual = 'sobre'"
-           routerLink="sobre" href="#">Sobre</a>
-      </li>
-    </ul>
-
-    <a class="nav-link" [hidden]="!isLogado"
-       (click)="sair()" routerLink="">
-      Sair
-    </a>
-    <span class="navbar-text cadastrar-login" [hidden]="!isLogado" style="margin-right: 1em;"
-          (click)="[showSideBarUser = true, showContaUsuario = true,
-                    showLogin = false, showCadastro = false]">
-      Olá, {{usuario.nome}}
-    </span>
-    <a class="nav-link cadastrar-login" [hidden]="isLogado"
-       (click)="[showSideBarUser = true, showLogin = true, showCadastro = false]">
-      Entre ou Cadastre-se
-    </a>
-  </div>
-</nav>
-
-<p-sidebar id="sideBar" position="right" [baseZIndex]="10000"
-           [(visible)]="showSideBarUser" [style]='{backgroundColor: "#fad76a"}'>
-  <div [hidden]="!showLogin" id="login">
-    <h2 style="font-weight:bold; color: #2d2d2d">
-      Login
-    </h2>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="border-top: 3px #2d2d2d solid">
-      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
-           role="alert" [hidden]="mensagemErroLogin==null">
-        {{mensagemErroLogin}}
-      </div>
-      <label style="color: #2d2d2d" for="loginInputEmail">Email:</label>
-      <input id="loginInputEmail" type="email" class="form-control input-cadastro"
-             [required]="true" [(ngModel)]="usuario.email" name="email" pInputText ngModel>
-      <label style="color: #2d2d2d" for="loginInputPassword">Senha:</label>
-      <input id="loginInputPassword" type="password" class="form-control input-cadastro" pInputText ngModel
-             [required]="true" [(ngModel)]="usuario.senha" name="senha">
-      <button style="margin-top: 1em"
-              (click)="logar()" type="submit" class="btn btn-success btn-block btn-lg">Logar
+<div class="w3-teal"
+     style="width: 100% !important; height: 42px !important; background-image: linear-gradient(to right, #ffd54f, #c1a13c)  !important;">
+  <div class="p-grid" style="margin: 0px !important; padding: 0px !important;">
+    <div class="p-col-4 p-md-4 p-lg-4" style="margin: 0px !important; padding: 0px !important;">
+      <button class="w3-teal w3-xlarge w3-hide-large"
+              style="background-color: #f8cf4d !important; font-weight: bold;
+              margin-right: auto !important;
+              border: none; color: black!important; height: 100%"
+              onclick="w3_open()">&#9776;
       </button>
-    </form>
-  </div>
-  <a [hidden]="!showLogin" class="form-text text-muted link-cadastrar"
-     (click)="showLogin = false; showCadastro = true">
-    Não tem conta? Clique aqui para cadastrar-se.
-  </a>
-
-  <div [hidden]="!showCadastro" id="cadastro">
-    <h2 style="font-weight:bold; color: #2d2d2d">
-      Cadastro
-    </h2>
-
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="border-top: 3px #2d2d2d solid">
-      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
-           role="alert" [hidden]="mensagemErroCadastro==null">
-        {{mensagemErroCadastro}}
-      </div>
-      <label style="color: #2d2d2d" for="cadastroInputNome">Nome:</label>
-      <input id="cadastroInputNome" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
-             [required]="true" [(ngModel)]="usuarioCadastro.nome" name="nome" pInputText>
-
-      <label style="color: #2d2d2d" for="cadastroInputEmail">Email:</label>
-      <input id="cadastroInputEmail" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
-             [required]="true" [(ngModel)]="usuarioCadastro.email" name="email" pInputText>
-
-      <label style="color: #2d2d2d" for="cadastroInputPassword">Senha:</label>
-      <input id="cadastroInputPassword" type="password" class="form-control input-cadastro" pInputText
-             [required]="true" [(ngModel)]="usuarioCadastro.senha" name="senha">
-
-      <label style="color: #2d2d2d" for="cadastroInputPasswordConfirmacao">Confirmar Senha:</label>
-      <input id="cadastroInputPasswordConfirmacao" type="password" class="form-control input-cadastro" pInputText
-             [required]="true" [(ngModel)]="confirmacaoSenha" name="confirmacaoSenha">
-
-      <button type="submit" (click)="cadastrarUsuario()" style="margin-top: 3px"
-              class="btn btn-success btn-block btn-lg">Cadastrar-se
-      </button>
-      <button type="submit" class="btn btn-danger btn-block btn-sm"
-              (click)="[showLogin = true, showCadastro = false]">Cancelar
-      </button>
-    </form>
-  </div>
-
-  <div [hidden]="!showContaUsuario">
-    <h2 style="font-weight:bold; color: #2d2d2d">
-      Sua conta
-    </h2>
-    <div class="p-grid p-jc-lg-start" style="border-top: 3px #2d2d2d solid">
-      <div class="p-col-12">
-        <button type="button" class="btn btn-primary"
-                style="width: 100%;" (click)="showDadosCadastrais = true">
-          Deseja visualizar/editar seus dados cadastrais?
-        </button>
-      </div>
-      <div class="p-col-12">
-        <button type="button" class="btn btn-warning"
-                style="width: 100%;" (click)="showAlterarSenha = true">
-          Deseja alterar sua senha?
-        </button>
-      </div>
-      <div class="p-col-12">
-        <button type="button" class="btn btn-danger"
-                style="width: 100%;" (click)="showExcluirConta = true">
-          Deseja excluir sua conta?
-        </button>
+    </div>
+    <div class="p-col-4 p-md-4 p-lg-4" style="margin: 0px !important; padding: 0px !important;">
+      <div routerLink=""
+           style="color: #241d03; font-weight: bolder; font-size: 28px; text-align: center;">
+        GALAXY
       </div>
     </div>
+    <div class="p-col-4 p-md-4 p-lg-4" style="margin: 0px !important; padding: 0px !important;">
+      <div class="box"></div>
+    </div>
   </div>
-</p-sidebar>
-
-
-<p-dialog header="Dados Cadastrais" [(visible)]="showDadosCadastrais" [modal]="true" [style]="{width: '50vw'}"
-          [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-</p-dialog>
-
-<p-dialog header="Alterar Senha" [(visible)]="showAlterarSenha" [modal]="true" [style]="{width: '50vw'}"
-          [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-</p-dialog>
+</div>

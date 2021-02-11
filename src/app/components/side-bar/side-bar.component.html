@@ -1,10 +1,14 @@
+<p-toast [baseZIndex]="15000" position="top-center" key="tc"></p-toast>
 <div class="w3-sidebar w3-bar-block w3-collapse w3-animate-left"
      style="width:200px; background-image: linear-gradient(#ffd54f, #c1a13c) !important;
       z-index: 3001" id="mySidebar">
-  <div class="p-d-flex p-jc-between w3-hide-large">
-    <div class="testeHeader" style="color: #241d03; font-weight: bolder; font-size: 28px; margin: 0px 0px 0px 6px;">
-      GALAXY
+  <div class="p-d-flex p-jc-between">
+    <div class="icone-usuario" (click)="showLogin = true">
+      Entrar/Cadastrar-se
+      <p-avatar icon="pi pi-user" styleClass="icone-usuario"
+                [style]="{'border': 'solid #9a8132','background-color':'#c2a23c', 'color': '#ffffff', 'margin':'6px 6px 2px 2px'}"></p-avatar>
     </div>
+
     <button class="w3-teal w3-xlarge w3-hide-large"
             style="background-color: #fdd34e !important; float: right; border: none; color: black!important;"
             onclick="w3_close()">&times;
@@ -13,17 +17,104 @@
   <div>
     <a href="#" style="width: 100%; display: block; padding: 8px 16px; border-top: solid 1px #a28e4d;
                      text-align: left; white-space: normal;
-                     float: none; outline: 0;"  routerLink="universo">Universo</a>
+                     float: none; outline: 0;" routerLink="universo">Universo</a>
     <a href="#" style="width: 100%; display: block; padding: 8px 16px; border-top: solid 1px #a28e4d;
                      text-align: left; white-space: normal;
-                     float: none; outline: 0;"  routerLink="campanha">Campanha</a>
+                     float: none; outline: 0;" routerLink="campanha">Campanha</a>
     <a href="#" style="width: 100%; display: block; padding: 8px 16px;
                      border-top: solid 1px #a28e4d;
                      text-align: left; white-space: normal;
-                     float: none; outline: 0;"  routerLink="personagens">Personagem</a>
+                     float: none; outline: 0;" routerLink="personagens">Personagem</a>
     <a href="#" style="width: 100%; display: block; padding: 8px 16px;
     border-bottom: solid 1px #a28e4d; border-top: solid 1px #a28e4d;
                      text-align: left; white-space: normal;
-                     float: none; outline: 0;"  routerLink="sobre">Sobre</a>
+                     float: none; outline: 0;" routerLink="sobre">Sobre</a>
   </div>
 </div>
+<p-dialog closeOnEscape="true" [header]="retornarTitulo()" [style]="{width: '50vw'}" modal="true" (onHide)="showCadastro = false"
+          [(visible)]="showLogin" #dialogLogin (onShow)="showDialog(dialogLogin)" [baseZIndex]="10050">
+
+  <div class="p-grid p-fluid" [style]="{marginTop: '20px'}" [hidden]="showCadastro">
+    <div class="p-col-12 p-md-12">
+      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
+           role="alert" [hidden]="mensagemErroLogin==null">
+        {{mensagemErroLogin}}
+      </div>
+    </div>
+
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input id="loginInputEmail" type="email" class="form-control input-cadastro"
+               [required]="true" [(ngModel)]="usuario.email" name="email" pInputText ngModel
+               placeholder="Email">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+        <input id="loginInputPassword" type="password" class="form-control input-cadastro" pInputText ngModel
+               [required]="true" [(ngModel)]="usuario.senha" name="senha"  placeholder="Username">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <button (click)="logar()" type="submit" class="btn btn-success btn-block btn-lg">Logar
+      </button>
+    </div>
+    <a class="form-text text-muted link-cadastrar" (click)="showCadastro = true">
+      Não tem conta? Clique aqui para cadastrar-se.
+    </a>
+  </div>
+
+  <div class="p-grid p-fluid" [style]="{marginTop: '20px'}" [hidden]="!showCadastro">
+    <div class="p-col-12 p-md-12">
+      <div class="alert alert-danger" style="margin-bottom: 3px; margin-top: 3px"
+           role="alert" [hidden]="mensagemErroCadastro==null">
+        {{mensagemErroCadastro}}
+      </div>
+    </div>
+
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+        <input id="cadastroInputNome" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
+               [required]="true" [(ngModel)]="usuarioCadastro.nome" name="nome" pInputText placeholder="Nome">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input id="cadastroInputEmail" type="email" class="form-control input-cadastro" aria-describedby="emailHelp"
+               [required]="true" [(ngModel)]="usuarioCadastro.email" name="email" pInputText
+               placeholder="Email">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+        <input id="cadastroInputPassword" type="password" class="form-control input-cadastro" pInputText
+               [required]="true" [(ngModel)]="usuarioCadastro.senha" name="senha" placeholder="Senha">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+        <input id="cadastroInputPasswordConfirmacao" type="password" class="form-control input-cadastro" pInputText
+               [required]="true" [(ngModel)]="confirmacaoSenha" name="confirmacaoSenha"
+          placeholder="Username">
+      </div>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <button type="submit" (click)="cadastrarUsuario()" style="margin-top: 3px"
+              class="btn btn-success btn-block btn-lg">Cadastrar-se
+      </button>
+    </div>
+    <div class="p-col-12 p-md-12">
+      <button type="submit" class="btn btn-danger btn-block btn-sm"
+              (click)="showCadastro = false">Cancelar
+      </button>
+    </div>
+
+
+  </div>
+</p-dialog>
