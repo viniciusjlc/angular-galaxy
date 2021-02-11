@@ -123,3 +123,9 @@ a:hover:before {
 .example-tooltip-red{
   background-color: red !important;
 }
+
+@media (min-width: 993px) {
+  .icone-usuario {
+    margin-left: auto !important;
+  }
+}

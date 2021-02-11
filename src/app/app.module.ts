@@ -59,35 +59,39 @@ import { PersonagemDadosBaseComponent } from './components/personagem/personagem
 import { PersonagemStatusComponent } from './components/personagem/personagem-status/personagem-status.component';
 import { PersonagemAtributosComponent } from './components/personagem/personagem-atributos/personagem-atributos.component';
 import {ChipModule} from 'primeng/chip';
+import {SideBarComponent} from './components/side-bar/side-bar.component';
+import {AvatarModule} from "primeng/avatar";
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    UniversoComponent,
-    MensagemComponent,
-    ItemUniversoComponent,
-    PersonagemComponent,
-    SobreComponent,
-    MestreComponent,
-    CampanhaComponent,
-    DadosUsuarioComponent,
-    RouterOutletComponent,
-    RouterOutletComponent,
-    ListaPersonagensComponent,
-    CadastrarPersonagemComponent,
-    BarraStatusComponent,
-    BarraStatusComponent,
-    PersonagemDadosBaseComponent,
-    PersonagemStatusComponent,
-    PersonagemAtributosComponent
-  ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        FooterComponent,
+        UniversoComponent,
+        MensagemComponent,
+        ItemUniversoComponent,
+        PersonagemComponent,
+        SobreComponent,
+        MestreComponent,
+        CampanhaComponent,
+        DadosUsuarioComponent,
+        RouterOutletComponent,
+        RouterOutletComponent,
+        ListaPersonagensComponent,
+        CadastrarPersonagemComponent,
+        BarraStatusComponent,
+        BarraStatusComponent,
+        PersonagemDadosBaseComponent,
+        PersonagemStatusComponent,
+        PersonagemAtributosComponent,
+        SideBarComponent,
+        SideBarComponent
+    ],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
@@ -128,7 +132,8 @@ const maskConfig: Partial<IConfig> = {
     DividerModule,
     ProgressBarModule,
     NgbModule,
-    ChipModule
+    ChipModule,
+    AvatarModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [UsuarioService, ConfirmationService],
