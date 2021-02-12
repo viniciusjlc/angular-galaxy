@@ -17,22 +17,22 @@ export class PersonagemService {
   }
 
   public async listarPersonagensPorUsuario(idUsuario: number): Promise<Personagem[]> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Personagem[]>(JwtService.instace.urlAPI + this.urlListarPorUsuario + idUsuario, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Personagem[]>(JwtService.urlAPI + this.urlListarPorUsuario + idUsuario, {headers}).toPromise();
   }
 
   public async cadastrar(personagem: Personagem): Promise<Personagem> {
-    const headers = JwtService.instace.header;
-    return this.http.post<Personagem>(JwtService.instace.urlAPI + this.urlSalvarUsuario, personagem, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.post<Personagem>(JwtService.urlAPI + this.urlSalvarUsuario, personagem, {headers}).toPromise();
   }
 
   public async consultarPersonagemPorId(idPersonagem: number): Promise<Personagem> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Personagem>(JwtService.instace.urlAPI + this.urlConsultarPorId + idPersonagem, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Personagem>(JwtService.urlAPI + this.urlConsultarPorId + idPersonagem, {headers}).toPromise();
   }
 
   public async excluirPersonagemPorId(idPersonagem: number): Promise<void> {
-    const headers = JwtService.instace.header;
-    return this.http.delete<void>(JwtService.instace.urlAPI + this.urlExcluirUsuario + idPersonagem, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.delete<void>(JwtService.urlAPI + this.urlExcluirUsuario + idPersonagem, {headers}).toPromise();
   }
 }

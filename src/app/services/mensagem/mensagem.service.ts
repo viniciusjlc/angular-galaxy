@@ -14,7 +14,7 @@ export class MensagemService {
   }
 
   public async listarMensagensPorTipo(tipo: string): Promise<Mensagem[]> {
-    return this.http.get<Mensagem[]>(JwtService.instace.urlAPI + this.urlListarMensagensPorTipo + tipo).toPromise();
+    return this.http.get<Mensagem[]>(JwtService.urlAPI + this.urlListarMensagensPorTipo + tipo).toPromise();
   }
 
 }

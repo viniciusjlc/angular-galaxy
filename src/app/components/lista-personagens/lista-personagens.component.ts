@@ -23,7 +23,7 @@ export class ListaPersonagensComponent implements OnInit {
   }
 
   async iniciarListaPersonagensPeloJogadorAtual(): Promise<void> {
-    this.listaPersonagens = await this.personagemService.listarPersonagensPorUsuario(SessionService.instace.userSession.id);
+    this.listaPersonagens = await this.personagemService.listarPersonagensPorUsuario(SessionService.obterUsuarioSessao().id);
   }
 
   excluir(personagem): void {

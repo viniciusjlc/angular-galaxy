@@ -8,41 +8,20 @@ export class SessionService {
   constructor() {
   }
 
-  static get instace(): SessionService {
-    if (this._instace == null) {
-      this._instace = new SessionService();
-    }
-    return this._instace;
-  }
-
-
-  get userSession(): Usuario {
-    return this._userSession;
-  }
-
-  get isLogado(): boolean {
-    return this._isLogado;
-  }
-
-  // tslint:disable-next-line:variable-name
-  private static _instace: SessionService;
-  // tslint:disable-next-line:variable-name
-  private _userSession: Usuario;
-  // tslint:disable-next-line:variable-name
-  private _isLogado: boolean = false;
-
-  static destruirSessao(): void {
-    this._instace = new SessionService();
-    this.instace._userSession = null;
-    this.instace._isLogado = false;
+  public static destruirSessao(): void {
     localStorage.removeItem('userSession');
     localStorage.removeItem('token');
   }
 
-  public gravarUsuario(usuario): void {
-    this._userSession = usuario;
-    this._isLogado = true;
-    localStorage.setItem('userSession', JSON.stringify(usuario));
+  public static isLogado(): boolean {
+    return JSON.parse(localStorage.getItem('userSession')) != null;
   }
 
+  public static obterUsuarioSessao(): Usuario {
+    return JSON.parse(localStorage.getItem('userSession'));
+  }
+
+  public static gravarUsuarioSessao(usuario): void {
+    localStorage.setItem('userSession', JSON.stringify(usuario));
+  }
 }

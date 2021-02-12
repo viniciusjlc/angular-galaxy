@@ -15,6 +15,6 @@ export class UniversoService {
   }
 
   public async listarItensUniverso(): Promise<ItemUniverso[]> {
-    return this.http.get<ItemUniverso[]>(JwtService.instace.urlAPI + this.urlListarItensUniverso).toPromise();
+    return this.http.get<ItemUniverso[]>(JwtService.urlAPI + this.urlListarItensUniverso).toPromise();
   }
 }

@@ -53,7 +53,7 @@ export class SideBarComponent implements OnInit {
           email: this.usuario.email,
           senha: this.usuario.senha
         });
-        SessionService.instace.gravarUsuario(this.usuario);
+        SessionService.gravarUsuarioSessao(this.usuario);
         this.messageService.add({
           key: 'tc',
           severity: 'success',

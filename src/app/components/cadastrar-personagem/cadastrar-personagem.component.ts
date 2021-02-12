@@ -30,7 +30,7 @@ export class CadastrarPersonagemComponent implements OnInit {
     new TipoCor(null, null, null),
     new TipoCor(null, null, null),
     new TipoCor(null, null, null),
-    SessionService.instace.userSession.id,
+    SessionService.obterUsuarioSessao().id,
     new Campanha(null, null, new Mestre(null, null), null),
     null, null);
   showSelecionarClasse: boolean = false;
@@ -51,7 +51,7 @@ export class CadastrarPersonagemComponent implements OnInit {
   }
 
   async iniciarListaParaCadastro(): Promise<void> {
-    this.campanhas = await this.campanhaService.listarCampanhaPorMestre(SessionService.instace.userSession.id);
+    this.campanhas = await this.campanhaService.listarCampanhaPorMestre(SessionService.obterUsuarioSessao().id);
     this.racas = await this.racaService.listarRacas();
     this.classes = await this.classeService.listarClasses();
   }

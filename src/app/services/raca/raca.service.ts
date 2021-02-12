@@ -14,7 +14,7 @@ export class RacaService {
   }
 
   public async listarRacas(): Promise<Raca[]> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Raca[]>(JwtService.instace.urlAPI + this.urlListarComAtributos, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Raca[]>(JwtService.urlAPI + this.urlListarComAtributos, {headers}).toPromise();
   }
 }

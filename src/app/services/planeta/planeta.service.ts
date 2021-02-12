@@ -13,7 +13,7 @@ export class PlanetaService {
   }
 
   public async consultar(id): Promise<Planeta> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Planeta>(JwtService.instace.urlAPI + this.urlPlaneta + '/' + id, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Planeta>(JwtService.urlAPI + this.urlPlaneta + '/' + id, {headers}).toPromise();
   }
 }

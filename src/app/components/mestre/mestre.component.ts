@@ -20,7 +20,7 @@ export class MestreComponent implements OnInit {
   }
 
   async iniciarListaCampanhaPorJogadorAtual(): Promise<void> {
-    this.listaCampanhas = await this.campanhaServive.listarCampanhaPorMestre(SessionService.instace.userSession.id);
+    this.listaCampanhas = await this.campanhaServive.listarCampanhaPorMestre(SessionService.obterUsuarioSessao().id);
   }
 
   abrirDialogEditar(campanha: any): void {

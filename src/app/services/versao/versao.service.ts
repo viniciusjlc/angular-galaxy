@@ -15,10 +15,10 @@ export class VersaoService {
   }
 
   public async listar(): Promise<Versao[]> {
-    return this.http.get<Versao[]>(JwtService.instace.urlAPI + this.urlListar).toPromise();
+    return this.http.get<Versao[]>(JwtService.urlAPI + this.urlListar).toPromise();
   }
 
   public async retornarVersaoAtual(): Promise<Versao> {
-    return this.http.get<Versao>(JwtService.instace.urlAPI + this.urlRetonarVersaoAtual).toPromise();
+    return this.http.get<Versao>(JwtService.urlAPI + this.urlRetonarVersaoAtual).toPromise();
   }
 }

@@ -14,7 +14,7 @@ export class ZonaGalacticaService {
   }
 
   public async listar(): Promise<ZonaGalactica[]> {
-    const headers = JwtService.instace.header;
-    return this.http.get<ZonaGalactica[]>(JwtService.instace.urlAPI + this.urlListar, {headers}).toPromise();
+    const headers = JwtService.obterHeader();
+    return this.http.get<ZonaGalactica[]>(JwtService.urlAPI + this.urlListar, {headers}).toPromise();
   }
 }

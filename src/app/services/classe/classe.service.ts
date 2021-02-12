@@ -14,7 +14,7 @@ export class ClasseService {
   }
 
   public async listarClasses(): Promise<Classe[]> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Classe[]>(JwtService.instace.urlAPI + this.urlListar, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Classe[]>(JwtService.urlAPI + this.urlListar, {headers}).toPromise();
   }
 }

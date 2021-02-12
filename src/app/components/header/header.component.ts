@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('userSession'));
     if (user !== null) {
       console.log(user);
-      SessionService.instace.gravarUsuario(user);
+      SessionService.gravarUsuarioSessao(user);
       this.isLogado = true;
     }
   }
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
           email: this.usuario.email,
           senha: this.usuario.senha
         });
-        SessionService.instace.gravarUsuario(this.usuario);
+        SessionService.gravarUsuarioSessao(this.usuario);
         this.messageService.add({
           key: 'tc',
           severity: 'success',

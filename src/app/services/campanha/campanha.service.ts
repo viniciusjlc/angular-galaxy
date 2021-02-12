@@ -15,13 +15,13 @@ export class CampanhaService {
   }
 
   public async listarCampanhaPorMestre(idUsuario: number): Promise<Campanha[]> {
-    const headers = JwtService.instace.header;
-    return this.http.get<Campanha[]>(JwtService.instace.urlAPI + this.urlListarPorUsuarioMestre + idUsuario, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.get<Campanha[]>(JwtService.urlAPI + this.urlListarPorUsuarioMestre + idUsuario, {headers}).toPromise();
   }
 
   public async cadastrar(campanha): Promise<Campanha> {
-    const headers = JwtService.instace.header;
-    return await this.http.post<Campanha>(JwtService.instace.urlAPI + this.urlSalvar,
+    const headers = JwtService.header;
+    return await this.http.post<Campanha>(JwtService.urlAPI + this.urlSalvar,
       campanha, {headers}).toPromise();
   }
 }

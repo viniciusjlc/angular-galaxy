@@ -24,11 +24,11 @@ export class UsuarioService {
 
   public async autenticar(usuario: Usuario): Promise<boolean> {
     let erro: string = null;
-    const retorno = await this.http.post<Token>(JwtService.instace.urlAPI + this.urlAutenticar, {
+    const retorno = await this.http.post<Token>(JwtService.urlAPI + this.urlAutenticar, {
       email: usuario.email,
       senha: usuario.senha
     });
-    await retorno.toPromise().then(value => JwtService.instace.gerarHeader(value.token))
+    await retorno.toPromise().then(value => JwtService.gerarHeader(value.token))
       .catch(reason => erro = reason.error.erro.toString());
     if (erro != null) {
       console.log(erro);
@@ -37,15 +37,15 @@ export class UsuarioService {
   }
 
   public async cadastrar(usuario): Promise<boolean> {
-    const retorno = await this.http.post<Usuario>(JwtService.instace.urlAPI + this.urlCadastrarUsuario, usuario);
+    const retorno = await this.http.post<Usuario>(JwtService.urlAPI + this.urlCadastrarUsuario, usuario);
     let retornoAutenticao: boolean;
     retornoAutenticao = await retorno.toPromise().then(value => this.autenticar(usuario));
     return retornoAutenticao;
   }
 
   public async consultarPorEmail(usuario): Promise<Usuario> {
-    const headers = JwtService.instace.header;
-    return this.http.post<Usuario>(JwtService.instace.urlAPI + this.urlConsultarPorEmail, usuario, {headers}).toPromise();
+    const headers = JwtService.header;
+    return this.http.post<Usuario>(JwtService.urlAPI + this.urlConsultarPorEmail, usuario, {headers}).toPromise();
   }
 }
 
