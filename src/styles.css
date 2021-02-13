@@ -7,12 +7,8 @@
 }
 
 .texto-home {
-  color: #FFD54F;
-  /*color: #dba90d;*/
-  padding: 10px;
-  font-size: 1.4em;
-  font-weight: 700;
-  font-family: system-ui;
+  background-color: #1e1e1eb8;
+  color: #ffde75;
 }
 
 

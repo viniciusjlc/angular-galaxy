@@ -28,12 +28,15 @@
   </div>
 
   <div>
+    <div class="item-padrao" routerLink="">Home</div>
     <div class="item-padrao" routerLink="universo">Universo</div>
     <div [hidden]="!isLogado" class="item-padrao" routerLink="campanha">Campanha</div>
     <div [hidden]="!isLogado" class="item-padrao" routerLink="personagens">Personagem</div>
     <div class="item-padrao" routerLink="sobre">Sobre</div>
     <div [hidden]="!isLogado" class="item-padrao" routerLink="" (click)="sair()">Sair</div>
   </div>
+
+  <!--<app-footer></app-footer>-->
 </div>
 <p-dialog closeOnEscape="true" [header]="retornarTitulo()" [style]="{width: '50vw'}" modal="true"
           (onHide)="showCadastro = false"

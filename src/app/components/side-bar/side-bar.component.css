@@ -74,3 +74,13 @@
   background-color: #ddb946;
   cursor: pointer;
 }
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #181301;
+  text-align: center;
+  height: 27px;
+}
