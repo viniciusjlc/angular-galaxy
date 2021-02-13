@@ -1,29 +1,48 @@
-.logo-principal{
+.titulo-principal {
+  color: #241d03;
+  font-weight: bolder;
+  font-size: 28px;
+  text-align: center;
+}
+
+.titulo-principal:hover {
+  cursor: pointer;
+  background-color: #cbaa3e;
+}
+
+/*
+
+.logo-principal {
   color: #241d03;
   font-weight: bolder;
 }
-.logo-principal:hover{
+
+
+.logo-principal:hover {
   color: #c1a13c;
   font-weight: bolder;
 }
-.background-header{
+
+.background-header {
   background-color: #ffd54f !important;
 }
 
-.cadastrar-login:hover{
+.cadastrar-login:hover {
   cursor: pointer;
 }
 
-.link-cadastrar{
+.link-cadastrar {
   color: #b10202 !important;
   text-align: center;
   font-weight: 700;
 }
 
-.link-cadastrar:hover{  color: red !important;
+.link-cadastrar:hover {
+  color: red !important;
   cursor: pointer;
 }
 
-.input-cadastro{
+.input-cadastro {
   margin-bottom: 5px;
 }
+*/

@@ -60,7 +60,9 @@ import { PersonagemStatusComponent } from './components/personagem/personagem-st
 import { PersonagemAtributosComponent } from './components/personagem/personagem-atributos/personagem-atributos.component';
 import {ChipModule} from 'primeng/chip';
 import {SideBarComponent} from './components/side-bar/side-bar.component';
-import {AvatarModule} from "primeng/avatar";
+import {AvatarModule} from 'primeng/avatar';
+import { SuaContaComponent } from './components/sua-conta/sua-conta.component';
+
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -90,7 +92,8 @@ const maskConfig: Partial<IConfig> = {
         PersonagemStatusComponent,
         PersonagemAtributosComponent,
         SideBarComponent,
-        SideBarComponent
+        SideBarComponent,
+        SuaContaComponent
     ],
   imports: [
     BrowserModule,

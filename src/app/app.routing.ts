@@ -7,6 +7,7 @@ import {SobreComponent} from './components/sobre/sobre.component';
 import {ListaPersonagensComponent} from './components/lista-personagens/lista-personagens.component';
 import {CadastrarPersonagemComponent} from './components/cadastrar-personagem/cadastrar-personagem.component';
 import {PersonagemComponent} from './components/personagem/personagem.component';
+import {SuaContaComponent} from './components/sua-conta/sua-conta.component';
 
 
 const APP_ROUTES: Routes = [
@@ -17,7 +18,8 @@ const APP_ROUTES: Routes = [
   {path: 'personagem/:personagemId', component: PersonagemComponent},
   {path: 'personagens/cadastrar', component: CadastrarPersonagemComponent},
   {path: 'universo', component: UniversoComponent},
-  {path: 'sobre', component: SobreComponent}
+  {path: 'sobre', component: SobreComponent},
+  {path: 'suaconta', component: SuaContaComponent}
 ];
 
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(APP_ROUTES);

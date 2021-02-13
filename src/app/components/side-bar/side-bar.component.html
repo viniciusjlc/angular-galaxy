@@ -1,15 +1,14 @@
 <p-toast [baseZIndex]="15000" position="top-center" key="tc"></p-toast>
-<div class="w3-sidebar w3-bar-block w3-collapse w3-animate-left"
-     style="width:200px; background-image: linear-gradient(#ffd54f, #c1a13c) !important;
-      z-index: 3001" id="mySidebar">
+<div id="mySidebar"
+     class="w3-sidebar w3-bar-block w3-collapse w3-animate-left background-side-bar">
 
   <div class="p-d-flex w3-hide-large" style="border-bottom: solid 1px #a28e4d;">
     <button class="w3-teal w3-hide-large w3-xlarge botao-close-sidebar" onclick="w3_close()">
-      <i class="pi pi-times" style="margin: 0px; position: relative; bottom: 15px; right: 2.1px; font-size: 17px;"></i>
+      <i class="pi pi-times icone-fechar-side-bar"></i>
     </button>
   </div>
 
-  <div class="p-d-flex item-logar" (click)="showLogin = true">
+  <div *ngIf="!isLogado" class="p-d-flex item-logar" (click)="showLogin = true">
     <p-avatar icon="pi pi-user" [styleClass]="'item-logar-icone-usuario'"
               [style]="{'border': 'solid #c2a23c', 'background-color':' #fdd34e00', 'color': 'black', 'text-align': 'center', 'justify-content': 'center', 'margin': '6px 0px 0px 8px'}"
               shape="circle"></p-avatar>
@@ -18,11 +17,22 @@
     </div>
   </div>
 
+  <div routerLink="suaconta"
+       *ngIf="isLogado" class="p-d-flex item-logar">
+    <p-avatar icon="pi pi-user" [styleClass]="'item-logar-icone-usuario'"
+              [style]="{'border': 'solid #c2a23c', 'background-color':' #fdd34e00', 'color': 'black', 'text-align': 'center', 'justify-content': 'center', 'margin': '6px 0px 0px 8px'}"
+              shape="circle"></p-avatar>
+    <div class="item-logar-texto">
+      {{usuario.nome}}
+    </div>
+  </div>
+
   <div>
-    <a href="#" class="item-padrao" routerLink="universo">Universo</a>
-    <a href="#" class="item-padrao" routerLink="campanha">Campanha</a>
-    <a href="#" class="item-padrao" routerLink="personagens">Personagem</a>
-    <a href="#" class="item-padrao" routerLink="sobre">Sobre</a>
+    <div class="item-padrao" routerLink="universo">Universo</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="campanha">Campanha</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="personagens">Personagem</div>
+    <div class="item-padrao" routerLink="sobre">Sobre</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="" (click)="sair()">Sair</div>
   </div>
 </div>
 <p-dialog closeOnEscape="true" [header]="retornarTitulo()" [style]="{width: '50vw'}" modal="true"
@@ -109,7 +119,6 @@
               (click)="showCadastro = false">Cancelar
       </button>
     </div>
-
 
   </div>
 </p-dialog>

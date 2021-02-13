@@ -1,0 +1,15 @@
+.opcoes-sua-conta {
+  box-shadow: 0 0 1px 1px #000000;
+  padding: 6px;
+  display: flex;
+}
+
+.opcoes-sua-conta:hover {
+  box-shadow: 0 0 1px 1px #ffdd6e;
+  cursor: pointer;
+  display: flex;
+}
+
+.icone-opcao{
+  margin: 4px 8px 3px 4px;
+}

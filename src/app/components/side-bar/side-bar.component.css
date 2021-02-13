@@ -1,3 +1,17 @@
+.background-side-bar {
+  width: 200px;
+  background-image: linear-gradient(#ffd54f, #c1a13c) !important;
+  z-index: 3001
+}
+
+.icone-fechar-side-bar {
+  margin: 0px;
+  position: relative;
+  bottom: 15px;
+  right: 2.1px;
+  font-size: 17px;
+}
+
 .item-logar {
   height: 42px !important;
 }
@@ -13,12 +27,13 @@
   color: black;
   text-align: center;
   justify-content: center;
-  margin: 6px 0px 0px 8px
+  margin: 6px 0px 0px 8px;
+  font-weight: 500;
 }
 
 .item-logar-texto {
   padding: 8px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .item-padrao {
@@ -30,6 +45,7 @@
   white-space: normal;
   float: none;
   outline: 0;
+  font-weight: 600;
 }
 
 .item-padrao:hover {

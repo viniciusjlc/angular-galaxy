@@ -29,6 +29,13 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('userSession'));
+    if (user !== null) {
+      SessionService.gravarUsuarioSessao(user);
+      this.isLogado = true;
+      this.usuario = user;
+    }
+    console.log(user !== null);
   }
 
   showDialog(dialog: Dialog): void {
@@ -94,4 +101,10 @@ export class SideBarComponent implements OnInit {
       }
     }
   }
+
+  sair(): void {
+    this.isLogado = false;
+    SessionService.destruirSessao();
+  }
+
 }
