@@ -120,8 +120,12 @@ a:hover:before {
   background-color: red !important;
 }
 
-@media (min-width: 993px) {
-  .icone-usuario {
-    margin-left: auto !important;
+.sumir-grande{
+  display: block;
+}
+
+@media (max-width: 993px) {
+  .sumir-grande {
+    display: none !important;
   }
 }

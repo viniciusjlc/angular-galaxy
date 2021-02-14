@@ -1,17 +1,14 @@
-<p-panel [style]="{'width': '100%'}" [hidden]="itemUniverso.titulo == ''"
-         [showHeader]="false">
+<p-card [style]="{'width': '100%', 'background-color': '#1e1e1eb8'}" [hidden]="itemUniverso.titulo == ''">
   <div class="p-grid p-jc-center" [hidden]="itemUniverso.tipo !== 1">
-    <div class="p-col-1">
-    </div>
-    <div class="p-col-10">
-      <h2>
+    <div class="p-col-8">
+      <h5>
         {{itemUniverso.titulo}}
-      </h2>
+      </h5>
     </div>
-    <div class="p-col-1">
+    <div class="p-col-4">
       <p-button icon="pi pi-times" [hidden]="itemUniverso == null" (onClick)="limparItemUniverso()"
                 styleClass="p-button-secondary" [style]="{'font-weight': '800', 'background-color': '#00ffff00',
-                 'color': '#32363b', 'border-color': '#00ffff00'}">
+                 'color': '#32363b', 'border-color': '#00ffff00', float: 'right'}">
       </p-button>
     </div>
     <div class="p-col-12" style="text-align: justify;">
@@ -19,17 +16,15 @@
     </div>
   </div>
 
-  <div class="p-grid p-jc-center" [hidden]="itemUniverso.tipo !== 2">
-    <div class="p-col-11">
-    </div>
-    <div class="p-col-1">
+  <div class="p-grid p-jc-end" [hidden]="itemUniverso.tipo !== 2">
+    <div class="p-col-4">
       <p-button icon="pi pi-times" [hidden]="itemUniverso == null" (onClick)="limparItemUniverso()"
                 styleClass="p-button-secondary" [style]="{'font-weight': '800', 'background-color': '#00ffff00',
-                 'color': '#32363b', 'border-color': '#00ffff00'}">
+                 'color': '#32363b', 'border-color': '#00ffff00', float: 'right'}">
       </p-button>
     </div>
-    <div class="p-col-12">
-      <img src="data:image/png;base64,{{itemUniverso.imagem}}" style="width: 300px;"/>
+    <div class="p-col-12" style="text-align: -webkit-center;">
+      <img src="data:image/png;base64,{{itemUniverso.imagem}}" style="width: 260px;"/>
     </div>
     <div class="p-col-12" style="text-align: justify;">
       <h5>
@@ -38,18 +33,12 @@
       {{itemUniverso.texto}}
     </div>
   </div>
-</p-panel>
+</p-card>
 
-<p-panel [style]="{'width': '60%'}" [hidden]="itemUniverso.titulo != ''"
-         [showHeader]="false">
-  <div class="p-grid p-jc-center">
-    <div class="p-col-12">
-      <h2>
-        Selecione uma opção
-      </h2>
-    </div>
-    <div class="p-col-12" style="text-align: justify;">
-      Selecione uma opção no menu à esquerda para descobrir conceitos do Universo do RPG Galaxy.
-    </div>
-  </div>
-</p-panel>
+<p-card header="Selecione uma opção" [class]="'box p-grid p-jc-center'"
+        [style]="{'width': '100%', backgroundColor: '#1e1e1eb8', color: 'ghostwhite'}"
+        [hidden]="itemUniverso.titulo != ''">
+  <p [style]="{fontWeight: 'bold'}">
+    Selecione uma opção ao clicar no botão "Explorar o universo" para descobrir conceitos do Universo do RPG Galaxy.
+  </p>
+</p-card>

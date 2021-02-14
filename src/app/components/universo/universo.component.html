@@ -1,20 +1,11 @@
-<div align="center" style="width: 100%">
-  <div class="p-grid p-jc-center" style="width: 95%">
-    <div class="p-col-3">
-      <p-scrollPanel class="menu-universo-scroll"
-        [style]="{width: '100%', height: '800px'}" styleClass="custombar2">
-        <p-panelMenu class="goldcolor" [model]="itens">
-        </p-panelMenu>
-      </p-scrollPanel>
-    </div>
-    <div class="p-col-7">
-      <app-item-universo [itemUniverso]="itemUniverso">
-      </app-item-universo>
-    </div>
-    <div class="p-col-1">
-      <button pButton pRipple type="button"  icon="pi pi-times" [hidden]="itemUniverso.titulo === ''"
-              [label]="'Limpar'" (click)="limparUniverso()">
-      </button>
-    </div>
+<div class="p-grid" style="padding-left: 2%; padding-right: 2%">
+  <div class="p-col-12 p-md-6 p-lg-3">
+    <button type="button" pButton icon="pi pi-chevron-down" [style]="{'width': '100%'}"
+            label="Explorar o universo" (click)="menu.toggle($event)"></button>
+    <p-slideMenu #menu [model]="itens" [popup]="true" [viewportHeight]="350" [backLabel]="'Voltar'"></p-slideMenu>
+  </div>
+  <div class="p-col-12 p-md-12 p-lg-12">
+    <app-item-universo [itemUniverso]="itemUniverso">
+    </app-item-universo>
   </div>
 </div>
