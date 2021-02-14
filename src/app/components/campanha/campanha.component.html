@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<p-dialog header="{{tituloDialgoCadastrarEditar}} Campanha" [(visible)]="showDialogCadastrarEditar"
+<p-dialog header="{{tituloDialgoCadastrarEditar}} Campanha" [(visible)]="showDialogCadastrarEditar"  #dialogCadastrarEditar (onShow)="showDialog(dialogCadastrarEditar)"
           [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
   <div style="margin-bottom: 1.5em"
        class="alert alert-danger" role="alert" [hidden]="mensagemErroCadastroEdicao ==null">
@@ -80,4 +80,4 @@
   </div>
 </p-dialog>
 
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-confirmDialog [style]="{width: retornarWidth()}" [baseZIndex]="10000"></p-confirmDialog>

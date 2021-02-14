@@ -4,6 +4,7 @@ import {CampanhaService} from '../../services/campanha/campanha.service';
 import {SessionService} from '../../services/session/session.service';
 import {ConfirmationService, Message} from 'primeng/api';
 import Mestre from '../../models/Mestre';
+import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-campanha',
@@ -53,17 +54,30 @@ export class CampanhaComponent implements OnInit {
   }
 
   salvarCampanha(): void {
-    console.log(this.campanha);
     if (this.campanha.titulo === '' || this.campanha.descricao === '') {
       this.mensagemErroCadastroEdicao = 'É obrigatório informar todos os campos!';
     } else {
       this.campanhaServive.cadastrar(this.campanha);
       this.msgs = [{severity: 'success', summary: 'Suceso', detail: 'Campanha cadastrada com sucesso!'}];
       this.showDialogCadastrarEditar = false;
+      this.iniciarListaCampanhaPorJogadorAtual();
     }
   }
 
   mestrar(campanha: Campanha): void {
 
+  }
+
+  showDialog(dialog: Dialog): void {
+    if (window.innerWidth < 993) {
+      dialog.maximize();
+    }
+  }
+
+  retornarWidth(): string {
+    if (window.innerWidth < 993) {
+      return '100%';
+    }
+    return '50vw';
   }
 }
