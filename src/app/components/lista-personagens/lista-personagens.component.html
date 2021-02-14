@@ -1,5 +1,5 @@
-<div class="p-grid p-jc-center">
-  <div class="p-col-10">
+<div class="p-grid p-jc-center"  style="padding-right: 10px; padding-left: 10px;" >
+  <div class="p-col-12">
     <h3 style="color: #dddddd">Seus personagens:</h3>
     <p-messages [value]="msgs"></p-messages>
     <p-table #dt [value]="listaPersonagens" [rows]="3" [paginator]="true" scrollHeight="200px"
@@ -8,12 +8,12 @@
              [showCurrentPageReport]="true">
       <ng-template pTemplate="caption">
         <div class="p-grid p-jc-center">
-          <div class="p-col-6">
+          <div class="p-col-12 p-md-6 p-lg-6">
             <button pButton pRipple label="Novo Personagem" icon="pi pi-plus" class="p-button-success p-mr-md-3"
                     routerLink="cadastrar"></button>
           </div>
-          <div class="p-col-6">
-              <span class="p-input-icon-left" style="width: 100%">
+          <div class="p-col-12 p-md-6 p-lg-6">
+             <span class="p-input-icon-left" style="width: 100%">
                         <i class="pi pi-search"></i>
                         <input style="width: 100%" placeholder="Busca..."
                                pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
@@ -21,30 +21,25 @@
           </div>
         </div>
       </ng-template>
-      <ng-template pTemplate="header" style="width: 100%">
-        <tr>
-          <th pSortableColumn="nome">Nome
-            <p-sortIcon field="nome"></p-sortIcon>
-          </th>
-          <th pSortableColumn="titulo">Campanha
-            <p-sortIcon field="titulo"></p-sortIcon>
-          </th>
-          <th>
-            Ações
-          </th>
-        </tr>
-      </ng-template>
       <ng-template pTemplate="body" let-personagem>
         <tr>
-          <td>{{personagem.nome}}</td>
-          <td>{{personagem.campanha.titulo}}</td>
-          <td>
-            <button pButton pRipple icon="pi pi-trash" class=" p-button-warning"
-                    style="height: 2em !important;"
-                    (click)="excluir(personagem)"></button>
-            <button pButton pRipple icon="pi pi-users" label="Jogar" class="p-button-success"
-                    style="height: 2em !important; margin-left: 8px"
-                    [routerLink]="['/personagem', personagem.id]"></button>
+          <td class="p-grid">
+            <div class="p-col-12 p-md-9 p-lg-9">
+              <h5>
+                {{personagem.nome}}
+              </h5>
+              <p>
+                <b>Campanha: </b> {{personagem.campanha.titulo}}
+              </p>
+            </div>
+            <div class="p-col-12 p-md-3 p-lg-3 p-grid p-jc-center">
+              <button pButton pRipple icon="pi pi-trash" label="Excluir" class="p-button-warning"
+                      style="height: 2em !important;  margin: 2px" tooltip="Excluir"
+                      (click)="excluir(personagem)"></button>
+              <button pButton pRipple icon="pi pi-users" label="Jogar" class="p-button-success"
+                      style="height: 2em !important;  margin: 2px" tooltip="Excluir"
+                      [routerLink]="['/personagem', personagem.id]"></button>
+            </div>
           </td>
         </tr>
       </ng-template>
@@ -56,4 +51,5 @@
     </p-table>
   </div>
 </div>
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"
+                 rejectButtonStyleClass="p-button-text"></p-confirmDialog>
