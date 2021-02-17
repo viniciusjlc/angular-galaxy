@@ -4,7 +4,7 @@ import {CampanhaService} from '../../services/campanha/campanha.service';
 import {SessionService} from '../../services/session/session.service';
 import {ConfirmationService, Message} from 'primeng/api';
 import Mestre from '../../models/Mestre';
-import {Dialog} from "primeng/dialog";
+import {Dialog} from 'primeng/dialog';
 
 @Component({
   selector: 'app-campanha',

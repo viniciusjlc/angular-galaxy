@@ -6,7 +6,6 @@
   padding: 5px;
 }
 
-
 .item-campanha :hover {
   background-color: #495057;
   border-color: #b1881c;
@@ -34,12 +33,13 @@
 
 .item-cor {
   border-style: solid;
-  border-width: 3px;
-  border-color: grey;
-  margin: 6px;
+  border-width: 2px;
+  color: rgba(0, 0, 0, 0);
 }
 
 .item-cor:hover {
+  border-style: solid;
+  border-width: 2px;
   border-color: #ffffff;
   color: #ffffff;
   cursor: pointer;
@@ -53,3 +53,22 @@
   margin: 6px;
 }
 
+.opcoes-sua-conta {
+  width: 95%;
+  height: 95%;
+  padding: 8px;
+  box-shadow: 0 0 1px 1px #000000;
+}
+
+.opcoes-sua-conta:hover {
+  box-shadow: 0 0 1px 1px #ffdd6e;
+  cursor: pointer;
+}
+
+.opcoes-sua-conta-ativo {
+  width: 95%;
+  height: 95%;
+  padding: 8px;
+  background: #252726;
+  box-shadow: 0 0 2px 2px #ffdd6e;
+}

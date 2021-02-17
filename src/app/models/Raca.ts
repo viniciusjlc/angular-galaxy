@@ -12,6 +12,8 @@ export default class Raca {
     public listaCabelo?: TipoCor[],
     public listaOlho?: TipoCor[],
     public listaAtributos?: Atributo[],
-    public id?: number) {
+    public id?: number,
+    public imagem?,
+    public imagemRosto?) {
   }
 }

@@ -8,6 +8,7 @@ import Especialidade from './Especialidade';
 
 export default class Personagem {
   constructor(public nome: string,
+              public apelido: string,
               public raca: Raca,
               public classe: Classe,
               public sexo: string,

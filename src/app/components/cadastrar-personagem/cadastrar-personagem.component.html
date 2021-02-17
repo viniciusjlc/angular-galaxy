@@ -1,291 +1,388 @@
-<div class="p-grid p-jc-center">
-  <div style="width: 94%">
-    <div class="p-col-12">
-      <p-steps [style]="{'backgroundColor': '#1e1e1e'}" [activeIndex]="abaAtual"
-               [model]="itens" [readonly]="true"></p-steps>
+<div style="padding-right: 10px; padding-left: 10px;">
+  <h3 style="color: #dddddd">Cadastro personagem</h3>
+  <p-card [hidden]="!(abaAtual == 0)">
+    <div class="p-grid p-jc-center">
+      <h5 class="p-col-12" style="text-align: justify">
+        Selecione a campanha que seu personagem vai participar:
+      </h5>
+      <div *ngFor="let campanha of campanhas; index as i;"
+           class="p-col-12 p-md-6 p-lg-4">
+        <div class="box p-shadow-1" [ngClass]="retornarEstiloCampanhaSelecionada(campanha.id)"
+             (click)="this.personagem.campanha = campanha">
+          <p style="font-weight: bolder">
+            {{campanha.titulo}}:
+          </p>
+          <p style="text-align: left">
+            {{campanha.descricao}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card [hidden]="!(abaAtual == 1)">
+    <div class="p-grid p-jc-center">
+      <div class="p-col-12">
+        <h5 style="text-align: left">
+          Selecione a raça:
+        </h5>
+        <small>Clique na raça para visualizar com mais detalhes.</small>
+      </div>
+      <div *ngFor="let raca of racas; index as i;"
+           class="p-col-12 p-md-6 p-lg-4">
+        <div class="box p-shadow-1p-grid" [ngClass]="retornarEstiloRacaSelecionada(raca.id)"
+             style="padding: 10px" (click)="[racaDetalhe = raca, showSelecionarRaca = true]">
+          <div class="p-col-12" style="text-align: center;">
+            <img src="data:image/png;base64,{{raca.imagemRosto}}" height="165"/>
+          </div>
+          <p class="p-col-12" style="text-align: justify;">
+            <b>{{raca.nome}}:</b>
+            <br/>
+            {{raca.descricao}}
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card [hidden]="!(abaAtual == 2)">
+    <div class="p-grid p-jc-center">
+      <div class="p-col-12">
+        <h5 style="text-align: left">
+          Selecione a classe:
+        </h5>
+        <small>Clique na classe para visualizar com mais detalhes.</small>
+      </div>
+      <div *ngFor="let classe of personagem.raca.listaClasse; index as i;"
+           class="p-col-12 p-md-6 p-lg-4">
+        <div class="box p-shadow-1 p-grid" [ngClass]="retornarEstiloClasseSelecionada(classe.id)"
+             style="padding: 10px" (click)="[classeDetalhe = classe, showSelecionarClasse = true]">
+          <p class="p-col-12" style="text-align: justify;">
+            <b>{{classe.nome}}:</b>
+            <br/>
+            {{classe.descricao}}
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card [hidden]="!(abaAtual == 3)">
+    <ng-template pTemplate="content">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <label for="nome">Nome:</label>
+          <br/>
+          <input id="nome" type="text" maxlength="200"
+                 pInputText [(ngModel)]="personagem.nome"
+                 style="width: 100%">
+          <small>Teste</small>
+        </div>
+        <div class="p-col-12">
+          <label for="nome">Apelido:</label>
+          <br/>
+          <input id="apelido" type="text" maxlength="50"
+                 pInputText [(ngModel)]="personagem.apelido"
+                 style="width: 100%">
+          <small>Teste</small>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <label>Gênero:</label>
+          <br/>
+          <div class="p-grid">
+            <p-radioButton class="p-col-6 p-md-6 p-lg-4"
+                           [value]="'M'" [(ngModel)]="personagem.sexo" [hidden]="personagem.raca.nome === 'L\'Yana'"
+                           label="Masculino"></p-radioButton>
+            <p-radioButton class="p-col-6 p-md-6 p-lg-4"
+                           [value]="'F'" [(ngModel)]="personagem.sexo" label="Feminino"></p-radioButton>
+            <p-radioButton class="p-col-6 p-md-6 p-lg-4"
+                           [value]="'I'" [(ngModel)]="personagem.sexo" [hidden]="personagem.raca.nome === 'L\'Yana'"
+                           label="Indefinido"></p-radioButton>
+          </div>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <label>Idade:</label>
+          <br/>
+          <p-inputNumber [(ngModel)]="personagem.idade"
+                         mode="decimal" [useGrouping]="false"
+                         [style]="{'width': '100%'}"></p-inputNumber>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <label>Altura (m):</label>
+          <br/>
+          <p-inputNumber [(ngModel)]="personagem.altura"
+                         mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
+                         [style]="{'width': '100%'}"></p-inputNumber>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <label>Peso (kg):</label>
+          <br/>
+          <p-inputNumber [(ngModel)]="personagem.peso"
+                         mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
+                         [style]="{'width': '100%'}"></p-inputNumber>
+        </div>
+        <div class="p-col-12 p-md-4 p-lg-4">
+          <label>Pele:</label>
+          <br/>
+          <button pButton pRipple type="button" (click)="showSelecionarPele = true"
+                  [label]="personagem.pele.id != null ? personagem.pele.descricao : 'Clique aqui para selecionar'"
+                  [style]="{'width': '100%', 'background-color': personagem.pele.id != null ? personagem.pele.codigoCor : '#ffd54f'}">
+          </button>
+        </div>
+        <div class="p-col-12 p-md-4 p-lg-4">
+          <label>Cabelo:</label>
+          <br/>
+          <button pButton pRipple type="button" (click)="showSelecionarCabelo = true"
+                  [label]="personagem.cabelo.id != null ? personagem.cabelo.descricao : 'Clique aqui para selecionar'"
+                  [style]="{'width': '100%', 'background-color': personagem.cabelo.id != null ? personagem.cabelo.codigoCor : '#ffd54f'}">
+          </button>
+        </div>
+        <div class="p-col-12 p-md-4 p-lg-4">
+          <label>Olho:</label>
+          <br/>
+          <button pButton pRipple type="button" (click)="showSelecionarOlho = true"
+                  [label]="personagem.olho.id != null ? personagem.olho.descricao : 'Clique aqui para selecionar'"
+                  [style]="{'width': '100%', 'background-color': personagem.olho.id != null ? personagem.olho.codigoCor : '#ffd54f'}">
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+
+  <p-card [hidden]="!(abaAtual == 4)">
+    <h3 style="color: #dddddd">Confirmarção</h3>
+
+
+    <div class="p-grid">
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Nome: </label>
+        <label style="font-weight: 600">{{personagem.nome}}</label>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Apelido: </label>
+        <label style="font-weight: 600">{{personagem.apelido}}</label>
+      </div>
+
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Raça: </label>
+        <label style="font-weight: 600">{{personagem.raca.nome}}</label>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Classe: </label>
+        <label style="font-weight: 600">{{personagem.classe.nome}}</label>
+      </div>
+
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Gênero: </label>
+        <label style="font-weight: 600">{{retornarGenero()}}</label>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Idade: </label>
+        <label style="font-weight: 600">{{personagem.idade}} anos</label>
+      </div>
+
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Altura: </label>
+        <label style="font-weight: 600">{{personagem.altura}} m</label>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label>Idade: </label>
+        <label style="font-weight: 600">{{personagem.peso}} kg</label>
+      </div>
+
+      <div class="p-col-12 p-md-4 p-lg-4">
+        <label>Cor Pele: </label>
+        <div class="box p-shadow-15"
+             [style]="{'background-color': personagem.pele.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
+          TESTE COR
+        </div>
+      </div>
+      <div class="p-col-12 p-md-4 p-lg-4">
+        <label>Cor Cabelo: </label>
+        <div class="box p-shadow-15"
+             [style]="{'background-color': personagem.cabelo.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
+          TESTE COR
+        </div>
+      </div>
+      <div class="p-col-12 p-md-4 p-lg-4">
+        <label>Cor Olho: </label>
+        <div class="box p-shadow-15"
+             [style]="{'background-color': personagem.olho.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
+          TESTE COR
+        </div>
+      </div>
+
+      <div class="p-col-12">
+        <label>Atributos Iniciais: </label>
+        <div class="p-grid p-jc-center">
+          <div *ngFor="let atributo of racaDetalhe.listaAtributos; index as j;"
+               class="p-col-12 p-md-4 p-lg-4">
+            {{atributo.nome}}:
+            <span class="p-badge">{{atributo.valor}}</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="p-col-12">
+        <label>Especialidades Iniciais: </label>
+        <div class="p-grid p-jc-center">
+          <div *ngFor="let classe of personagem.classe.listaEspecialidades; index as j;" [tooltip]="classe.descricao"
+               class="p-col-6 p-md-4 p-lg-4" align="center">
+            {{classe.nome}}:
+            <span class="p-badge">{{classe.valor}}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <p-card [hidden]="!(abaAtual == 0)"
-            header="Escolha a campanha que seu personagem vai participar:">
-      <div class="p-grid p-jc-center">
-        <div *ngFor="let campanha of campanhas; index as i;"
-             class="p-col-5" (click)="this.personagem.campanha = campanha"
-             [ngClass]="retornarClasse(campanha.id)">
-          <div class="item-interno">
-            <p style="font-weight: bolder">
-              {{campanha.titulo}}
-            </p>
-            <p>
-              {{campanha.descricao}}
-            </p>
-          </div>
-        </div>
-      </div>
-    </p-card>
+    <p-button [style]="{'widht': '100%'}" label="Cadastrar" (click)="cadastrar()"></p-button>
+  </p-card>
 
-    <p-card
-      [hidden]="!(abaAtual == 1)">
-      <div class="p-grid p-jc-center">
-        <div class="p-col-6">
-          <p-button label="Raça" [style]="{'width':'100%'}"
-                    icon="pi pi-bars" (onClick)="showSelecionarRaca = true">
-          </p-button>
-        </div>
-        <div class="p-col-6">
-          {{personagem.raca.id === null ? '' : 'Sua raça: ' + personagem.raca.nome}}
-        </div>
+  <p-button [hidden]="(abaAtual == 0)" [style]="{'widht': '100%', 'float': 'left'}"
+            label="Anterior" icon="pi pi-chevron-left"
+            (click)="prevPage()" iconPos="left"></p-button>
 
-        <div class="p-col-6">
-          <p-button label="Classe" [style]="{'width':'100%'}"
-                    [disabled]="personagem.raca.id === null"
-                    icon="pi pi-check" (onClick)="showSelecionarClasse = true">
-          </p-button>
-        </div>
-        <div class="p-col-6">
-          {{personagem.classe.id === null ? '' : 'Sua classe: ' + personagem.classe.nome}}
-        </div>
-      </div>
-    </p-card>
-
-    <p-card [hidden]="!(abaAtual == 2)">
-      <ng-template pTemplate="content">
-        <div class="p-grid">
-          <div class="p-col-8">
-            <label for="nome">Nome:</label>
-            <br/>
-            <input id="nome" type="text"
-                   pInputText [(ngModel)]="personagem.nome"
-                   style="width: 100%">
-          </div>
-          <div class="p-col-4">
-            <label>Gênero:</label>
-            <br/>
-            <div class="p-d-flex">
-              <p-radioButton value="M" [(ngModel)]="personagem.sexo"
-                             label="Masculino"></p-radioButton>
-              <p-radioButton value="F" [(ngModel)]="personagem.sexo" [style]="{'margin-left': '12px'}"
-                             label="Feminino"></p-radioButton>
-              <p-radioButton value="I" [(ngModel)]="personagem.sexo" [style]="{'margin-left': '12px'}"
-                             label="Indefinido"></p-radioButton>
-            </div>
-          </div>
-          <div class="p-col-4">
-            <label>Idade:</label>
-            <br/>
-            <p-inputNumber [(ngModel)]="personagem.idade" [style]="{'width': '100%'}"
-                           [minFractionDigits]="2"></p-inputNumber>
-          </div>
-          <div class="p-col-4">
-            <label>Altura (m):</label>
-            <br/>
-            <p-inputNumber [(ngModel)]="personagem.altura" mode="decimal" [style]="{'width': '100%'}"
-                           [minFractionDigits]="2"></p-inputNumber>
-          </div>
-          <div class="p-col-4">
-            <label>Peso (kg):</label>
-            <br/>
-            <p-inputNumber [(ngModel)]="personagem.peso" mode="decimal" [style]="{'width': '100%'}"
-                           [minFractionDigits]="2"></p-inputNumber>
-          </div>
-          <div class="p-col-4">
-            <label>Pele:</label>
-            <br/>
-            <button pButton pRipple type="button" (click)="showSelecionarPele = true"
-                    [label]="personagem.pele.id != null ? personagem.pele.descricao : 'Clique aqui para selecionar'"
-                    [style]="{'width': '100%', 'background-color': personagem.pele.id != null ? personagem.pele.codigoCor : '#ffd54f'}">
-            </button>
-          </div>
-          <div class="p-col-4">
-            <label>Cabelo:</label>
-            <br/>
-            <button pButton pRipple type="button" (click)="showSelecionarCabelo = true"
-                    [label]="personagem.cabelo.id != null ? personagem.cabelo.descricao : 'Clique aqui para selecionar'"
-                    [style]="{'width': '100%', 'background-color': personagem.cabelo.id != null ? personagem.cabelo.codigoCor : '#ffd54f'}">
-            </button>
-          </div>
-          <div class="p-col-4">
-            <label>Olho:</label>
-            <br/>
-            <button pButton pRipple type="button" (click)="showSelecionarOlho = true"
-                    [label]="personagem.olho.id != null ? personagem.olho.descricao : 'Clique aqui para selecionar'"
-                    [style]="{'width': '100%', 'background-color': personagem.olho.id != null ? personagem.olho.codigoCor : '#ffd54f'}">
-            </button>
-          </div>
-        </div>
-      </ng-template>
-    </p-card>
-
-    <p-card [hidden]="!(abaAtual == 3)">
-      <p-button [style]="{'widht': '100%'}" label="Cadastrar" (click)="cadastrar()"></p-button>
-    </p-card>
-
-    <p-button [hidden]="(abaAtual == 0)" [style]="{'widht': '100%', 'float': 'left'}"
-              label="Anterior" icon="pi pi-chevron-left"
-              (click)="prevPage()" iconPos="left"></p-button>
-
-    <p-button [hidden]="(abaAtual == 3)" [style]="{'widht': '100%', 'float': 'right'}"
-              label="Próximo" icon="pi pi-chevron-right" iconPos="right"
-              [disabled]="desabilitarPorAba()" (onClick)="nextPage()"></p-button>
-  </div>
+  <p-button [hidden]="(abaAtual == 4)" [style]="{'widht': '100%', 'float': 'right'}"
+            label="Próximo" icon="pi pi-chevron-right" iconPos="right"
+            [disabled]="desabilitarPorAba()" (onClick)="nextPage()"></p-button>
 </div>
 
+
 <p-dialog header="Selecione sua raça" [(visible)]="showSelecionarRaca"
-          [modal]="true" [style]="{'width':'92%'}">
-  <p-carousel [value]="racas" [numVisible]="1"
-              [numScroll]="1" [circular]="false">
-    <ng-template pTemplate="header">
-    </ng-template>
-    <ng-template let-raca pTemplate="item">
-      <div class="p-grid">
-        <div class="p-col-9">
-          <h4>
-            {{raca?.nome}}
-          </h4>
-          <p>
-            Planeta de origem: {{raca?.nomePlaneta}}
-          </p>
-          <p style="text-align: justify">
-            {{raca?.descricao}}
-          </p>
-          <p>
-            Atributos Base:
-          </p>
-          <div class="p-grid">
-            <div *ngFor="let atributo of raca.listaAtributos; index as j;"
-                 class="p-col-4">
-              {{atributo.nome}}:
-              <span class="p-badge">{{atributo.valor}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-col-3">
-          <img src="assets/img/draconians.png" style="zoom: 0.7; width: 100%; height: 90%"
-               alt="Draconians">
-        </div>
-        <hr class="solid" style="border-top: 3px solid #bbb;">
-        <div class="p-col-4"></div>
-        <div class="p-col-4">
-          <p-button label="Selecionar" (onClick)="selecionarRaca(raca)"
-                    [style]="{'width': '100%'}"></p-button>
-        </div>
-        <div class="p-col-4"></div>
-      </div>
-    </ng-template>
-  </p-carousel>
+          [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10050"
+          #dialogSelecionarRaca (onShow)="showDialog(dialogSelecionarRaca)">
+  <div class="p-grid p-jc-center">
+    <div class="p-col-12" style="text-align: center;">
+      <img src="data:image/png;base64,{{racaDetalhe.imagemRosto}}" height="165"/>
+    </div>
+    <p class="p-col-12" style="text-align: justify;">
+      <b>{{racaDetalhe.nome}}:</b>
+      <br/>
+      {{racaDetalhe.descricao}}
+    <div *ngFor="let atributo of racaDetalhe.listaAtributos; index as j;"
+         class="p-col-12 p-md-4 p-lg-4">
+      {{atributo.nome}}:
+      <span class="p-badge">{{atributo.valor}}</span>
+    </div>
+  </div>
+  <div class="p-col-12">
+    Deseja selecionar essa raça?
+  </div>
+  <div class="p-col-12 p-d-flex p-jc-center">
+    <button type="submit" (click)="[personagem.raca = racaDetalhe, showSelecionarRaca = false]"
+            style="margin-right: 3px; width: 33%"
+            class="btn btn-success">Aceitar
+    </button>
+    <button type="submit" class="btn btn-danger" style="width: 33%"
+            (click)="showSelecionarRaca = false">Recusar
+    </button>
+  </div>
 </p-dialog>
 
-
-<p-dialog header="Selecione sua classe" [style]="{'width':'92%'}" [modal]="true"
+<p-dialog header="Selecione sua classe"
+          [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10051"
+          #dialogSelecionarClasse (onShow)="showDialog(dialogSelecionarClasse)"
           [(visible)]="showSelecionarClasse">
-  <p-carousel [value]="personagem.raca.listaClasse" [numVisible]="1"
-              [numScroll]="1" [circular]="false">
-    <ng-template pTemplate="header">
-    </ng-template>
-    <ng-template let-classe pTemplate="item">
-      <div class="p-grid">
-        <div class="p-col-12">
-          <h4>
-            {{classe?.nome}}
-          </h4>
-          <p style="text-align: justify">
-            {{classe?.descricao}}
-          </p>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <h4>
+        {{classeDetalhe?.nome}}
+      </h4>
+      <p style="text-align: justify">
+        {{classeDetalhe?.descricao}}
+      </p>
+    </div>
+    <div class="p-col-12">
+      <p>
+        Especialidades Base:
+      </p>
+      <div class="p-grid p-jc-center">
+        <div *ngFor="let classe of classeDetalhe.listaEspecialidades; index as j;" [tooltip]="classe.descricao"
+             class="p-col-6 p-md-4 p-lg-4" align="center">
+          {{classe.nome}}:
+          <span class="p-badge">{{classe.valor}}</span>
         </div>
-        <div class="p-col-12">
-          <p>
-            Especialidades Base:
-          </p>
-          <div class="p-grid p-jc-center">
-            <div *ngFor="let classe of classe.listaEspecialidades; index as j;" [tooltip]="classe.descricao"
-                 class="p-col-4" align="center">
-              {{classe.nome}}:
-              <span class="p-badge">{{classe.valor}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-col-4"></div>
-        <div class="p-col-4">
-          <p-button label="Selecionar" (onClick)="selecionarClasse(classe)"
-                    [style]="{'width': '100%'}"></p-button>
-        </div>
-        <div class="p-col-4"></div>
       </div>
-    </ng-template>
-  </p-carousel>
+    </div>
+    <div class="p-col-12">
+      Deseja selecionar essa classe?
+    </div>
+    <div class="p-col-12 p-d-flex p-jc-center">
+      <button type="submit" (click)="[personagem.classe = classeDetalhe, showSelecionarClasse = false]"
+              style="margin-right: 3px; width: 33%"
+              class="btn btn-success">Aceitar
+      </button>
+      <button type="submit" class="btn btn-danger" style="width: 33%"
+              (click)="showSelecionarClasse = false">Recusar
+      </button>
+    </div>
+  </div>
 </p-dialog>
 
-
-<p-dialog header="Selecione a cor da pele" [style]="{'width':'60%'}" [modal]="true"
+<p-dialog header="Cor da pele" [modal]="true"
+          [style]="{width: '50vw'}" [baseZIndex]="10051"
+          #dialogSelecionarPele (onShow)="showDialog(dialogSelecionarPele)"
           [(visible)]="showSelecionarPele">
-  <div *ngFor="let pele of personagem.raca.listaPele; index as i;">
-    <div [class]="personagem.pele.id == pele.id ? 'item-cor-ativo' : 'item-cor'"
-         (click)="personagem.pele = pele">
-      <p style="margin-left: 4px">
-        {{pele.descricao}}:
-      </p>
-      <div [style]="{'background-color': pele.codigoCor, 'color': pele.codigoCor}">
+  <h5 class="p-col-12" style="text-align: justify">
+    Clique para selecionar a cor da pele:
+  </h5>
+  <div class="p-grid p-jc-center">
+    <div *ngFor="let pele of personagem.raca.listaPele; index as i;" class="p-col-12 p-md-12 p-lg-12">
+      <div class="box p-shadow-20 item-cor" (click)="[personagem.pele = pele, showSelecionarPele = false]"
+           [style]="{'background-color': pele.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
         TESTE COR
       </div>
     </div>
   </div>
-  <p-button [style]="{'widht': '100%'}"
-            label="Confirmar" (click)="showSelecionarPele = false"></p-button>
 </p-dialog>
 
 
-<p-dialog header="Selecione a cor do cabelo" [style]="{'width':'60%'}" [modal]="true"
+<p-dialog header="Cor do cabelo" [modal]="true"
+          [style]="{'width':'50vw'}" [baseZIndex]="10051"
+          #dialogSelecionarCabelo (onShow)="showDialog(dialogSelecionarCabelo)"
           [(visible)]="showSelecionarCabelo">
-  <div *ngFor="let cabelo of personagem.raca.listaCabelo; index as i;">
-    <div [class]="personagem.cabelo.id == cabelo.id ? 'item-cor-ativo' : 'item-cor'"
-         (click)="personagem.cabelo = cabelo">
-      <p style="margin-left: 4px">
-        {{cabelo.descricao}}:
-      </p>
-      <div [style]="{'background-color': cabelo.codigoCor, 'color': cabelo.codigoCor}">
+  <h5 class="p-col-12" style="text-align: justify">
+    Clique para selecionar a cor da cabelo:
+  </h5>
+  <div class="p-grid p-jc-center">
+    <div *ngFor="let cabelo of personagem.raca.listaCabelo; index as i;" class="p-col-12 p-md-12 p-lg-12">
+      <div *ngIf="cabelo.codigoCor === 'XXXXXXX'"
+           class="box p-shadow-20 item-cor" (click)="[personagem.cabelo = cabelo, showSelecionarCabelo = false]"
+           [style]="{'background-color': cabelo.codigoCor, 'color': '#d2cbcb', 'font-size':'30px'}">
+        Sem cor
+      </div>
+      <div *ngIf="cabelo.codigoCor !== 'XXXXXXX'"
+           class="box p-shadow-20 item-cor" (click)="[personagem.cabelo = cabelo, showSelecionarCabelo = false]"
+           [style]="{'background-color': cabelo.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
         TESTE COR
       </div>
     </div>
   </div>
-  <p-button [style]="{'widht': '100%'}"
-            label="Confirmar" (click)="showSelecionarCabelo = false"></p-button>
 </p-dialog>
 
-
-<p-dialog header="Selecione a cor do olho" [style]="{'width':'60%'}" [modal]="true"
+<p-dialog header="Cor do olho" [modal]="true"
+          [style]="{'width':'50vw'}" [baseZIndex]="10051"
+          #dialogSelecionarOlho (onShow)="showDialog(dialogSelecionarOlho)"
           [(visible)]="showSelecionarOlho">
-  <div *ngFor="let olho of personagem.raca.listaOlho; index as i;">
-    <div [class]="personagem.olho.id == olho.id ? 'item-cor-ativo' : 'item-cor'"
-         (click)="personagem.olho = olho">
-      <p style="margin-left: 4px">
-        {{olho.descricao}}:
-      </p>
-      <div [style]="{'background-color': olho.codigoCor, 'color': olho.codigoCor}">
+  <h5 class="p-col-12" style="text-align: justify">
+    Clique para selecionar a cor do olho:
+  </h5>
+  <div class="p-grid p-jc-center">
+    <div *ngFor="let olho of personagem.raca.listaOlho; index as i;" class="p-col-12 p-md-12 p-lg-12">
+      <div class="box p-shadow-20 item-cor" (click)="[personagem.olho = olho, showSelecionarOlho = false]"
+           [style]="{'background-color': olho.codigoCor, 'color': '#00000000', 'font-size':'30px'}">
         TESTE COR
       </div>
     </div>
   </div>
-  <p-button [style]="{'widht': '100%'}"
-            label="Confirmar" (click)="showSelecionarOlho = false"></p-button>
 </p-dialog>
 
-<p-dialog header="Selecione a cor do olho" [style]="{'width':'60%'}" [modal]="true"
-          [(visible)]="showSelecionarOlho">
-  <div *ngFor="let olho of personagem.raca.listaOlho; index as i;">
-    <div [class]="personagem.olho.id == olho.id ? 'item-cor-ativo' : 'item-cor'"
-         (click)="personagem.olho = olho">
-      <p style="margin-left: 4px">
-        {{olho.descricao}}:
-      </p>
-      <div [style]="{'background-color': olho.codigoCor, 'color': olho.codigoCor}">
-        TESTE COR
-      </div>
-    </div>
-  </div>
-  <p-button [style]="{'widht': '100%'}"
-            label="Confirmar" (click)="showSelecionarOlho = false"></p-button>
-</p-dialog>
-
-<p-dialog header="Sucesso!" [style]="{'width':'60%'}" [modal]="true"
+<p-dialog header="Sucesso!" [modal]="true"
+          [style]="{'width':'50vw'}" [baseZIndex]="10052"
+          #dialogCadastroSucesso (onShow)="showDialog(dialogCadastroSucesso)"
           [(visible)]="showCadastroSucesso">
   <p>
     O cadastro do seu personagem foi realizado com sucesso, agora ele já se encontra disponivel para jogar.
@@ -294,10 +391,12 @@
   <p>
     Deseja jogar com esse personagem ou prefere retornar a tela de escolha de personagem?
   </p>
-  <p-button [style]="{'widht': '50%'}"
-            label="Jogar com personagem" routerLink="../../personagem"></p-button>
-  <p-button [style]="{'widht': '50%'}"
-            label="Retornar para listagem" routerLink="../../personagens"></p-button>
+  <div class="p-d-flex">
+    <p-button [style]="{'margin-right': '5px'}"
+              label="Jogar com personagem" routerLink="../../personagem"></p-button>
+    <p-button [style]="{'margin-left': '5px'}"
+              label="Retornar para listagem" routerLink="../../personagens"></p-button>
+  </div>
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

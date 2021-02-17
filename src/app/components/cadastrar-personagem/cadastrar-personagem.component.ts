@@ -11,6 +11,7 @@ import Mestre from '../../models/Mestre';
 import {ClasseService} from '../../services/classe/classe.service';
 import {RacaService} from '../../services/raca/raca.service';
 import {PersonagemService} from '../../services/personagem/personagem.service';
+import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-cadastrar-personagem',
@@ -23,7 +24,9 @@ export class CadastrarPersonagemComponent implements OnInit {
   campanhas: Campanha[];
   classes: Classe[];
   racas: Raca[];
-  personagem: Personagem = new Personagem(null,
+  racaDetalhe: Raca = new Raca(null, null, null, null, null, null, null, null, null, null, null);
+  classeDetalhe: Classe = new Classe(null, null, null, null);
+  personagem: Personagem = new Personagem(null, null,
     new Raca(null, null, null, null, null, null, null, null, null),
     new Classe(null, null, null, null),
     null, null, null, null,
@@ -32,7 +35,7 @@ export class CadastrarPersonagemComponent implements OnInit {
     new TipoCor(null, null, null),
     SessionService.obterUsuarioSessao().id,
     new Campanha(null, null, new Mestre(null, null), null),
-    null, null);
+    null, null, null, null);
   showSelecionarClasse: boolean = false;
   showSelecionarRaca: boolean = false;
   showSelecionarPele: boolean = false;
@@ -92,16 +95,30 @@ export class CadastrarPersonagemComponent implements OnInit {
   }
 
   nextPage(): void {
-    console.log(this.personagem);
     this.abaAtual++;
+    this.rolarParaTopo();
+    if (this.abaAtual !== 3 && this.personagem.raca !== null) {
+      if (this.personagem.raca.nome === 'L\'Yana') {
+        this.personagem.sexo = 'F';
+      }
+    }
   }
 
   prevPage(): void {
     this.abaAtual--;
+    this.rolarParaTopo();
   }
 
-  retornarClasse(idCampanha): string {
-    return this.personagem.campanha.id !== idCampanha ? 'item-campanha' : 'item-campanha-ativo';
+  retornarEstiloCampanhaSelecionada(idCampanha): string {
+    return this.personagem.campanha.id !== idCampanha ? 'opcoes-sua-conta' : 'opcoes-sua-conta-ativo';
+  }
+
+  retornarEstiloRacaSelecionada(idRaca): string {
+    return this.personagem.raca.id !== idRaca ? 'opcoes-sua-conta' : 'opcoes-sua-conta-ativo';
+  }
+
+  retornarEstiloClasseSelecionada(idClasse): string {
+    return this.personagem.classe.id !== idClasse ? 'opcoes-sua-conta' : 'opcoes-sua-conta-ativo';
   }
 
   selecionarRaca(raca): void {
@@ -133,12 +150,14 @@ export class CadastrarPersonagemComponent implements OnInit {
       case 0:
         return this.personagem.campanha.id === null;
       case 1:
-        return this.personagem.raca.id === null || this.personagem.classe.id == null;
+        return this.personagem.raca.id === null;
       case 2:
+        return this.personagem.classe.id == null;
+      case 3:
         return this.personagem.nome === null || this.personagem.sexo === null ||
           this.personagem.idade === null || this.personagem.altura === null || this.personagem.peso === null ||
           this.personagem.pele.id === null || this.personagem.cabelo.id === null || this.personagem.olho.id === null;
-      case 3:
+      case 4:
         return true;
     }
     return true;
@@ -151,4 +170,18 @@ export class CadastrarPersonagemComponent implements OnInit {
     this.showCadastroSucesso = this.personagem.id !== null;
   }
 
+  showDialog(dialog: Dialog): void {
+    if (window.innerWidth < 993) {
+      dialog.maximize();
+    }
+  }
+
+  rolarParaTopo(): void {
+    window.scroll(0, 0);
+  }
+
+  retornarGenero(): string {
+    return this.personagem.sexo === 'M' ? 'Masculino' :
+      this.personagem.sexo === 'F' ? 'Feminino' : 'Indefinido';
+  }
 }
