@@ -3,6 +3,7 @@ import Personagem from '../../models/Personagem';
 import {ActivatedRoute} from '@angular/router';
 import {PersonagemService} from '../../services/personagem/personagem.service';
 import {MenuItem} from 'primeng/api';
+import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-personagem',
@@ -24,8 +25,6 @@ export class PersonagemComponent implements OnInit {
     this.personagem = await this.personagemService.consultarPersonagemPorId(+personagemId);
     console.log(this.personagem);
     this.itensMenuPersonagem = [{
-      label: this.personagem.nome,
-      style: {'background-color': 'red'},
       items: [{
         label: 'Dados Base',
         command: () => {
@@ -41,5 +40,9 @@ export class PersonagemComponent implements OnInit {
       ]
     }
     ];
+  }
+
+  isMobileSize(): boolean {
+    return window.innerWidth < 993;
   }
 }

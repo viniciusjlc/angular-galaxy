@@ -5,3 +5,18 @@
 .info-area{
   border: solid 2px #2f2f2f;
 }
+
+.item-menu {
+  width: 100%;
+  display: block;
+  padding: 8px 16px;
+  border-top: solid 1px #313131;
+  text-align: center;
+  background-color: #202020;
+}
+
+.item-menu:hover {
+  cursor: pointer;
+  background-color: #515151;
+}
+

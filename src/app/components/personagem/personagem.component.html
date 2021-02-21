@@ -1,16 +1,15 @@
-<div class="p-d-flex p-flex-column p-flex-md-row">
-  <div class="p-mb-1 p-mr-4 teste">
-    <p-menu [style]="{'margin-left': '5px'}" class="teste"
-            [model]="itensMenuPersonagem"></p-menu>
-  </div>
-  <div class="p-mb-5 p-mr-8" [style]="{'width': '100%'}">
+<div class="p-grid">
+  <p-fieldset  class="p-col-12 p-md-3 p-lg-3"
+    [legend]="personagem.apelido" [toggleable]="isMobileSize()">
+    <div class="item-menu" (click)="itemAtual = 'BASE'">Dados Base</div>
+    <div class="item-menu" (click)="itemAtual = 'ATRIBUTOS'">Atributos & Especialidades</div>
+  </p-fieldset>
+  <div class="p-col-12 p-md-9 p-lg-9">
     <app-personagem-dados-base [hidden]="itemAtual != 'BASE'"
                                [personagem]="personagem">
     </app-personagem-dados-base>
 
-
-    <p-card header="Atributos" [hidden]="itemAtual != 'ATRIBUTOS'"
-            [style]="{'width': '95%'}">
+    <p-card header="Atributos" [hidden]="itemAtual != 'ATRIBUTOS'">
       <ng-template pTemplate="header"></ng-template>
       <div class="p-grid">
         <div class="p-col-4 p-grid" *ngFor="let atributo of personagem.listaAtributos; index as i;">
@@ -40,8 +39,6 @@
 
       <app-personagem-status [personagem]="personagem"></app-personagem-status>
     </p-card>
-
-
   </div>
 </div>
 
