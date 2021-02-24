@@ -5,3 +5,10 @@
 .info-area{
   border: solid 2px #2f2f2f;
 }
+
+
+.item-cor {
+  border-style: solid;
+  border-width: 2px;
+  color: rgba(0, 0, 0, 0);
+}
