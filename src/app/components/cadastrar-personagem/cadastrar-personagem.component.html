@@ -108,6 +108,7 @@
           <p-inputNumber [(ngModel)]="personagem.idade"
                          mode="decimal" [useGrouping]="false"
                          [style]="{'width': '100%'}"></p-inputNumber>
+          <small>Idade Máxima: {{personagem.raca.idadeMax}}</small>
         </div>
         <div class="p-col-12 p-md-6 p-lg-6">
           <label>Altura (m):</label>
@@ -115,6 +116,7 @@
           <p-inputNumber [(ngModel)]="personagem.altura"
                          mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
                          [style]="{'width': '100%'}"></p-inputNumber>
+          <small>Altura Média: entre {{personagem.raca.alturaMin}} e {{personagem.raca.alturaMax}}</small>
         </div>
         <div class="p-col-12 p-md-6 p-lg-6">
           <label>Peso (kg):</label>
@@ -122,6 +124,7 @@
           <p-inputNumber [(ngModel)]="personagem.peso"
                          mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
                          [style]="{'width': '100%'}"></p-inputNumber>
+          <small>Altura Média: entre {{personagem.raca.pesoMin}} e {{personagem.raca.pesoMax}}</small>
         </div>
         <div class="p-col-12 p-md-4 p-lg-4">
           <label>Pele:</label>

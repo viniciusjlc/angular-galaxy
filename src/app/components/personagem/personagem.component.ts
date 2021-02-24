@@ -3,7 +3,6 @@ import Personagem from '../../models/Personagem';
 import {ActivatedRoute} from '@angular/router';
 import {PersonagemService} from '../../services/personagem/personagem.service';
 import {MenuItem} from 'primeng/api';
-import {Dialog} from "primeng/dialog";
 
 @Component({
   selector: 'app-personagem',

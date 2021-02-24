@@ -15,8 +15,8 @@ export class PersonagemDadosBaseComponent implements OnInit {
   }
 
   retornarGenero(): string {
-    return this.personagem.sexo === 'M' ? 'Masculino' :
-      this.personagem.sexo === 'F' ? 'Feminino' : 'Indefinido';
+    return this.personagem.sexo === 'M' ? 'Masc.' :
+      this.personagem.sexo === 'F' ? 'Fem,' : 'Indef.';
   }
 
 

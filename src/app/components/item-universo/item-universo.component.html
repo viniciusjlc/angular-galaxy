@@ -2,7 +2,7 @@
   <div class="p-grid p-jc-center" [hidden]="itemUniverso.tipo !== 1">
     <div class="p-col-8">
       <h5>
-        {{itemUniverso.titulo}}
+        {{itemUniverso.tituloTotal}}
       </h5>
     </div>
     <div class="p-col-4">
@@ -12,7 +12,7 @@
       </p-button>
     </div>
     <div class="p-col-12" style="text-align: justify;">
-      {{itemUniverso.texto}}
+      <p innerHTML={{itemUniverso.texto}}>{{itemUniverso.texto}}</p>
     </div>
   </div>
 

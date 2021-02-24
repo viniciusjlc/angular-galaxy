@@ -1,44 +1,42 @@
 <p-card header="Dados Base">
-  <ng-template pTemplate="header">
-  </ng-template>
+  <div class="p-grid">
+    <div class="p-col-12 p-md-6 p-lg-6" style="display: flex">
+      <div>Nome:</div>
+      <b style="margin-left: 5px">{{personagem.nome}}</b>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-6" style="display: flex">
+      <div>Apelido:</div>
+      <b style="margin-left: 5px">{{personagem.apelido}}</b>
+    </div>
+    <div class="p-col-6 p-md-3 p-lg-3" style="display: flex">
+      <div>Raça:</div>
+      <b style="margin-left: 5px">{{personagem.raca.nome}}</b>
+    </div>
+    <div class="p-col-6 p-md-3 p-lg-3" style="display: flex">
+      <div>Classe:</div>
+      <b style="margin-left: 5px">{{personagem.classe.nome}}</b>
+    </div>
+
+    <!--
+    <label class="p-col-2 p-md-1 p-lg-1">Gênero: </label>
+    <label class="p-col-4 p-md-2 p-lg-2" style="font-weight: 700">{{retornarGenero()}}</label>
+    <label class="p-col-2 p-md-1 p-lg-1">Idade:</label>
+    <label class="p-col-4 p-md-2 p-lg-2" style="font-weight: 700">{{personagem.idade}} anos</label>
+    <label class="p-col-2 p-md-1 p-lg-1">Peso</label>
+    <label class="p-col-4 p-md-2 p-lg-2" style="font-weight: 700">{{personagem.peso}} kg.</label>
+    <label class="p-col-2 p-md-1 p-lg-1">Altura</label>
+    <label class="p-col-4 p-md-2 p-lg-2" style="font-weight: 700">{{personagem.altura}} m.</label>
+
+    <label class="p-col-2 p-md-1 p-lg-1">Gênero: </label>
+
+    <label class="p-col-4 p-md-2 p-lg-2"></label>
+    <label class="p-col-8 p-md-4 p-lg-4" style="font-weight: 700"></label>
+    <label class="p-col-4 p-md-2 p-lg-2"></label>
+    <label class="p-col-8 p-md-4 p-lg-4" style="font-weight: 700"></label>-->
+  </div>
+
   <table style="width: 100%">
     <tr class="p-grid">
-      <td class="p-col-1 info-area">
-        Raça
-      </td>
-      <td class="p-col-5 info-area label-info">
-        {{personagem.raca.nome}}
-      </td>
-      <td class="p-col-1 info-area">
-        Classe
-      </td>
-      <td class="p-col-5 info-area label-info">
-        {{personagem.classe.nome}}
-      </td>
-      <td class="p-col-1 info-area">
-        Gênero
-      </td>
-      <td class="p-col-2 info-area label-info">
-        {{retornarGenero()}}
-      </td>
-      <td class="p-col-1 info-area">
-        Idade
-      </td>
-      <td class="p-col-2 info-area label-info">
-        {{personagem.idade}} anos
-      </td>
-      <td class="p-col-1 info-area">
-        Peso
-      </td>
-      <td class="p-col-2 info-area label-info">
-        {{personagem.peso}} kg.
-      </td>
-      <td class="p-col-1 info-area">
-        Altura
-      </td>
-      <td class="p-col-2 info-area label-info">
-        {{personagem.altura}} m.
-      </td>
       <td class="p-col-1 info-area">
         Pele
       </td>

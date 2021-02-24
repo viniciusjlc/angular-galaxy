@@ -14,6 +14,11 @@ export default class Raca {
     public listaAtributos?: Atributo[],
     public id?: number,
     public imagem?,
-    public imagemRosto?) {
+    public imagemRosto?,
+    public idadeMax?: number,
+    public alturaMin?: number,
+    public alturaMax?: number,
+    public pesoMin?: number,
+    public pesoMax?: number) {
   }
 }

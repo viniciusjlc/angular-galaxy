@@ -31,22 +31,25 @@ export class UniversoComponent implements OnInit {
 
   async comporItensMenu(): Promise<void> {
     this.itens = [];
+    console.log(this.itensUniverso);
     for (const itemUniverso of this.itensUniverso) {
       this.itens.push({
         label: itemUniverso.titulo,
-        items:
-          this.obterItensPorTipo(itemUniverso)
+        items: this.obterItensPorTipo(itemUniverso),
+        command: () => {
+          if (itemUniverso.texto != null) {
+            this.itemUniverso = itemUniverso;
+          }
+        }
       });
     }
   }
 
   private obterItensPorTipo(item: ItemUniverso): MenuItem[] {
     let itens: MenuItem[];
-    console.log(item);
     if (item.tipo === 1 && item.listaItensUniverso != null) {
       itens = this.obterItensInternos(item.listaItensUniverso);
     } else if (item.tipo === 2) {
-      console.log('TESTE');
       itens = this.obterItensZonaGalactica();
     } else {
       return null;
@@ -58,7 +61,6 @@ export class UniversoComponent implements OnInit {
   private obterItensZonaGalactica(): MenuItem[] {
     let itensInternos: MenuItem[];
     itensInternos = [];
-    console.log(this.listaZonaGalacticas);
     for (const itemZonaGalactica of this.listaZonaGalacticas) {
       itensInternos.push({
         label: itemZonaGalactica.nome,
@@ -102,7 +104,6 @@ export class UniversoComponent implements OnInit {
     }
     return itensInternos;
   }
-
 
   limparUniverso(): void {
     this.itemUniverso = new ItemUniverso('', '', null);

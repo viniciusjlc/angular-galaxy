@@ -5,6 +5,7 @@ export class ItemUniverso {
     public tipo?: number,
     public imagem?,
     public listaItensUniverso?: ItemUniverso[],
-    public id?: number) {
+    public id?: number,
+    public tituloTotal?: string) {
   }
 }
