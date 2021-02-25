@@ -1,15 +1,12 @@
 <p-card header="Atributos">
   <ng-template pTemplate="header"></ng-template>
   <div class="p-grid p-jc-center">
-    <div class="p-col-6 p-md-6 p-lg-4 p-grid" *ngFor="let atributo of personagem.listaAtributos; index as i;">
-      <div class="p-col-8 info-area label-info" style="font-size: 21px">
-        <p-chip icon="pi pi-caret-up" [label]="atributo.sigla"
+    <div class="p-col-6 p-md-6 p-lg-4 p-grid" style=" padding: 0.7em !important;"
+         *ngFor="let atributo of personagem.listaAtributos; index as i;">
+      <div class="p-col-12 info-area label-info" style="font-size: 20px;">
+        <p-chip icon="pi pi-caret-up" [label]="atributo.sigla+':  '+atributo.valor"
                 [style]="{'font-size': '22px', 'background-color':'#1e1e1e'}">
         </p-chip>
-      </div>
-      <div class="p-col-4 info-area label-info"
-           style="font-size: 22px" align="center">
-        {{atributo.valor}}
       </div>
     </div>
   </div>
@@ -19,7 +16,8 @@
   </p>
 
   <div class="p-grid p-jc-center">
-    <div class="p-col-12 p-md-6 p-lg-3 p-jc-center" *ngFor="let especialidade of personagem.listaEspecialidades; index as i;" align="center">
+    <div class="p-col-12 p-md-6 p-lg-3 p-jc-center"
+         *ngFor="let especialidade of personagem.listaEspecialidades; index as i;" align="center">
       <p-chip icon="pi pi-caret-up" [label]="especialidade.nome+': '+especialidade.valor"
               [style]="{'font-size': '18px', 'border': 'solid 2px #2f2f2f', 'background-color':'#1e1e1e', 'width': '96%', 'text-align': 'center', 'justify-content': 'center'}">
       </p-chip>
