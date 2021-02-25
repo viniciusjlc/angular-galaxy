@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div routerLink="suaconta"
+  <div routerLink="suaconta" onclick="w3_close()"
        *ngIf="isLogado" class="p-d-flex item-logar">
     <p-avatar icon="pi pi-user" [styleClass]="'item-logar-icone-usuario'"
               [style]="{'border': 'solid #c2a23c', 'background-color':' #fdd34e00', 'color': 'black', 'text-align': 'center', 'justify-content': 'center', 'margin': '6px 0px 0px 8px'}"
@@ -28,12 +28,12 @@
   </div>
 
   <div>
-    <div class="item-padrao" routerLink="">Home</div>
-    <div class="item-padrao" routerLink="universo">Universo</div>
-    <div [hidden]="!isLogado" class="item-padrao" routerLink="campanha">Campanha</div>
-    <div [hidden]="!isLogado" class="item-padrao" routerLink="personagens">Personagem</div>
-    <div class="item-padrao" routerLink="sobre">Sobre</div>
-    <div [hidden]="!isLogado" class="item-padrao" routerLink="" (click)="sair()">Sair</div>
+    <div class="item-padrao" routerLink="" onclick="w3_close()">Home</div>
+    <div class="item-padrao" routerLink="universo" onclick="w3_close()">Universo</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="campanha" onclick="w3_close()">Campanha</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="personagens" onclick="w3_close()">Personagem</div>
+    <div class="item-padrao" routerLink="sobre" onclick="w3_close()">Sobre</div>
+    <div [hidden]="!isLogado" class="item-padrao" routerLink="" (click)="sair()" onclick="w3_close()">Sair</div>
   </div>
 
   <!--<app-footer></app-footer>-->

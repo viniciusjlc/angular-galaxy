@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Dialog} from 'primeng/dialog';
 import {Usuario} from '../../models/Usuario';
 import {SessionService} from '../../services/session/session.service';
