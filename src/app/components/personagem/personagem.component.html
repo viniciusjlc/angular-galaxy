@@ -1,6 +1,6 @@
 <div class="p-grid">
-  <p-fieldset  class="p-col-12 p-md-3 p-lg-3"
-    [legend]="personagem.apelido" [toggleable]="isMobileSize()">
+  <p-fieldset class="p-col-12 p-md-3 p-lg-3"
+              [legend]="personagem.apelido" [toggleable]="isMobileSize()">
     <div class="item-menu" (click)="itemAtual = 'BASE'">Dados Base</div>
     <div class="item-menu" (click)="itemAtual = 'ATRIBUTOS'">Atributos & Especialidades</div>
   </p-fieldset>
@@ -9,36 +9,9 @@
                                [personagem]="personagem">
     </app-personagem-dados-base>
 
-    <p-card header="Atributos" [hidden]="itemAtual != 'ATRIBUTOS'">
-      <ng-template pTemplate="header"></ng-template>
-      <div class="p-grid">
-        <div class="p-col-4 p-grid" *ngFor="let atributo of personagem.listaAtributos; index as i;">
-          <div class="p-col-8 info-area label-info" style="font-size: 22px">
-            <p-chip icon="pi pi-caret-up" [label]="atributo.nome"
-                    [style]="{'font-size': '22px', 'background-color':'#1e1e1e'}">
-            </p-chip>
-          </div>
-          <div class="p-col-4 info-area label-info"
-               style="font-size: 22px" align="center">
-            {{atributo.valor}}
-          </div>
-        </div>
-      </div>
-      <br/>
-      <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
-        Especialidades
-      </p>
-
-      <div class="p-grid">
-        <div class="p-col-3" *ngFor="let especialidade of personagem.listaEspecialidades; index as i;" align="center">
-          <p-chip icon="pi pi-caret-up" [label]="especialidade.nome+': '+especialidade.valor"
-                  [style]="{'font-size': '18px', 'border': 'solid 2px #2f2f2f', 'background-color':'#1e1e1e', 'width': '96%', 'text-align': 'center', 'justify-content': 'center'}">
-          </p-chip>
-        </div>
-      </div>
-
-      <app-personagem-status [personagem]="personagem"></app-personagem-status>
-    </p-card>
+    <app-personagem-atributos [hidden]="itemAtual != 'ATRIBUTOS'"
+                              [personagem]="personagem">
+    </app-personagem-atributos>
   </div>
 </div>
 

@@ -8,7 +8,7 @@ import Atributo from '../../../models/Atributo';
   styleUrls: ['./personagem-atributos.component.css']
 })
 export class PersonagemAtributosComponent implements OnInit {
-  @Input() listaAtributos: Atributo[];
+  @Input() personagem: Personagem;
   constructor() { }
 
   ngOnInit(): void {
