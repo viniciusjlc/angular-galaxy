@@ -1,0 +1,54 @@
+<p-card header="Habilidades">
+  <ng-template pTemplate="header"></ng-template>
+  <!--<p-table #dt [value]="personagem" [rows]="3" [paginator]="true" scrollHeight="200px"
+           [globalFilterFields]="['titulo','descricao']" [scrollable]="false"
+           [rowHover]="true" dataKey="id" currentPageReportTemplate=" {first} - {last} de {totalRecords} registros"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-grid p-jc-center">
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <button pButton pRipple label="Nova Campanha" icon="pi pi-plus" class="p-button-success p-mr-md-3"
+                  (click)="abrirDialogCadastrar()"></button>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-6">
+              <span class="p-input-icon-left" style="width: 100%">
+                        <i class="pi pi-search"></i>
+                        <input style="width: 100%" placeholder="Busca..."
+                               pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+              </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="body" let-campanha>
+      <tr>
+        <td class="p-grid">
+          <div class="p-col-12 p-md-9 p-lg-9">
+            <h5>
+              {{campanha.titulo}}
+            </h5>
+            <p>
+              {{campanha.descricao}}
+            </p>
+          </div>
+          <div class="p-col-12 p-md-3 p-lg-3 p-grid p-jc-center">
+            <button pButton pRipple icon="pi pi-pencil" label="Editar" class="p-button-success"
+                    style="height: 2em !important; margin: 2px" tooltip="Editar"
+                    (click)="abrirDialogEditar(campanha)"></button>
+            <button pButton pRipple icon="pi pi-trash" label="Excluir" class="p-button-warning"
+                    style="height: 2em !important; margin: 2px" tooltip="Excluir"
+                    (click)="excluir(campanha)"></button>
+            <button pButton pRipple icon="pi pi-users" label="Mestrar" class="p-button-danger"
+                    style="height: 2em !important; margin: 2px" tooltip="Mestrar"
+                    (click)="mestrar(campanha)"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        Existe um total de {{listaCampanhas ? listaCampanhas.length : 0 }} campanha(s).
+      </div>
+    </ng-template>
+  </p-table>-->
+  <app-personagem-status [personagem]="personagem"></app-personagem-status>
+</p-card>

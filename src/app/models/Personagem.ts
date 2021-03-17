@@ -5,6 +5,7 @@ import Classe from './Classe';
 import Atributo from './Atributo';
 import PersonagemPontos from './PersonagemPontos';
 import Especialidade from './Especialidade';
+import Habilidade from './Habilidade';
 
 export default class Personagem {
   constructor(public nome: string,
@@ -23,6 +24,7 @@ export default class Personagem {
               public listaAtributos?: Atributo[],
               public listaEspecialidades?: Especialidade[],
               public id?: number,
-              public pontos?: PersonagemPontos) {
+              public pontos?: PersonagemPontos,
+              public listaHabilidade?: Habilidade[]) {
   }
 }

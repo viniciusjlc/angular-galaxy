@@ -3,6 +3,8 @@
               [legend]="personagem.apelido" [toggleable]="isMobileSize()">
     <div class="item-menu" (click)="itemAtual = 'BASE'">Dados Base</div>
     <div class="item-menu" (click)="itemAtual = 'ATRIBUTOS'">Atributos & Especialidades</div>
+    <div class="item-menu" (click)="itemAtual = 'HABILIDADES'">Habilidades</div>
+    <div class="item-menu" (click)="itemAtual = 'ROLAGEM'">Rolagem de Dados</div>
   </p-fieldset>
   <div class="p-col-12 p-md-9 p-lg-9">
     <app-personagem-dados-base [hidden]="itemAtual != 'BASE'"
@@ -12,6 +14,14 @@
     <app-personagem-atributos [hidden]="itemAtual != 'ATRIBUTOS'"
                               [personagem]="personagem">
     </app-personagem-atributos>
+
+    <app-personagem-habilidades [hidden]="itemAtual != 'HABILIDADES'"
+                              [personagem]="personagem">
+    </app-personagem-habilidades>
+
+    <app-personagem-rolagem [hidden]="itemAtual != 'ROLAGEM'"
+                              [personagem]="personagem">
+    </app-personagem-rolagem>
   </div>
 </div>
 

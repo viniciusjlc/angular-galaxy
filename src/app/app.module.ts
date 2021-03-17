@@ -62,7 +62,9 @@ import {ChipModule} from 'primeng/chip';
 import {SideBarComponent} from './components/side-bar/side-bar.component';
 import {AvatarModule} from 'primeng/avatar';
 import { SuaContaComponent } from './components/sua-conta/sua-conta.component';
-import {FieldsetModule} from "primeng/fieldset";
+import {FieldsetModule} from 'primeng/fieldset';
+import { PersonagemHabilidadesComponent } from './components/personagem/personagem-habilidades/personagem-habilidades.component';
+import { PersonagemRolagemComponent } from './components/personagem/personagem-rolagem/personagem-rolagem.component';
 
 
 const maskConfig: Partial<IConfig> = {
@@ -94,7 +96,9 @@ const maskConfig: Partial<IConfig> = {
         PersonagemAtributosComponent,
         SideBarComponent,
         SideBarComponent,
-        SuaContaComponent
+        SuaContaComponent,
+        PersonagemHabilidadesComponent,
+        PersonagemRolagemComponent
     ],
     imports: [
         BrowserModule,
