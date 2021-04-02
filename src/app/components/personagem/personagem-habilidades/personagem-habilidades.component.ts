@@ -47,7 +47,10 @@ export class PersonagemHabilidadesComponent implements OnInit {
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-          this.messageService.add({severity: 'info', summary: 'Confirmed', detail: 'You have accepted'});
+          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Habilidade comprada com sucesso'});
+          this.habilidadeService.comprarHabilidade({
+            habilidadeDTO: habilidade, personagemDTO: this.personagem
+          });
         }
       });
     }
@@ -64,7 +67,6 @@ export class PersonagemHabilidadesComponent implements OnInit {
           + this.personagem.pontos.level
       });
     }
-
     habilidade.habilidadesRequisitos.forEach(requesito => {
       if (requesito.atributo !== undefined) {
         const atributoJogador = this.obterAtributoPorId(requesito.atributo.id);
