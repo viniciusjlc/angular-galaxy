@@ -4,8 +4,7 @@
     <p-messages [value]="msgs"></p-messages>
     <p-table #dt [value]="listaPersonagens" [rows]="3" [paginator]="true" scrollHeight="200px"
              [globalFilterFields]="['nome','titulo']" [scrollable]="false"
-             [rowHover]="true" dataKey="id" currentPageReportTemplate=" {first} - {last} de {totalRecords} registros"
-             [showCurrentPageReport]="true">
+             [rowHover]="true" dataKey="id">
       <ng-template pTemplate="caption">
         <div class="p-grid p-jc-center">
           <div class="p-col-12 p-md-6 p-lg-6">
