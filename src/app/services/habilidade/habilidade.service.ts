@@ -10,6 +10,7 @@ import Personagem from '../../models/Personagem';
 export class HabilidadeService {
   private readonly urlHabilidade = '/habilidade';
   private readonly urlConsultarPorClasse = this.urlHabilidade + '/listar/';
+  private readonly urlConsultarPorPersonagem = this.urlHabilidade + '/listarPersonagem/';
   private readonly urlComprarHabilidade = this.urlHabilidade + '/comprarHabilidade';
 
   constructor(private http: HttpClient) {
@@ -18,6 +19,11 @@ export class HabilidadeService {
   public async consultarPorClasse(idClasse: number): Promise<Habilidade[]> {
     const headers = JwtService.header;
     return this.http.get<Habilidade[]>(JwtService.urlAPI + this.urlConsultarPorClasse + idClasse, {headers}).toPromise();
+  }
+
+  public async consultarPorPersonagem(idPersonagem: number): Promise<Habilidade[]> {
+    const headers = JwtService.header;
+    return this.http.get<Habilidade[]>(JwtService.urlAPI + this.urlConsultarPorPersonagem + idPersonagem, {headers}).toPromise();
   }
 
   public async comprarHabilidade(cadastroHabilidadePersonagemForm): Promise<void> {

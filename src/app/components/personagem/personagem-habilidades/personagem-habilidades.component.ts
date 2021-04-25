@@ -7,6 +7,7 @@ import Habilidade from '../../../models/Habilidade';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import Atributo from '../../../models/Atributo';
 import Especialidade from '../../../models/Especialidade';
+import HabilidadeRequisito from '../../../models/HabilidadeRequisito';
 
 @Component({
   selector: 'app-personagem-habilidades',
@@ -40,24 +41,38 @@ export class PersonagemHabilidadesComponent implements OnInit {
     this.listaHabilidadePorClasse = await this.habilidadeService.consultarPorClasse(this.personagem.classe.id);
   }
 
-  confirmarCompra(habilidade: Habilidade): void {
-    if (this.validarRequisitosHabilidade(habilidade)) {
-      this.confirmationService.confirm({
-        message: 'Tem certeza que deseja comprar a habilidade ' + habilidade.nome + ' ?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Habilidade comprada com sucesso'});
-          this.habilidadeService.comprarHabilidade({
-            habilidadeDTO: habilidade, personagemDTO: this.personagem
-          });
-        }
-      });
+  async confirmarCompra(habilidade: Habilidade): Promise<void> {
+    if (this.personagem.pontos.level - this.personagem.listaHabilidade.length > 0) {
+      if (this.validarRequisitosHabilidade(habilidade)) {
+        this.confirmationService.confirm({
+          message: 'Tem certeza que deseja comprar a habilidade ' + habilidade.nome + ' ?',
+          header: 'Confirmation',
+          icon: 'pi pi-exclamation-triangle',
+          accept: async () => {
+            this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Habilidade comprada com sucesso'});
+            await this.habilidadeService.comprarHabilidade({
+              habilidadeDTO: habilidade, personagemDTO: this.personagem
+            });
+            this.personagem.listaHabilidade = await this.habilidadeService.consultarPorPersonagem(this.personagem.id);
+            this.showDialogComprarHabilidades = false;
+          }
+        });
+      }
+    }else{
+      this.messageService.add({severity: 'warn', summary: 'Alerta', detail: 'Seu personagem não tem pontos necessários para comprar uma habilidade'});
     }
   }
 
   validarRequisitosHabilidade(habilidade: Habilidade): boolean {
     let valido = true;
+    this.validarLevel(habilidade, valido);
+    if (habilidade.habilidadesRequisitos !== undefined) {
+      valido = this.validarAtributoEEspecialidade(habilidade, valido);
+    }
+    return valido;
+  }
+
+  private validarLevel(habilidade: Habilidade, valido: boolean): void {
     if (this.personagem.pontos.level <= habilidade.levelNecessario) {
       this.messageService.add({
         severity: 'error',
@@ -66,34 +81,48 @@ export class PersonagemHabilidadesComponent implements OnInit {
           + ', mas seu personagem é level '
           + this.personagem.pontos.level
       });
+      valido = false;
     }
+  }
+
+  private validarAtributoEEspecialidade(habilidade: Habilidade, valido: boolean): boolean {
     habilidade.habilidadesRequisitos.forEach(requesito => {
       if (requesito.atributo !== undefined) {
-        const atributoJogador = this.obterAtributoPorId(requesito.atributo.id);
-        if (atributoJogador.valor <= requesito.valor) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Requisito insatisfeito! ',
-            detail: 'É necessário ter ' + requesito.valor + ' em '
-              + requesito.atributo.nome + ', mas seu personagem apenas tem '
-              + atributoJogador.valor
-          });
-          valido = false;
-        }
+        valido = this.validarRequesito(requesito, valido);
       } else {
-        const especialidadeJogador = this.obterEspecialidadePorId(requesito.especialidade.id);
-        if (especialidadeJogador.valor <= requesito.valor) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Requisito insatisfeito! ',
-            detail: 'É necessário ter ' + requesito.valor + ' em '
-              + requesito.especialidade.nome + ', mas seu personagem apenas tem '
-              + especialidadeJogador.valor
-          });
-          valido = false;
-        }
+        valido = this.validarRequesitoEspecialidade(requesito, valido);
       }
     });
+    return valido;
+  }
+
+  private validarRequesito(requesito: HabilidadeRequisito, valido: boolean): boolean {
+    const atributoJogador = this.obterAtributoPorId(requesito.atributo.id);
+    if (atributoJogador.valor <= requesito.valor) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Requisito insatisfeito! ',
+        detail: 'É necessário ter ' + requesito.valor + ' em '
+          + requesito.atributo.nome + ', mas seu personagem apenas tem '
+          + atributoJogador.valor
+      });
+      valido = false;
+    }
+    return valido;
+  }
+
+  private validarRequesitoEspecialidade(requesito: HabilidadeRequisito, valido: boolean): boolean {
+    const especialidadeJogador = this.obterEspecialidadePorId(requesito.especialidade.id);
+    if (especialidadeJogador.valor <= requesito.valor) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Requisito insatisfeito! ',
+        detail: 'É necessário ter ' + requesito.valor + ' em '
+          + requesito.especialidade.nome + ', mas seu personagem apenas tem '
+          + especialidadeJogador.valor
+      });
+      valido = false;
+    }
     return valido;
   }
 
